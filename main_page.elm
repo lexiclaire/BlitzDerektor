@@ -11,45 +11,24 @@ import Material.Layout as Layout
 import Material.Grid exposing (..)
 import Material.Color as Color
 
-
--- MODEL
-
-
--- You have to add a field to your model where you track the `Material.Model`.
--- This is referred to as the "model container"
 type alias Model =
     { count : Int
     , mdl :
         Material.Model
-        -- Boilerplate: model store for any and all Mdl components you use.
     }
 
 
--- `Material.model` provides the initial model
 model : Model
 model =
     { count = 0
     , mdl =
         Material.model
-        -- Boilerplate: Always use this initial Mdl model store.
     }
 
-
-
--- ACTION, UPDATE
-
-
--- You need to tag `Msg` that are coming from `Mdl` so you can dispatch them
--- appropriately.
 type Msg
     = Increase
     | Reset
     | Mdl (Material.Msg Msg)
-
-
-
--- Boilerplate: Msg clause for internal Mdl messages.
-
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -64,7 +43,6 @@ update msg model =
             , Cmd.none
             )
 
-        -- When the `Mdl` messages come through, update appropriately.
         Mdl msg' ->
             Material.update msg' model
 
@@ -107,19 +85,11 @@ viewBody model =
          mainGrid
         |> Material.Scheme.top
 
-
-
--- Load Google Mdl CSS. You'll likely want to do that not in code as we
--- do here, but rather in your master .html file. See the documentation
--- for the `Material` module for details.
-
-
 main : Program Never
 main =
     App.program
         { init = ( model, Cmd.none )
         , view = view
-        -- Here we've added no subscriptions, but we'll need to use the `Mdl` subscriptions for some components later.
         , subscriptions = always Sub.none
         , update = update
         }
