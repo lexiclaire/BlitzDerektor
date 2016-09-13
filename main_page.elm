@@ -58,12 +58,12 @@ mainGrid : (Html a)
 mainGrid =
     grid [ Options.css "width" "100%" ]
         [ cell [ size All 6 ]
-            [ h4 [] [ text "left column" ]
+            [ h4 [] [ text "Template Preview" ]
             , Options.img [ Options.css "width" "100%" ] [ Html.Attributes.src "/assets/images/template.png"]
             ]
         , cell [ size All 6
                 , Color.background (Color.color Color.Teal Color.S50)]
-            [ h4 [] [ text "right column" ]
+            [ h4 [] [ text "Edit Template" ]
             ]
         ]
 

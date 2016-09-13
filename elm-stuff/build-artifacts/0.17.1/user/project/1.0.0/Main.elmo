@@ -20,7 +20,7 @@ var _user$project$Main$mainGrid = A2(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html$text('left column')
+							_elm_lang$html$Html$text('Template Preview')
 						])),
 					A2(
 					_debois$elm_mdl$Material_Options$img,
@@ -49,7 +49,7 @@ var _user$project$Main$mainGrid = A2(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html$text('right column')
+							_elm_lang$html$Html$text('Edit Template')
 						]))
 				]))
 		]));
