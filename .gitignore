@@ -1,0 +1,10 @@
+# ignore elm's directory
+elm-stuff/
+
+# ignore backup files
+*~
+*#
+
+# ignore archives
+*.zip
+*.tgz
