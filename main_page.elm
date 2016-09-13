@@ -2,11 +2,11 @@ module Main exposing (..)
 
 import Html.App as App
 import Html exposing (..)
-import Html.Attributes exposing (href, class, style)
+import Html.Attributes exposing (href, class, style, src)
 import Material
 import Material.Scheme
 import Material.Button as Button
-import Material.Options exposing (css)
+import Material.Options as Options
 import Material.Layout as Layout
 import Material.Grid exposing (..)
 import Material.Color as Color
@@ -56,13 +56,13 @@ type alias Mdl =
 
 mainGrid : (Html a)
 mainGrid =
-    grid [ css "width" "100%" ]
+    grid [ Options.css "width" "100%" ]
         [ cell [ size All 6 ]
-            [ h4 [] 
-                 [ text "left column" ]
+            [ h4 [] [ text "left column" ]
+            , Options.img [ Options.css "width" "100%" ] [ Html.Attributes.src "/assets/images/template.png"]
             ]
         , cell [ size All 6
-        , Color.background (Color.color Color.Teal Color.S50) ]
+                , Color.background (Color.color Color.Teal Color.S50)]
             [ h4 [] [ text "right column" ]
             ]
         ]
