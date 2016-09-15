@@ -50,6 +50,13 @@ mainGrid =
         , cell [ size All 6
                 , Color.background (Color.color Color.Teal Color.S50)]
             [ h4 [] [ text "Edit Template" ]
+            , grid [ Options.css "width" "100%" ]
+            [ cell [ size All 12 
+                    , Color.background (Color.color Color.Pink Color.S50)
+                    , Options.css "position" "absolute"
+                    , Options.css "bottom" "0" ]
+                [h4 [] [ text "Nested cell" ] ]
+            ]
             ]
         ]
 
