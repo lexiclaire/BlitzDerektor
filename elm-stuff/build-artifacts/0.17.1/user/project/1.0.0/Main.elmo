@@ -15,71 +15,54 @@ var _user$project$Main$mainGrid = A2(
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
-					_elm_lang$html$Html$h4,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
+					_debois$elm_mdl$Material_Options$div,
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html$text('Template Preview')
-						])),
-					A2(
-					_debois$elm_mdl$Material_Options$img,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
+							A2(_debois$elm_mdl$Material_Options$css, 'min-height', '75vh')
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html_Attributes$src('/assets/images/template.png')
+							A2(
+							_debois$elm_mdl$Material_Options$img,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$src('/assets/images/template.png')
+								]))
 						]))
 				])),
 			A2(
 			_debois$elm_mdl$Material_Grid$cell,
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 6),
-					_debois$elm_mdl$Material_Color$background(
-					A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$S50))
+					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 6)
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
-					_elm_lang$html$Html$h4,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
+					_debois$elm_mdl$Material_Options$div,
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html$text('Edit Template')
-						])),
-					A2(
-					_debois$elm_mdl$Material_Grid$grid,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
+							_debois$elm_mdl$Material_Color$background(
+							A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$S50)),
+							A2(_debois$elm_mdl$Material_Options$css, 'min-height', '70%')
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
-							A2(
-							_debois$elm_mdl$Material_Grid$cell,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
-									_debois$elm_mdl$Material_Color$background(
-									A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Pink, _debois$elm_mdl$Material_Color$S50)),
-									A2(_debois$elm_mdl$Material_Options$css, 'position', 'absolute'),
-									A2(_debois$elm_mdl$Material_Options$css, 'bottom', '0')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$h4,
-									_elm_lang$core$Native_List.fromArray(
-										[]),
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html$text('Nested cell')
-										]))
-								]))
+							_elm_lang$html$Html$text('hi')
+						])),
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_debois$elm_mdl$Material_Color$background(
+							A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Pink, _debois$elm_mdl$Material_Color$S50)),
+							A2(_debois$elm_mdl$Material_Options$css, 'min-height', '30%')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('bye')
 						]))
 				]))
 		]));

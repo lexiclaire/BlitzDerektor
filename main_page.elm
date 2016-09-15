@@ -10,6 +10,7 @@ import Material.Options as Options
 import Material.Layout as Layout
 import Material.Grid exposing (..)
 import Material.Color as Color
+import Material.Card as Card
 
 type alias Model =
     { mdl :
@@ -42,23 +43,19 @@ type alias Mdl =
 
 mainGrid : (Html a)
 mainGrid =
-    grid [ Options.css "width" "100%" ]
+    grid [ Options.css "width" "100%"]
         [ cell [ size All 6 ]
-            [ h4 [] [ text "Template Preview" ]
-            , Options.img [ Options.css "width" "100%" ] [ Html.Attributes.src "/assets/images/template.png"]
-            ]
-        , cell [ size All 6
-                , Color.background (Color.color Color.Teal Color.S50)]
-            [ h4 [] [ text "Edit Template" ]
-            , grid [ Options.css "width" "100%" ]
-            [ cell [ size All 12 
-                    , Color.background (Color.color Color.Pink Color.S50)
-                    , Options.css "position" "absolute"
-                    , Options.css "bottom" "0" ]
-                [h4 [] [ text "Nested cell" ] ]
-            ]
-            ]
-        ]
+                [ Options.div [ Options.css "min-height" "75vh"] [ Options.img [] [ Html.Attributes.src "/assets/images/template.png" ] ]
+                ]
+
+        , cell [ size All 6 ]
+                [ Options.div [ Color.background (Color.color Color.Teal Color.S50 )
+                    , Options.css "min-height" "70%" ]
+                    [ text "hi" ]
+                , Options.div [ Color.background (Color.color Color.Pink Color.S50 )
+                , Options.css "min-height" "30%" ] [ text "bye" ]
+                ]
+    ]
 
 view : Model -> Html Msg
 view model =
