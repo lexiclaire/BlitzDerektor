@@ -59,32 +59,12 @@ var _user$project$Main$viewBody = function (model) {
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		switch (_p0.ctor) {
-			case 'Increase':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{count: model.count + 1}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'Reset':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{count: 0}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			default:
-				return A2(_debois$elm_mdl$Material$update, _p0._0, model);
-		}
+		return A2(_debois$elm_mdl$Material$update, _p0._0, model);
 	});
-var _user$project$Main$model = {count: 0, mdl: _debois$elm_mdl$Material$model};
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {count: a, mdl: b};
-	});
+var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model};
+var _user$project$Main$Model = function (a) {
+	return {mdl: a};
+};
 var _user$project$Main$Mdl = function (a) {
 	return {ctor: 'Mdl', _0: a};
 };
@@ -137,5 +117,3 @@ var _user$project$Main$main = {
 			update: _user$project$Main$update
 		})
 };
-var _user$project$Main$Reset = {ctor: 'Reset'};
-var _user$project$Main$Increase = {ctor: 'Increase'};

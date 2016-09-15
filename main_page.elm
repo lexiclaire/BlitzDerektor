@@ -12,37 +12,23 @@ import Material.Grid exposing (..)
 import Material.Color as Color
 
 type alias Model =
-    { count : Int
-    , mdl :
+    { mdl :
         Material.Model
     }
 
 
 model : Model
 model =
-    { count = 0
-    , mdl =
+    { mdl =
         Material.model
     }
 
 type Msg
-    = Increase
-    | Reset
-    | Mdl (Material.Msg Msg)
+    = Mdl (Material.Msg Msg)
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Increase ->
-            ( { model | count = model.count + 1 }
-            , Cmd.none
-            )
-
-        Reset ->
-            ( { model | count = 0 }
-            , Cmd.none
-            )
-
         Mdl msg' ->
             Material.update msg' model
 
