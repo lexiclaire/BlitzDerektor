@@ -1,3 +1,61 @@
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		return A2(_debois$elm_mdl$Material$update, _p0._0, model);
+	});
+var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model};
+var _user$project$Main$Model = function (a) {
+	return {mdl: a};
+};
+var _user$project$Main$Mdl = function (a) {
+	return {ctor: 'Mdl', _0: a};
+};
+var _user$project$Main$createNew = A2(
+	_debois$elm_mdl$Material_Layout$row,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(_debois$elm_mdl$Material_Options$css, 'padding-left', '0px')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A5(
+					_debois$elm_mdl$Material_Button$render,
+					_user$project$Main$Mdl,
+					_elm_lang$core$Native_List.fromArray(
+						[0]),
+					_user$project$Main$model.mdl,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_debois$elm_mdl$Material_Button$fab,
+							_debois$elm_mdl$Material_Button$colored,
+							_debois$elm_mdl$Material_Button$ripple,
+							_debois$elm_mdl$Material_Color$background(
+							A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$LightBlue, _debois$elm_mdl$Material_Color$S100)),
+							_debois$elm_mdl$Material_Color$text(
+							A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$DeepPurple, _debois$elm_mdl$Material_Color$S500))
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('+')
+						]))
+				])),
+			A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'padding-left', '15px')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('CREATE NEW')
+				]))
+		]));
 var _user$project$Main$mainGrid = A2(
 	_debois$elm_mdl$Material_Grid$grid,
 	_elm_lang$core$Native_List.fromArray(
@@ -14,6 +72,7 @@ var _user$project$Main$mainGrid = A2(
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
+					_user$project$Main$createNew,
 					A2(
 					_debois$elm_mdl$Material_Options$div,
 					_elm_lang$core$Native_List.fromArray(
@@ -25,7 +84,9 @@ var _user$project$Main$mainGrid = A2(
 							A2(
 							_debois$elm_mdl$Material_Options$img,
 							_elm_lang$core$Native_List.fromArray(
-								[]),
+								[
+									A2(_debois$elm_mdl$Material_Options$css, 'max-width', '100%')
+								]),
 							_elm_lang$core$Native_List.fromArray(
 								[
 									_elm_lang$html$Html_Attributes$src('/assets/images/template.png')
@@ -68,18 +129,6 @@ var _user$project$Main$mainGrid = A2(
 		]));
 var _user$project$Main$viewBody = function (model) {
 	return _debois$elm_mdl$Material_Scheme$top(_user$project$Main$mainGrid);
-};
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		return A2(_debois$elm_mdl$Material$update, _p0._0, model);
-	});
-var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model};
-var _user$project$Main$Model = function (a) {
-	return {mdl: a};
-};
-var _user$project$Main$Mdl = function (a) {
-	return {ctor: 'Mdl', _0: a};
 };
 var _user$project$Main$view = function (model) {
 	return A4(

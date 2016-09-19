@@ -33,21 +33,34 @@ update msg model =
         Mdl msg' ->
             Material.update msg' model
 
-
-
 -- VIEW
 
 
 type alias Mdl =
     Material.Model
 
-mainGrid : (Html a)
+createNew : (Html Msg)
+createNew =
+    Layout.row [ Options.css "padding-left" "0px" ]
+                [ Options.div [] [ Button.render Mdl [0] model.mdl
+                                 [ Button.fab
+                                 , Button.colored
+                                 , Button.ripple
+                                 , Color.background (Color.color Color.LightBlue Color.S100)
+                                 , Color.text (Color.color Color.DeepPurple Color.S500) ]
+                                 [ text "+" ]
+                                 ]
+                , Options.div [ Options.css "padding-left" "15px" ] [ text "CREATE NEW" ] 
+                ]
+
+mainGrid : (Html Msg)
 mainGrid =
     grid [ Options.css "width" "100%"]
         [ cell [ size All 6 ]
-                [ Options.div [ Options.css "min-height" "75vh"] [ Options.img [] [ Html.Attributes.src "/assets/images/template.png" ] ]
+                [ createNew
+                , Options.div [ Options.css "min-height" "75vh"]
+                              [ Options.img [ Options.css "max-width" "100%" ] [ Html.Attributes.src "/assets/images/template.png" ] ]
                 ]
-
         , cell [ size All 6 ]
                 [ Options.div [ Color.background (Color.color Color.Teal Color.S50 )
                     , Options.css "min-height" "70%" ]
