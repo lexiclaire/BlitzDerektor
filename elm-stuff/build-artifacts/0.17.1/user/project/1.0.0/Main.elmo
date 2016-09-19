@@ -1,16 +1,57 @@
+var _user$project$Main$createOptions = A2(
+	_debois$elm_mdl$Material_Options$div,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text('Create from template'),
+			_elm_lang$html$Html$text('Paste ad-hoc')
+		]));
+var _user$project$Main$createNew = A2(
+	_debois$elm_mdl$Material_Options$div,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(_debois$elm_mdl$Material_Options$css, 'padding-left', '15px')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text('CREATE NEW')
+		]));
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		return A2(_debois$elm_mdl$Material$update, _p0._0, model);
+		if (_p0.ctor === 'Mdl') {
+			return A2(_debois$elm_mdl$Material$update, _p0._0, model);
+		} else {
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{menuState: true}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
 	});
-var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model};
-var _user$project$Main$Model = function (a) {
-	return {mdl: a};
+var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model, menuState: false};
+var _user$project$Main$menuDisplay = function (menu) {
+	var _p1 = menu;
+	if (_p1.ctor === 'MenuNew') {
+		return _user$project$Main$createNew;
+	} else {
+		return _user$project$Main$createOptions;
+	}
 };
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {mdl: a, menuState: b};
+	});
+var _user$project$Main$MenuOptions = {ctor: 'MenuOptions'};
+var _user$project$Main$MenuNew = {ctor: 'MenuNew'};
+var _user$project$Main$MenuState = {ctor: 'MenuState'};
 var _user$project$Main$Mdl = function (a) {
 	return {ctor: 'Mdl', _0: a};
 };
-var _user$project$Main$createNew = A2(
+var _user$project$Main$createButton = A2(
 	_debois$elm_mdl$Material_Layout$row,
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -35,6 +76,7 @@ var _user$project$Main$createNew = A2(
 							_debois$elm_mdl$Material_Button$fab,
 							_debois$elm_mdl$Material_Button$colored,
 							_debois$elm_mdl$Material_Button$ripple,
+							_debois$elm_mdl$Material_Button$onClick(_user$project$Main$MenuState),
 							_debois$elm_mdl$Material_Color$background(
 							A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$LightBlue, _debois$elm_mdl$Material_Color$S100)),
 							_debois$elm_mdl$Material_Color$text(
@@ -44,16 +86,6 @@ var _user$project$Main$createNew = A2(
 						[
 							_elm_lang$html$Html$text('+')
 						]))
-				])),
-			A2(
-			_debois$elm_mdl$Material_Options$div,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(_debois$elm_mdl$Material_Options$css, 'padding-left', '15px')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('CREATE NEW')
 				]))
 		]));
 var _user$project$Main$mainGrid = A2(
@@ -72,7 +104,7 @@ var _user$project$Main$mainGrid = A2(
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_user$project$Main$createNew,
+					_user$project$Main$createButton,
 					A2(
 					_debois$elm_mdl$Material_Options$div,
 					_elm_lang$core$Native_List.fromArray(

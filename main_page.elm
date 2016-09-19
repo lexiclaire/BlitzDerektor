@@ -12,52 +12,76 @@ import Material.Grid exposing (..)
 import Material.Color as Color
 import Material.Card as Card
 
-type alias Model =
-    { mdl :
-        Material.Model
-    }
+type Menu = MenuNew | MenuOptions
 
+menuDisplay : Menu -> Html Msg
+menuDisplay menu =
+    case menu of
+        MenuNew ->
+            createNew
+
+        MenuOptions ->
+            createOptions    
+    
+type alias Model =
+    { mdl : Material.Model
+    , menuState : Bool       
+    }
 
 model : Model
 model =
-    { mdl =
-        Material.model
+    { mdl = Material.model
+    , menuState = False
     }
 
 type Msg
     = Mdl (Material.Msg Msg)
+    | MenuState
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Mdl msg' ->
-            Material.update msg' model
+            Material.update msg' model  
+
+        MenuState ->
+            ( { model 
+            | menuState = True
+            }, Cmd.none)      
 
 -- VIEW
 
 
-type alias Mdl =
-    Material.Model
-
-createNew : (Html Msg)
-createNew =
+createButton : (Html Msg)
+createButton =
     Layout.row [ Options.css "padding-left" "0px" ]
                 [ Options.div [] [ Button.render Mdl [0] model.mdl
                                  [ Button.fab
                                  , Button.colored
                                  , Button.ripple
+                                 , Button.onClick MenuState
                                  , Color.background (Color.color Color.LightBlue Color.S100)
                                  , Color.text (Color.color Color.DeepPurple Color.S500) ]
                                  [ text "+" ]
                                  ]
-                , Options.div [ Options.css "padding-left" "15px" ] [ text "CREATE NEW" ] 
                 ]
+
+createNew : (Html Msg)
+createNew =
+    Options.div [ Options.css "padding-left" "15px" ] 
+                [ text "CREATE NEW" ] 
+
+createOptions : (Html Msg)
+createOptions =
+    Options.div [] [text "Create from template"
+                    , text "Paste ad-hoc"]                
+
 
 mainGrid : (Html Msg)
 mainGrid =
     grid [ Options.css "width" "100%"]
         [ cell [ size All 6 ]
-                [ createNew
+                [ createButton
                 , Options.div [ Options.css "min-height" "75vh"]
                               [ Options.img [ Options.css "max-width" "100%" ] [ Html.Attributes.src "/assets/images/template.png" ] ]
                 ]
