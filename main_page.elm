@@ -2,70 +2,97 @@ module Main exposing (..)
 
 import Html.App as App
 import Html exposing (..)
-import Html.Attributes exposing (href, class, style)
+import Html.Attributes exposing (href, class, style, src)
 import Material
 import Material.Scheme
 import Material.Button as Button
-import Material.Options exposing (css)
+import Material.Options as Options
 import Material.Layout as Layout
 import Material.Grid exposing (..)
 import Material.Color as Color
+import Material.Card as Card
 
+type Menu = MenuNew | MenuOptions
+
+menuDisplay : Menu -> Html Msg
+menuDisplay menu =
+    case menu of
+        MenuNew ->
+            createNew
+
+        MenuOptions ->
+            createOptions    
+    
 type alias Model =
-    { count : Int
-    , mdl :
-        Material.Model
+    { mdl : Material.Model
+    , menuState : Bool       
     }
-
 
 model : Model
 model =
-    { count = 0
-    , mdl =
-        Material.model
+    { mdl = Material.model
+    , menuState = False
     }
 
 type Msg
-    = Increase
-    | Reset
-    | Mdl (Material.Msg Msg)
+    = Mdl (Material.Msg Msg)
+    | MenuState
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Increase ->
-            ( { model | count = model.count + 1 }
-            , Cmd.none
-            )
-
-        Reset ->
-            ( { model | count = 0 }
-            , Cmd.none
-            )
-
         Mdl msg' ->
-            Material.update msg' model
+            Material.update msg' model  
 
-
+        MenuState ->
+            ( { model 
+            | menuState = True
+            }, Cmd.none)      
 
 -- VIEW
 
 
-type alias Mdl =
-    Material.Model
+createButton : (Html Msg)
+createButton =
+    Layout.row [ Options.css "padding-left" "0px" ]
+                [ Options.div [] [ Button.render Mdl [0] model.mdl
+                                 [ Button.fab
+                                 , Button.colored
+                                 , Button.ripple
+                                 , Button.onClick MenuState
+                                 , Color.background (Color.color Color.LightBlue Color.S100)
+                                 , Color.text (Color.color Color.DeepPurple Color.S500) ]
+                                 [ text "+" ]
+                                 ]
+                ]
 
-mainGrid : (Html a)
+createNew : (Html Msg)
+createNew =
+    Options.div [ Options.css "padding-left" "15px" ] 
+                [ text "CREATE NEW" ] 
+
+createOptions : (Html Msg)
+createOptions =
+    Options.div [] [text "Create from template"
+                    , text "Paste ad-hoc"]                
+
+
+mainGrid : (Html Msg)
 mainGrid =
-    grid [ css "width" "100%" ]
+    grid [ Options.css "width" "100%"]
         [ cell [ size All 6 ]
-            [ h4 [] 
-                 [ text "left column" ]
-            ]
-        , cell [ size All 6
-        , Color.background (Color.color Color.Teal Color.S50) ]
-            [ h4 [] [ text "right column" ]
-            ]
-        ]
+                [ createButton
+                , Options.div [ Options.css "min-height" "75vh"]
+                              [ Options.img [ Options.css "max-width" "100%" ] [ Html.Attributes.src "/assets/images/template.png" ] ]
+                ]
+        , cell [ size All 6 ]
+                [ Options.div [ Color.background (Color.color Color.Teal Color.S50 )
+                    , Options.css "min-height" "70%" ]
+                    [ text "hi" ]
+                , Options.div [ Color.background (Color.color Color.Pink Color.S50 )
+                , Options.css "min-height" "30%" ] [ text "bye" ]
+                ]
+    ]
 
 view : Model -> Html Msg
 view model =
