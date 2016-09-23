@@ -54,7 +54,7 @@ view model =
         model.mdl
         [ Layout.fixedHeader
         ]
-        { header = [ h1 [ style [ ( "padding", "2rem" ) ] ] [ text "BlitzDerektor" ] ]
+        { header = [ h1 [ style [ ( "padding", "10px 5px" ) , ( "margin", "0px" ) ] ] [ text "BlitzDerektor" ] ]
         , drawer = []
         , tabs = ( [], [] )
         , main = [ viewBody model ]
