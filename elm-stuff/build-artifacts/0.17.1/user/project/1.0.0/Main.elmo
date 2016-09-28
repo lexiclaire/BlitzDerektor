@@ -13,7 +13,112 @@ var _user$project$Main$mainGrid = A2(
 					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 6)
 				]),
 			_elm_lang$core$Native_List.fromArray(
-				[])),
+				[
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(_debois$elm_mdl$Material_Options$css, 'border', '3px solid blue')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$h1,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$style(
+									_elm_lang$core$Native_List.fromArray(
+										[
+											{ctor: '_Tuple2', _0: 'text-align', _1: 'center'}
+										]))
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Metrics')
+								])),
+							A2(
+							_debois$elm_mdl$Material_Options$div,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_debois$elm_mdl$Material_Options$img,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$src('/assets/images/dial.jpg')
+										])),
+									A2(
+									_debois$elm_mdl$Material_Options$img,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$src('/assets/images/bar.png')
+										]))
+								])),
+							A2(
+							_debois$elm_mdl$Material_Options$div,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_debois$elm_mdl$Material_Options$img,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$src('/assets/images/dial.jpg')
+										])),
+									A2(
+									_debois$elm_mdl$Material_Options$img,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$src('/assets/images/bar.png')
+										]))
+								])),
+							A2(
+							_debois$elm_mdl$Material_Options$div,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_debois$elm_mdl$Material_Options$img,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$src('/assets/images/dial.jpg')
+										])),
+									A2(
+									_debois$elm_mdl$Material_Options$img,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$src('/assets/images/bar.png')
+										]))
+								]))
+						]))
+				])),
 			A2(
 			_debois$elm_mdl$Material_Grid$cell,
 			_elm_lang$core$Native_List.fromArray(
@@ -31,9 +136,7 @@ var _user$project$Main$mainGrid = A2(
 							A2(_debois$elm_mdl$Material_Options$css, 'min-height', '70%')
 						]),
 					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('hi')
-						]))
+						[]))
 				]))
 		]));
 var _user$project$Main$viewBody = function (model) {
@@ -145,11 +248,25 @@ var _user$project$Main$viewHeader = A2(
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		return A2(_debois$elm_mdl$Material$update, _p0._0, model);
+		if (_p0.ctor === 'Mdl') {
+			return A2(_debois$elm_mdl$Material$update, _p0._0, model);
+		} else {
+			return A2(
+				_elm_lang$core$Platform_Cmd_ops['!'],
+				_elm_lang$core$Native_Utils.update(
+					model,
+					{selectedTab: _p0._0}),
+				_elm_lang$core$Native_List.fromArray(
+					[]));
+		}
 	});
-var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model};
-var _user$project$Main$Model = function (a) {
-	return {mdl: a};
+var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model, selectedTab: 0};
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {mdl: a, selectedTab: b};
+	});
+var _user$project$Main$SelectTab = function (a) {
+	return {ctor: 'SelectTab', _0: a};
 };
 var _user$project$Main$Mdl = function (a) {
 	return {ctor: 'Mdl', _0: a};

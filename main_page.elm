@@ -12,24 +12,31 @@ import Material.Grid exposing (..)
 import Material.Color as Color
 import Material.Card as Card
 import Material.Icon as Icon
+import Material.Tabs as Tabs
 
 type alias Model =
-    { mdl : Material.Model 
+    { mdl : Material.Model
+    , selectedTab : Int
     }
 
 model : Model
 model =
     { mdl = Material.model
+    , selectedTab = 0
     }
 
 type Msg
     = Mdl (Material.Msg Msg)
+    | SelectTab Int
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Mdl msg' ->
             Material.update msg' model 
+
+        SelectTab num ->
+          { model | selectedTab = num } ! []
 
 iconEmail : Html m 
 iconEmail = Icon.i "email"            
@@ -38,16 +45,33 @@ iconEmail = Icon.i "email"
 
 mainGrid : (Html Msg)
 mainGrid =
-    grid [ Options.css "width" "100%"]
-        [ cell [ size All 6 ]
-                [ 
-                ]
-        , cell [ size All 6 ]
-                [ Options.div [ Color.background (Color.color Color.Teal Color.S50 )
-                    , Options.css "min-height" "70%" ]
-                    [ text "hi" ]
-                ]
-    ]
+  grid [ Options.css "width" "100%"]
+       [ cell [ size All 6 ]
+              [ Options.div [ Options.css "border" "3px solid blue" ]
+                            [ h1 [ style [ ( "text-align", "center" ) ] ] [ text "Metrics" ]
+                            , Options.div []
+                                         [ Options.img [ Options.css "width" "50%" ]
+                                                       [ Html.Attributes.src "/assets/images/dial.jpg" ]
+                                         , Options.img [ Options.css "width" "50%" ]
+                                                       [ Html.Attributes.src "/assets/images/bar.png" ] ]
+                              , Options.div []
+                                         [ Options.img [ Options.css "width" "50%" ]
+                                                       [ Html.Attributes.src "/assets/images/dial.jpg" ]
+                                         , Options.img [ Options.css "width" "50%" ]
+                                                       [ Html.Attributes.src "/assets/images/bar.png" ] ]
+                              , Options.div []
+                                         [ Options.img [ Options.css "width" "50%" ]
+                                                       [ Html.Attributes.src "/assets/images/dial.jpg" ]
+                                         , Options.img [ Options.css "width" "50%" ]
+                                                       [ Html.Attributes.src "/assets/images/bar.png" ] ]
+                            ]
+              ]
+       , cell [ size All 6 ]
+              [ Options.div [ Color.background (Color.color Color.Teal Color.S50 )
+              , Options.css "min-height" "70%" ]
+                           [  ]
+              ]
+       ]
 
 view : Model -> Html Msg
 view model =
