@@ -51,25 +51,44 @@ view model =
         model.mdl
         [ Layout.fixedHeader
         ]
-        { header = viewHeader
+        { header = [ viewHeader ]
         , drawer = []
         , tabs = ( [], [] )
         , main = [ viewBody model ]
         }
 
-viewHeader : List(Html Msg)
+viewHeader : Html Msg
 viewHeader =
+    Options.div [ Color.background (Color.color Color.Teal Color.S400)
+ ]
     [ h1  [ style [ ( "padding", "2rem" ) ] ] 
-        [ text "BlitzDerektor" ]
-    ,   viewStepper
+          [ text "BlitzDerektor" ]
+    , viewStepper
     ]
 
 viewStepper : Html Msg
 viewStepper = 
-    Layout.row []
-    [
-        
-    ]
+    Layout.row [ Options.css "display" "flex" 
+                , Color.background (Color.color Color.Teal Color.S100) ]
+        [ Options.div [ Options.css "width" "15%" ] 
+            [ Options.div [] [ text "Step 1" ]
+            ]
+        , Options.div [ Options.css "width" "15%" ] 
+            [ Options.div [] [ text "Step 2" ]
+            ]
+        , Options.div [ Options.css "width" "15%" ] 
+            [ Options.div [] [ text "Step 3" ]
+            ]
+        , Options.div [ Options.css "width" "15%" ] 
+            [ Options.div [] [ text "Step 4" ]
+            ]
+        , Options.div [ Options.css "width" "15%" ] 
+            [ Options.div [] [ text "Step 5" ]
+            ]
+        , Options.div [ Options.css "width" "15%" ] 
+            [ Options.div [] [ text "Step 6" ]
+            ]
+        ]
 
 viewBody : Model -> Html Msg
 viewBody model =

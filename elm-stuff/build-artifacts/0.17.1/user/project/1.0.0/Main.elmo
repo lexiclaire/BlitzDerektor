@@ -1,3 +1,141 @@
+var _user$project$Main$viewStepper = A2(
+	_debois$elm_mdl$Material_Layout$row,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(_debois$elm_mdl$Material_Options$css, 'display', 'flex'),
+			_debois$elm_mdl$Material_Color$background(
+			A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$S100))
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'width', '15%')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('Step 1')
+						]))
+				])),
+			A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'width', '15%')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('Step 2')
+						]))
+				])),
+			A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'width', '15%')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('Step 3')
+						]))
+				])),
+			A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'width', '15%')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('Step 4')
+						]))
+				])),
+			A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'width', '15%')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('Step 5')
+						]))
+				])),
+			A2(
+			_debois$elm_mdl$Material_Options$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'width', '15%')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('Step 6')
+						]))
+				]))
+		]));
+var _user$project$Main$viewHeader = A2(
+	_debois$elm_mdl$Material_Options$div,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_debois$elm_mdl$Material_Color$background(
+			A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$S400))
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$h1,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$style(
+					_elm_lang$core$Native_List.fromArray(
+						[
+							{ctor: '_Tuple2', _0: 'padding', _1: '2rem'}
+						]))
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('BlitzDerektor')
+				])),
+			_user$project$Main$viewStepper
+		]));
 var _user$project$Main$mainGrid = A2(
 	_debois$elm_mdl$Material_Grid$grid,
 	_elm_lang$core$Native_List.fromArray(
@@ -13,27 +151,7 @@ var _user$project$Main$mainGrid = A2(
 					A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 6)
 				]),
 			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_debois$elm_mdl$Material_Options$div,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(_debois$elm_mdl$Material_Options$css, 'min-height', '75vh')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_debois$elm_mdl$Material_Options$img,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(_debois$elm_mdl$Material_Options$css, 'max-width', '100%')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$src('/assets/images/template.png')
-								]))
-						]))
-				])),
+				[])),
 			A2(
 			_debois$elm_mdl$Material_Grid$cell,
 			_elm_lang$core$Native_List.fromArray(
@@ -53,18 +171,6 @@ var _user$project$Main$mainGrid = A2(
 					_elm_lang$core$Native_List.fromArray(
 						[
 							_elm_lang$html$Html$text('hi')
-						])),
-					A2(
-					_debois$elm_mdl$Material_Options$div,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_debois$elm_mdl$Material_Color$background(
-							A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Pink, _debois$elm_mdl$Material_Color$S50)),
-							A2(_debois$elm_mdl$Material_Options$css, 'min-height', '30%')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('bye')
 						]))
 				]))
 		]));
@@ -92,22 +198,7 @@ var _user$project$Main$view = function (model) {
 			[_debois$elm_mdl$Material_Layout$fixedHeader]),
 		{
 			header: _elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$h1,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$style(
-							_elm_lang$core$Native_List.fromArray(
-								[
-									{ctor: '_Tuple2', _0: 'padding', _1: '2rem'}
-								]))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('BlitzDerektor')
-						]))
-				]),
+				[_user$project$Main$viewHeader]),
 			drawer: _elm_lang$core$Native_List.fromArray(
 				[]),
 			tabs: {
