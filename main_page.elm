@@ -11,6 +11,7 @@ import Material.Layout as Layout
 import Material.Grid exposing (..)
 import Material.Color as Color
 import Material.Card as Card
+import Material.Icon as Icon
 
 type alias Model =
     { mdl : Material.Model 
@@ -29,6 +30,9 @@ update msg model =
     case msg of
         Mdl msg' ->
             Material.update msg' model 
+
+iconEmail : Html m 
+iconEmail = Icon.i "email"            
 
 -- VIEW             
 
@@ -69,26 +73,27 @@ viewHeader =
 viewStepper : Html Msg
 viewStepper = 
     Layout.row [ Options.css "display" "flex" 
-                , Color.background (Color.color Color.Teal Color.S100) ]
-        [ Options.div [ Options.css "width" "15%" ] 
-            [ Options.div [] [ text "Step 1" ]
-            ]
-        , Options.div [ Options.css "width" "15%" ] 
-            [ Options.div [] [ text "Step 2" ]
-            ]
-        , Options.div [ Options.css "width" "15%" ] 
-            [ Options.div [] [ text "Step 3" ]
-            ]
-        , Options.div [ Options.css "width" "15%" ] 
-            [ Options.div [] [ text "Step 4" ]
-            ]
-        , Options.div [ Options.css "width" "15%" ] 
-            [ Options.div [] [ text "Step 5" ]
-            ]
-        , Options.div [ Options.css "width" "15%" ] 
-            [ Options.div [] [ text "Step 6" ]
-            ]
-        ]
+                , Color.background (Color.color Color.Teal Color.S200) ]
+
+                [ Options.div [ Options.css "width" "15%" ] 
+                              [ iconEmail
+                              , text "Step 1" ]
+                , Options.div [ Options.css "width" "15%" ] 
+                              [ iconEmail
+                              , text "Step 2" ]
+                , Options.div [ Options.css "width" "15%" ] 
+                              [ iconEmail
+                              , text "Step 3" ]
+                , Options.div [ Options.css "width" "15%" ] 
+                              [ iconEmail
+                              , text "Step 4" ]
+                , Options.div [ Options.css "width" "15%" ] 
+                              [ iconEmail
+                              , text "Step 5" ]
+                , Options.div [ Options.css "width" "15%" ] 
+                              [ iconEmail
+                              , text "Step 6" ]
+                ]
 
 viewBody : Model -> Html Msg
 viewBody model =
