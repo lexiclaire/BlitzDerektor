@@ -36,15 +36,12 @@ mainGrid : (Html Msg)
 mainGrid =
     grid [ Options.css "width" "100%"]
         [ cell [ size All 6 ]
-                [ Options.div [ Options.css "min-height" "75vh"]
-                              [ Options.img [ Options.css "max-width" "100%" ] [ Html.Attributes.src "/assets/images/template.png" ] ]
+                [ 
                 ]
         , cell [ size All 6 ]
                 [ Options.div [ Color.background (Color.color Color.Teal Color.S50 )
                     , Options.css "min-height" "70%" ]
                     [ text "hi" ]
-                , Options.div [ Color.background (Color.color Color.Pink Color.S50 )
-                , Options.css "min-height" "30%" ] [ text "bye" ]
                 ]
     ]
 
@@ -54,12 +51,15 @@ view model =
         model.mdl
         [ Layout.fixedHeader
         ]
-        { header = [ h1 [ style [ ( "padding", "2rem" ) ] ] [ text "BlitzDerektor" ] ]
+        { header = [ viewHeader ]
         , drawer = []
         , tabs = ( [], [] )
         , main = [ viewBody model ]
         }
 
+viewHeader : Html Msg
+viewHeader =
+    h1 [ style [ ( "padding", "2rem" ) ] ] [ text "BlitzDerektor" ]
 
 viewBody : Model -> Html Msg
 viewBody model =
