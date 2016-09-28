@@ -51,15 +51,25 @@ view model =
         model.mdl
         [ Layout.fixedHeader
         ]
-        { header = [ viewHeader ]
+        { header = viewHeader
         , drawer = []
         , tabs = ( [], [] )
         , main = [ viewBody model ]
         }
 
-viewHeader : Html Msg
+viewHeader : List(Html Msg)
 viewHeader =
-    h1 [ style [ ( "padding", "2rem" ) ] ] [ text "BlitzDerektor" ]
+    [ h1  [ style [ ( "padding", "2rem" ) ] ] 
+        [ text "BlitzDerektor" ]
+    ,   viewStepper
+    ]
+
+viewStepper : Html Msg
+viewStepper = 
+    Layout.row []
+    [
+        
+    ]
 
 viewBody : Model -> Html Msg
 viewBody model =
