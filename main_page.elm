@@ -15,31 +15,34 @@ import Material.Icon as Icon
 import Material.Tabs as Tabs
 
 type alias Model =
-    { mdl : Material.Model
-    , selectedTab : Int
-    }
+  { mdl : Material.Model
+  , selectedTab : Int
+  }
 
 model : Model
 model =
-    { mdl = Material.model
-    , selectedTab = 0
-    }
+  { mdl = Material.model
+  , selectedTab = 0
+  }
 
 type Msg
-    = Mdl (Material.Msg Msg)
-    | SelectTab Int
+  = Mdl (Material.Msg Msg)
+  | SelectTab Int
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case msg of
-        Mdl msg' ->
-            Material.update msg' model 
+  case msg of
+    Mdl msg' ->
+      Material.update msg' model 
 
-        SelectTab num ->
-          { model | selectedTab = num } ! []
+    SelectTab num ->
+      { model | selectedTab = num } ! []
 
 iconEmail : Html m 
-iconEmail = Icon.i "email"            
+iconEmail = Icon.i "email"
+
+iconEdit : Html m 
+iconEdit = Icon.i "create"            
 
 -- VIEW             
 
@@ -124,7 +127,7 @@ viewStepper =
       , text "Step 1" ]
     , Options.div
       [ Options.css "width" "15%" ] 
-      [ iconEmail
+      [ iconEdit
       , text "Step 2" ]
     , Options.div
       [ Options.css "width" "15%" ] 
@@ -132,7 +135,7 @@ viewStepper =
       , text "Step 3" ]
     , Options.div
       [ Options.css "width" "15%" ] 
-      [ iconEmail
+      [ iconEdit
       , text "Step 4" ]
     , Options.div
       [ Options.css "width" "15%" ] 
@@ -140,7 +143,7 @@ viewStepper =
       , text "Step 5" ]
     , Options.div
       [ Options.css "width" "15%" ] 
-      [ iconEmail
+      [ iconEdit
       , text "Step 6" ]
     ]
 
