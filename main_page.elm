@@ -91,9 +91,67 @@ mainGrid =
       [ Options.div
         [ Color.background ( Color.color Color.Teal Color.S50)
         , Options.css "min-height" "70%" ]
-        []
+        [ Tabs.render Mdl [0] model.mdl
+          []
+          [ Tabs.label 
+            [ Options.center ] 
+            [ text "All" ]
+          , Tabs.label 
+            [ Options.center ] 
+            [ text "Month" ]
+          , Tabs.label 
+            [ Options.center ] 
+            [ text "Week" ]
+          , Tabs.label 
+            [ Options.center ] 
+            [ text "Day" ]
+          ]
+          [ case model.selectedTab of
+            0 -> jobsAll model
+            1 -> jobsMonth model
+            2 -> jobsWeek model
+            3 -> jobsDay model
+            _ -> text "404"
+          ]
+        ]
       ]
     ]
+
+jobsAll : Model -> Html Msg
+jobsAll model =
+  grid
+    []
+    [ cell
+      [ size All 12 ]
+      [ text "All jobs"]
+    ]
+
+jobsMonth : Model -> Html Msg
+jobsMonth model =
+  grid
+    []
+    [ cell
+      [ size All 12 ]
+      [ text "Month's jobs"]
+    ]
+
+jobsWeek : Model -> Html Msg
+jobsWeek model =
+  grid
+    []
+    [ cell
+      [ size All 12 ]
+      [ text "Week's jobs"]
+    ]
+
+jobsDay : Model -> Html Msg
+jobsDay model =
+  grid
+  []
+  [ cell
+    [ size All 12 ]
+    [ text "Day's jobs"]
+  ]
 
 view : Model -> Html Msg
 view model =
@@ -111,7 +169,9 @@ viewHeader =
   Options.div
     [ Color.background (Color.color Color.Teal Color.S400) ]
     [ h1
-      [ style [ ( "padding", "2rem" ) ] ] 
+      [ style
+        [ ( "padding", "2rem" ) ]
+      ]
       [ text "BlitzDerektor" ]
       , viewStepper
     ]
