@@ -16,13 +16,13 @@ import Material.Tabs as Tabs
 
 type alias Model =
   { mdl : Material.Model
-  , selectedTab : Int
+  , tab : Int
   }
 
 model : Model
 model =
   { mdl = Material.model
-  , selectedTab = 0
+  , tab = 0
   }
 
 type Msg
@@ -36,7 +36,7 @@ update msg model =
       Material.update msg' model 
 
     SelectTab num ->
-      { model | selectedTab = num } ! []
+      { model | tab = num } ! []
 
 iconEmail : Html m 
 iconEmail = Icon.i "email"
@@ -46,10 +46,11 @@ iconEdit = Icon.i "create"
 
 -- VIEW             
 
-mainGrid : (Html Msg)
-mainGrid =
+mainGrid : Model -> Html Msg
+mainGrid model =
   grid
-    [ Options.css "width" "100%"]
+    [ Options.css "width" "100%"
+    , Options.css "padding" "0px" ]
     [ cell
       [ size All 6 ]
       [ Options.div
@@ -92,7 +93,8 @@ mainGrid =
         [ Color.background ( Color.color Color.Teal Color.S50)
         , Options.css "min-height" "70%" ]
         [ Tabs.render Mdl [0] model.mdl
-          []
+          [ Tabs.onSelectTab SelectTab
+          , Tabs.activeTab model.tab ]
           [ Tabs.label 
             [ Options.center ] 
             [ text "All" ]
@@ -106,7 +108,7 @@ mainGrid =
             [ Options.center ] 
             [ text "Day" ]
           ]
-          [ case model.selectedTab of
+          [ case model.tab of
             0 -> jobsAll model
             1 -> jobsMonth model
             2 -> jobsWeek model
@@ -209,7 +211,7 @@ viewStepper =
 
 viewBody : Model -> Html Msg
 viewBody model =
-  mainGrid
+  mainGrid model
     |> Material.Scheme.top
 
 main : Program Never
