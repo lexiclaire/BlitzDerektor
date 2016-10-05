@@ -1,4 +1,4 @@
-var _user$project$Main$jobsDay = function (model) {
+var _user$project$Main$jobsTab = function (tabName) {
 	return A2(
 		_debois$elm_mdl$Material_Grid$grid,
 		_elm_lang$core$Native_List.fromArray(
@@ -13,67 +13,37 @@ var _user$project$Main$jobsDay = function (model) {
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text('Day\'s jobs')
+						_elm_lang$html$Html$text(tabName)
 					]))
 			]));
 };
-var _user$project$Main$jobsWeek = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Grid$grid,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_Grid$cell,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Week\'s jobs')
-					]))
-			]));
-};
-var _user$project$Main$jobsMonth = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Grid$grid,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_Grid$cell,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Month\'s jobs')
-					]))
-			]));
-};
-var _user$project$Main$jobsAll = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Grid$grid,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_Grid$cell,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('All jobs')
-					]))
-			]));
-};
+var _user$project$Main$dummyGraphSet = A2(
+	_debois$elm_mdl$Material_Options$div,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_debois$elm_mdl$Material_Options$img,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$src('/assets/images/dial.jpg')
+				])),
+			A2(
+			_debois$elm_mdl$Material_Options$img,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$src('/assets/images/bar.png')
+				]))
+		]));
 var _user$project$Main$iconEdit = _debois$elm_mdl$Material_Icon$i('create');
 var _user$project$Main$iconEmail = _debois$elm_mdl$Material_Icon$i('email');
 var _user$project$Main$viewStepper = A2(
@@ -244,87 +214,9 @@ var _user$project$Main$mainGrid = function (model) {
 									[
 										_elm_lang$html$Html$text('Metrics')
 									])),
-								A2(
-								_debois$elm_mdl$Material_Options$div,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(
-										_debois$elm_mdl$Material_Options$img,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
-											]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html_Attributes$src('/assets/images/dial.jpg')
-											])),
-										A2(
-										_debois$elm_mdl$Material_Options$img,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
-											]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html_Attributes$src('/assets/images/bar.png')
-											]))
-									])),
-								A2(
-								_debois$elm_mdl$Material_Options$div,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(
-										_debois$elm_mdl$Material_Options$img,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
-											]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html_Attributes$src('/assets/images/dial.jpg')
-											])),
-										A2(
-										_debois$elm_mdl$Material_Options$img,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
-											]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html_Attributes$src('/assets/images/bar.png')
-											]))
-									])),
-								A2(
-								_debois$elm_mdl$Material_Options$div,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(
-										_debois$elm_mdl$Material_Options$img,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
-											]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html_Attributes$src('/assets/images/dial.jpg')
-											])),
-										A2(
-										_debois$elm_mdl$Material_Options$img,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
-											]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html_Attributes$src('/assets/images/bar.png')
-											]))
-									]))
+								_user$project$Main$dummyGraphSet,
+								_user$project$Main$dummyGraphSet,
+								_user$project$Main$dummyGraphSet
 							]))
 					])),
 				A2(
@@ -397,13 +289,13 @@ var _user$project$Main$mainGrid = function (model) {
 										var _p1 = model.tab;
 										switch (_p1) {
 											case 0:
-												return _user$project$Main$jobsAll(model);
+												return _user$project$Main$jobsTab('All jobs');
 											case 1:
-												return _user$project$Main$jobsMonth(model);
+												return _user$project$Main$jobsTab('Month\'s jobs');
 											case 2:
-												return _user$project$Main$jobsWeek(model);
+												return _user$project$Main$jobsTab('Week\'s jobs');
 											case 3:
-												return _user$project$Main$jobsDay(model);
+												return _user$project$Main$jobsTab('Day\'s jobs');
 											default:
 												return _elm_lang$html$Html$text('404');
 										}
