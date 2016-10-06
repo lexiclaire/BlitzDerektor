@@ -1,10 +1,5 @@
-# ignore elm's directory
-elm-stuff/
-
-# ignore backup files
-*~
-*#
-
-# ignore archives
-*.zip
-*.tgz
+# elm-package generated files
+elm-stuff
+# elm-repl generated files
+repl-temp-*
+.DS_Store
