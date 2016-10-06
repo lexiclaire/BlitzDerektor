@@ -14,6 +14,7 @@ import Material.Card as Card
 import Material.Icon as Icon
 import Material.Tabs as Tabs
 
+import Derektor.Stats as Stats
 import Derektor.Jobs as Jobs
 import Derektor.Templates as Templates
 import Derektor.Queries as Queries
