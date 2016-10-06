@@ -14,6 +14,12 @@ import Material.Card as Card
 import Material.Icon as Icon
 import Material.Tabs as Tabs
 
+import Derektor.Jobs as Jobs
+import Derektor.Templates as Templates
+import Derektor.Queries as Queries
+import Derektor.Reviews as Reviews
+import Derektor.Schedules as Schedules
+
 type alias Model =
   { mdl : Material.Model
   , tab : Int
@@ -86,27 +92,27 @@ viewStepper =
     [ Options.div
       [ Options.css "width" "15%" ] 
       [ iconEmail
-      , text "Step 1" ]
+      , text Jobs.me ]
     , Options.div
       [ Options.css "width" "15%" ] 
       [ iconEdit
-      , text "Step 2" ]
+      , text Templates.me ]
     , Options.div
       [ Options.css "width" "15%" ] 
       [ iconEmail
-      , text "Step 3" ]
+      , text Queries.me ]
     , Options.div
       [ Options.css "width" "15%" ] 
       [ iconEdit
-      , text "Step 4" ]
+      , text Reviews.me ]
     , Options.div
       [ Options.css "width" "15%" ] 
       [ iconEmail
-      , text "Step 5" ]
+      , text Schedules.me ]
     , Options.div
       [ Options.css "width" "15%" ] 
       [ iconEdit
-      , text "Step 6" ]
+      , text "?" ]
     ]
 
 viewBody : Model -> Html Msg
