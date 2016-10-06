@@ -1,7 +1,9 @@
 module Derektor.Jobs exposing (..)
 
-TODO PuppyCam!!!
-
+me : String
+me = 
+    "Jobs"
+    
 -- MODEL
 -- VIEW
 -- UPDATE
