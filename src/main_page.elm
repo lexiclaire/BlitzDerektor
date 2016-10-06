@@ -23,18 +23,21 @@ import Derektor.Schedules as Schedules
 
 type alias Model =
   { mdl : Material.Model
-  , tab : Int
+  , jobsTab : Int
+  , stepperTab : Int
   }
 
 model : Model
 model =
   { mdl = Material.model
-  , tab = 0
+  , jobsTab = 0
+  , stepperTab = 0
   }
 
 type Msg
   = Mdl (Material.Msg Msg)
-  | SelectTab Int
+  | SelectJobsTab Int
+  | SelectStepperTab Int
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -42,10 +45,12 @@ update msg model =
     Mdl msg' ->
       Material.update msg' model 
 
-    SelectTab num ->
-      { model | tab = num } ! []
+    SelectJobsTab num ->
+      { model | jobsTab = num } ! []
 
-          
+    SelectStepperTab num ->
+      { model | stepperTab = num } ! []  
+
 -- VIEW   
 main : Program Never
 main =
@@ -75,46 +80,54 @@ viewHeader =
       [ style
         [ ( "padding", "2rem" ) ]
       ]
-      [ text "BlitzDerektor" ]
-      , viewStepper
+      [ text "BlitzDerektor: " ++ stepperTab ]
+      , viewStepper model
     ]
 
 iconEmail : Html msg 
 iconEmail = Icon.i "email"
 
 iconEdit : Html msg 
-iconEdit = Icon.i "create"  
+iconEdit = Icon.i "create" 
 
-viewStepper : Html Msg
-viewStepper = 
-  Layout.row
-    [ Options.css "display" "flex" 
-    , Color.background (Color.color Color.Teal Color.S200) ]
-    [ Options.div
-      [ Options.css "width" "15%" ] 
-      [ iconEmail
-      , text Jobs.me ]
-    , Options.div
-      [ Options.css "width" "15%" ] 
-      [ iconEdit
-      , text Templates.me ]
-    , Options.div
-      [ Options.css "width" "15%" ] 
-      [ iconEmail
-      , text Queries.me ]
-    , Options.div
-      [ Options.css "width" "15%" ] 
-      [ iconEdit
-      , text Reviews.me ]
-    , Options.div
-      [ Options.css "width" "15%" ] 
-      [ iconEmail
-      , text Schedules.me ]
-    , Options.div
-      [ Options.css "width" "15%" ] 
-      [ iconEdit
-      , text "?" ]
+stepperTab : String -> Html Msg
+stepperTab tabName =
+  text tabName
+
+viewStepper : Model -> Html Msg
+viewStepper model = 
+  [ Tabs.render Mdl [0] model.mdl
+    [ Tabs.onSelectTab SelectStepperTab
+    , Tabs.activeTab model.stepperTab ]
+    [ Tabs.label 
+      [ Options.center ] 
+      [ text "Dash" ]
+    , Tabs.label 
+      [ Options.center ] 
+      [ text "Jobs" ]
+    , Tabs.label 
+      [ Options.center ] 
+      [ text "Templates" ]
+    , Tabs.label 
+      [ Options.center ] 
+      [ text "Queries" ]
+    , Tabs.label 
+      [ Options.center ] 
+      [ text "Reviews" ]
+    , Tabs.label 
+      [ Options.center ] 
+      [ text "Schedules" ]  
     ]
+    [ case model.stepperTab of
+      0 -> stepperTab "Dash"
+      1 -> stepperTab "Jobs"
+      2 -> stepperTab "Templates"
+      3 -> stepperTab "Queries"
+      4 -> stepperTab "Reviews"
+      5 -> stepperTab "Schedules"
+      _ -> text "404"
+    ]
+  ]
 
 viewBody : Model -> Html Msg
 viewBody model =
@@ -165,8 +178,8 @@ mainGrid model =
         [ Color.background ( Color.color Color.Teal Color.S50)
         , Options.css "min-height" "70%" ]
         [ Tabs.render Mdl [0] model.mdl
-          [ Tabs.onSelectTab SelectTab
-          , Tabs.activeTab model.tab ]
+          [ Tabs.onSelectTab SelectJobsTab
+          , Tabs.activeTab model.jobsTab ]
           [ Tabs.label 
             [ Options.center ] 
             [ text "All" ]
@@ -180,7 +193,7 @@ mainGrid model =
             [ Options.center ] 
             [ text "Day" ]
           ]
-          [ case model.tab of
+          [ case model.jobsTab of
             0 -> jobsTab "All jobs"
             1 -> jobsTab "Month's jobs"
             2 -> jobsTab "Week's jobs"
