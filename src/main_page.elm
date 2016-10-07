@@ -80,8 +80,8 @@ viewHeader =
       [ style
         [ ( "padding", "2rem" ) ]
       ]
-      [ text "BlitzDerektor: " ++ stepperTab ]
-      , viewStepper model
+      [ text <| "BlitzDerektor: " ++ stepperTab model
+      , viewStepper model ]
     ]
 
 iconEmail : Html msg 
@@ -90,44 +90,45 @@ iconEmail = Icon.i "email"
 iconEdit : Html msg 
 iconEdit = Icon.i "create" 
 
-stepperTab : String -> Html Msg
-stepperTab tabName =
-  text tabName
+stepperTab : Model -> String
+stepperTab model =
+  case model.stepperTab of
+      0 -> "Dash"
+      1 -> "Jobs"
+      2 -> "Templates"
+      3 -> "Queries"
+      4 -> "Reviews"
+      5 -> "Schedules"
+      _ -> "404"
 
 viewStepper : Model -> Html Msg
 viewStepper model = 
-  [ Tabs.render Mdl [0] model.mdl
-    [ Tabs.onSelectTab SelectStepperTab
-    , Tabs.activeTab model.stepperTab ]
-    [ Tabs.label 
-      [ Options.center ] 
-      [ text "Dash" ]
-    , Tabs.label 
-      [ Options.center ] 
-      [ text "Jobs" ]
-    , Tabs.label 
-      [ Options.center ] 
-      [ text "Templates" ]
-    , Tabs.label 
-      [ Options.center ] 
-      [ text "Queries" ]
-    , Tabs.label 
-      [ Options.center ] 
-      [ text "Reviews" ]
-    , Tabs.label 
-      [ Options.center ] 
-      [ text "Schedules" ]  
+  Options.div
+    []
+    [ Tabs.render Mdl [0] model.mdl
+      [ Tabs.onSelectTab SelectStepperTab
+      , Tabs.activeTab model.stepperTab ]
+      [ Tabs.label 
+        [ Options.center ] 
+        [ text "Dash" ]
+      , Tabs.label 
+        [ Options.center ] 
+        [ text "Jobs" ]
+      , Tabs.label 
+        [ Options.center ] 
+        [ text "Templates" ]
+      , Tabs.label 
+        [ Options.center ] 
+        [ text "Queries" ]
+      , Tabs.label 
+        [ Options.center ] 
+        [ text "Reviews" ]
+      , Tabs.label 
+        [ Options.center ] 
+        [ text "Schedules" ]  
+      ]
+      []
     ]
-    [ case model.stepperTab of
-      0 -> stepperTab "Dash"
-      1 -> stepperTab "Jobs"
-      2 -> stepperTab "Templates"
-      3 -> stepperTab "Queries"
-      4 -> stepperTab "Reviews"
-      5 -> stepperTab "Schedules"
-      _ -> text "404"
-    ]
-  ]
 
 viewBody : Model -> Html Msg
 viewBody model =
