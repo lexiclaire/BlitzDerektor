@@ -109,7 +109,7 @@ viewStepper model =
       , Tabs.activeTab model.stepperTab ]
       [ Tabs.label 
         [ Options.center
-        , Options.css "cursor" "default"] 
+        , Options.css "cursor" "default" ] 
         [ text "Dash" ]
       , Tabs.label 
         [ Options.center
@@ -179,8 +179,9 @@ mainGrid model =
   , grid
     [ Options.css "width" "100%"
     , Options.css "padding" "48px 0px 0px"]
-    [ metricsPane model
-    , jobsTimeFilterPane model
+    [ cell
+      [ size All 12 ]
+      [ model |> (List.drop model.stepperTab viewTypes |> List.head |> Maybe.withDefault viewStepper404) ]
     ]
   ]
 
@@ -214,16 +215,20 @@ jobsTimeFilterPane model =
         [ Tabs.onSelectTab SelectJobsTab
         , Tabs.activeTab model.jobsTab ]
         [ Tabs.label 
-          [ Options.center ] 
+          [ Options.center
+          , Options.css "cursor" "default" ] 
           [ text "All" ]
         , Tabs.label 
-          [ Options.center ] 
+          [ Options.center 
+          , Options.css "cursor" "default" ] 
           [ text "Month" ]
         , Tabs.label 
-          [ Options.center ] 
+          [ Options.center 
+          , Options.css "cursor" "default" ] 
           [ text "Week" ]
         , Tabs.label 
-          [ Options.center ] 
+          [ Options.center 
+          , Options.css "cursor" "default" ] 
           [ text "Day" ]
         ]
         [ case model.jobsTab of
@@ -236,6 +241,17 @@ jobsTimeFilterPane model =
       ]
     ]
 
+viewTypes : List ( Model -> Html Msg )
+viewTypes =
+  [ viewDash
+  , viewJobs
+  , viewTemplates
+  , viewQueries
+  , viewReviews
+  , viewSchedules
+  , viewStepper404
+  ]
+
 viewDash : Model -> Html Msg
 viewDash model =
   grid
@@ -245,24 +261,24 @@ viewDash model =
 
 viewJobs : Model -> Html Msg
 viewJobs model =
-  text "Model"
+  text "Jobs"
 
 viewTemplates : Model -> Html Msg
 viewTemplates model =
-  text "Model"
+  text "Templates"
 
 viewQueries : Model -> Html Msg
 viewQueries model =
-  text "Model"
+  text "Queries"
 
 viewReviews : Model -> Html Msg
 viewReviews model =
-  text "Model"
+  text "Reviews"
 
 viewSchedules : Model -> Html Msg
 viewSchedules model =
-  text "Model"
+  text "Schedules"
 
 viewStepper404 : Model -> Html Msg
 viewStepper404 model =
-  text "Model"
+  text "404"
