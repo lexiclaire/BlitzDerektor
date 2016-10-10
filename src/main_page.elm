@@ -46,10 +46,18 @@ update msg model =
       Material.update msg' model 
 
     SelectJobsTab num ->
-      { model | jobsTab = num } ! []
+      let
+        string = toString num
+      in
+        Debug.log string
+        { model | jobsTab = num } ! []
 
     SelectStepperTab num ->
-      { model | stepperTab = num } ! []  
+      let
+        string = toString num
+      in
+        Debug.log (string ++ stepperTab { model | stepperTab = num })
+        { model | stepperTab = num } ! []  
 
 -- VIEW   
 main : Program Never
@@ -80,8 +88,7 @@ viewHeader =
       [ style
         [ ( "padding", "2rem" ) ]
       ]
-      [ text <| "BlitzDerektor: " ++ stepperTab model
-      , viewStepper model ]
+      [ text "BlitzDerektor" ]
     ]
 
 iconEmail : Html msg 
@@ -106,7 +113,8 @@ viewStepper model =
   Options.div
     []
     [ Tabs.render Mdl [0] model.mdl
-      [ Tabs.onSelectTab SelectStepperTab
+      [ Tabs.ripple
+      , Tabs.onSelectTab SelectStepperTab
       , Tabs.activeTab model.stepperTab ]
       [ Tabs.label 
         [ Options.center ] 
@@ -162,6 +170,12 @@ mainGrid model =
     [ Options.css "width" "100%"
     , Options.css "padding" "0px" ]
     [ cell
+      [ size All 12 ]
+      [ Options.div
+        []
+        [ viewStepper model ]
+      ]
+     , cell
       [ size All 6 ]
       [ Options.div
         [ Options.css "border" "3px solid blue" ]
