@@ -187,7 +187,25 @@ mainGrid model =
 
 -- PANES
 
---JOBS
+viewTypes : List ( Model -> Html Msg )
+viewTypes =
+  [ viewDash
+  , viewJobs
+  , viewTemplates
+  , viewQueries
+  , viewReviews
+  , viewSchedules
+  , viewStepper404
+  ]
+
+-- DASH
+
+viewDash : Model -> Html Msg
+viewDash model =
+  grid
+    []
+    [ metricsPane model
+    , jobsTimeFilterPane model ]
 
 metricsPane : Model -> Cell Msg
 metricsPane model =
@@ -241,27 +259,20 @@ jobsTimeFilterPane model =
       ]
     ]
 
-viewTypes : List ( Model -> Html Msg )
-viewTypes =
-  [ viewDash
-  , viewJobs
-  , viewTemplates
-  , viewQueries
-  , viewReviews
-  , viewSchedules
-  , viewStepper404
-  ]
-
-viewDash : Model -> Html Msg
-viewDash model =
-  grid
-    []
-    [ metricsPane model
-    , jobsTimeFilterPane model ]
+-- JOBS
 
 viewJobs : Model -> Html Msg
 viewJobs model =
-  text "Jobs"
+  grid
+    []
+    [ jobsTimeFilterPane model
+    , viewSingleJob model ]
+
+viewSingleJob : Model -> Cell Msg
+viewSingleJob model =
+  cell
+    [ size All 6 ]
+    [ text "single job"]
 
 viewTemplates : Model -> Html Msg
 viewTemplates model =
