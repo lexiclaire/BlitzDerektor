@@ -49,7 +49,7 @@ update msg model =
       { model | jobsTab = num } ! []
 
     SelectStepperTab num ->
-      { model | stepperTab = num } ! []  
+      { model | stepperTab = num } ! []
 
 -- VIEW   
 main : Program Never
