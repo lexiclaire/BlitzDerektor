@@ -343,7 +343,7 @@ viewSchedules : Model -> Html Msg
 viewSchedules model =
   grid
     []
-    [ schedulesPane model
+    [ schedulesPane mode
     , singleschedulePane model ]
 
 schedulesPane : Model -> Cell Msg
