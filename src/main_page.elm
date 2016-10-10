@@ -266,29 +266,97 @@ viewJobs model =
   grid
     []
     [ jobsTimeFilterPane model
-    , viewSingleJob model ]
+    , singleJobPane model ]
 
-viewSingleJob : Model -> Cell Msg
-viewSingleJob model =
+singleJobPane : Model -> Cell Msg
+singleJobPane model =
   cell
     [ size All 6 ]
     [ text "single job"]
 
+-- TEMPLATES
+
 viewTemplates : Model -> Html Msg
 viewTemplates model =
-  text "Templates"
+  grid
+    []
+    [ templatesPane model
+    , singleTemplatePane model ]
+
+templatesPane : Model -> Cell Msg
+templatesPane model =
+  cell
+    [ size All 6 ]
+    [ text "templates list" ]
+
+singleTemplatePane : Model -> Cell Msg
+singleTemplatePane model =
+  cell
+    [ size All 6 ]
+    [ text "single template" ]
+
+-- QUERIES
 
 viewQueries : Model -> Html Msg
 viewQueries model =
-  text "Queries"
+  grid
+    []
+    [ queriesPane model
+    , singleQueryPane model ]
+
+queriesPane : Model -> Cell Msg
+queriesPane model =
+  cell
+    [ size All 6 ]
+    [ text "queries list" ]
+
+singleQueryPane : Model -> Cell Msg
+singleQueryPane model =
+  cell
+    [ size All 6 ]
+    [ text "single query" ]
+
+-- REVIEWS
 
 viewReviews : Model -> Html Msg
 viewReviews model =
-  text "Reviews"
+  grid
+    []
+    [ reviewsPane model
+    , singleReviewPane model ]
+
+reviewsPane : Model -> Cell Msg
+reviewsPane model =
+  cell
+    [ size All 6 ]
+    [ text "review list" ]
+
+singleReviewPane : Model -> Cell Msg
+singleReviewPane model =
+  cell
+    [ size All 6 ]
+    [ text "single review" ]
+
+-- SCHEDULES 
 
 viewSchedules : Model -> Html Msg
 viewSchedules model =
-  text "Schedules"
+  grid
+    []
+    [ schedulesPane model
+    , singleschedulePane model ]
+
+schedulesPane : Model -> Cell Msg
+schedulesPane model =
+  cell
+    [ size All 6 ]
+    [ text "schedule list" ]
+
+singleschedulePane : Model -> Cell Msg
+singleschedulePane model =
+  cell
+    [ size All 6 ]
+    [ text "single schedule" ]
 
 viewStepper404 : Model -> Html Msg
 viewStepper404 model =
