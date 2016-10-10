@@ -108,22 +108,28 @@ viewStepper model =
       [ Tabs.onSelectTab SelectStepperTab
       , Tabs.activeTab model.stepperTab ]
       [ Tabs.label 
-        [ Options.center ] 
+        [ Options.center
+        , Options.css "cursor" "default"] 
         [ text "Dash" ]
       , Tabs.label 
-        [ Options.center ] 
+        [ Options.center
+        , Options.css "cursor" "default" ] 
         [ text "Jobs" ]
       , Tabs.label 
-        [ Options.center ] 
+        [ Options.center
+        , Options.css "cursor" "default" ] 
         [ text "Templates" ]
       , Tabs.label 
-        [ Options.center ] 
+        [ Options.center
+        , Options.css "cursor" "default" ] 
         [ text "Queries" ]
       , Tabs.label 
-        [ Options.center ] 
+        [ Options.center
+        , Options.css "cursor" "default" ] 
         [ text "Reviews" ]
       , Tabs.label 
-        [ Options.center ] 
+        [ Options.center
+        , Options.css "cursor" "default" ] 
         [ text "Schedules" ]  
       ]
       []
