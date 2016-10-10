@@ -105,8 +105,7 @@ viewStepper model =
   Options.div
     []
     [ Tabs.render Mdl [0] model.mdl
-      [ Tabs.ripple
-      , Tabs.onSelectTab SelectStepperTab
+      [ Tabs.onSelectTab SelectStepperTab
       , Tabs.activeTab model.stepperTab ]
       [ Tabs.label 
         [ Options.center ] 
@@ -158,16 +157,23 @@ jobsTab tabName =
 
 mainGrid : Model -> Html Msg
 mainGrid model =
-  grid
+  Options.div
+  []
+  [ grid 
     [ Options.css "width" "100%"
-    , Options.css "padding" "0px" ]
+    , Options.css "position" "fixed"
+    , Options.css "background-color" "#FFF"
+    , Options.css "z-index" "1"
+    , Options.css "padding" "0px 8px" ]
     [ cell
-      [ size All 12 ]
-      [ Options.div
-        []
-        [ viewStepper model ]
-      ]
-     , cell
+      [ size All 12
+      , Options.css "margin" "0px 8px" ]
+      [ viewStepper model ]
+    ]
+  , grid
+    [ Options.css "width" "100%"
+    , Options.css "padding" "48px 0px 0px"]
+    [ cell
       [ size All 6 ]
       [ Options.div
         [ Options.css "border" "3px solid blue" ]
@@ -210,3 +216,4 @@ mainGrid model =
         ]
       ]
     ]
+  ]
