@@ -356,7 +356,7 @@ singleschedulePane : Model -> Cell Msg
 singleschedulePane model =
   cell
     [ size All 6 ]
-    [ text "single schedule" ]
+    [ text "single schedule"]
 
 viewStepper404 : Model -> Html Msg
 viewStepper404 model =
