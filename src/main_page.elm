@@ -89,16 +89,16 @@ iconEmail = Icon.i "email"
 iconEdit : Html msg 
 iconEdit = Icon.i "create" 
 
-stepperTab : Model -> String
+stepperTab : Model -> Html Msg
 stepperTab model =
   case model.stepperTab of
-      0 -> "Dash"
-      1 -> "Jobs"
-      2 -> "Templates"
-      3 -> "Queries"
-      4 -> "Reviews"
-      5 -> "Schedules"
-      _ -> "404"
+      0 -> viewDash model
+      1 -> viewJobs model
+      2 -> viewTemplates model
+      3 -> viewQueries model
+      4 -> viewReviews model
+      5 -> viewSchedules model
+      _ -> viewStepper404 model
 
 viewStepper : Model -> Html Msg
 viewStepper model = 
@@ -179,47 +179,90 @@ mainGrid model =
   , grid
     [ Options.css "width" "100%"
     , Options.css "padding" "48px 0px 0px"]
-    [ cell
-      [ size All 6 ]
-      [ Options.div
-        [ Options.css "border" "3px solid blue" ]
-        [ h1
-          [ style [ ("text-align", "center" ) ] ]
-          [ text "Metrics" ]
-        , dummyGraphSet
-        , dummyGraphSet
-        , dummyGraphSet
-        ]
+    [ metricsPane model
+    , jobsTimeFilterPane model
+    ]
+  ]
+
+-- PANES
+
+--JOBS
+
+metricsPane : Model -> Cell Msg
+metricsPane model =
+  cell
+    [ size All 6 ]
+    [ Options.div
+      [ Options.css "border" "3px solid blue" ]
+      [ h1
+        [ style [ ("text-align", "center" ) ] ]
+        [ text "Metrics" ]
+      , dummyGraphSet
+      , dummyGraphSet
+      , dummyGraphSet
       ]
-    , cell
-      [ size All 6 ]
-      [ Options.div
-        [ Color.background ( Color.color Color.Teal Color.S50)
-        , Options.css "min-height" "70%" ]
-        [ Tabs.render Mdl [0] model.mdl
-          [ Tabs.onSelectTab SelectJobsTab
-          , Tabs.activeTab model.jobsTab ]
-          [ Tabs.label 
-            [ Options.center ] 
-            [ text "All" ]
-          , Tabs.label 
-            [ Options.center ] 
-            [ text "Month" ]
-          , Tabs.label 
-            [ Options.center ] 
-            [ text "Week" ]
-          , Tabs.label 
-            [ Options.center ] 
-            [ text "Day" ]
-          ]
-          [ case model.jobsTab of
-            0 -> jobsTab "All jobs"
-            1 -> jobsTab "Month's jobs"
-            2 -> jobsTab "Week's jobs"
-            3 -> jobsTab "Day's jobs"
-            _ -> text "404"
-          ]
+    ]
+
+jobsTimeFilterPane : Model -> Cell Msg
+jobsTimeFilterPane model =
+  cell
+    [ size All 6 ]
+    [ Options.div
+      [ Color.background ( Color.color Color.Teal Color.S50)
+      , Options.css "min-height" "70%" ]
+      [ Tabs.render Mdl [0] model.mdl
+        [ Tabs.onSelectTab SelectJobsTab
+        , Tabs.activeTab model.jobsTab ]
+        [ Tabs.label 
+          [ Options.center ] 
+          [ text "All" ]
+        , Tabs.label 
+          [ Options.center ] 
+          [ text "Month" ]
+        , Tabs.label 
+          [ Options.center ] 
+          [ text "Week" ]
+        , Tabs.label 
+          [ Options.center ] 
+          [ text "Day" ]
+        ]
+        [ case model.jobsTab of
+          0 -> jobsTab "All jobs"
+          1 -> jobsTab "Month's jobs"
+          2 -> jobsTab "Week's jobs"
+          3 -> jobsTab "Day's jobs"
+          _ -> text "404"
         ]
       ]
     ]
-  ]
+
+viewDash : Model -> Html Msg
+viewDash model =
+  grid
+    []
+    [ metricsPane model
+    , jobsTimeFilterPane model ]
+
+viewJobs : Model -> Html Msg
+viewJobs model =
+  text "Model"
+
+viewTemplates : Model -> Html Msg
+viewTemplates model =
+  text "Model"
+
+viewQueries : Model -> Html Msg
+viewQueries model =
+  text "Model"
+
+viewReviews : Model -> Html Msg
+viewReviews model =
+  text "Model"
+
+viewSchedules : Model -> Html Msg
+viewSchedules model =
+  text "Model"
+
+viewStepper404 : Model -> Html Msg
+viewStepper404 model =
+  text "Model"
