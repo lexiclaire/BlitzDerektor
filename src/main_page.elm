@@ -223,28 +223,36 @@ metricsPane model =
       ]
     ]
 
+viewList : Model -> Html Msg
+viewList model =
+  List.ul
+    []
+    [ viewListItem model
+    , viewListItem model
+    , viewListItem model ]
+
 viewListItem : Model -> Html Msg
 viewListItem model =
   List.li
     []
     [ List.content 
       []
-      [ text "Job number" ]
+      [ text "Month Job number" ]
     , List.content 
       []
-      [ text "Client" ]
+      [ text "Month Client" ]
     , List.content 
       []
-      [ text "Last edited" ]
+      [ text "Month Last edited" ]
     , List.content 
       []
-      [ text "Scheduled/Sent" ]
+      [ text "Month Scheduled/Sent" ]
     , List.content 
       []
-      [ text "Recipients" ]
+      [ text "Month Recipients" ]
     , List.content 
       []
-      [ text "Template Used" ]
+      [ text "Month Template Used" ]
     ]
 
 jobsTimeFilterPane : Model -> Cell Msg
@@ -275,15 +283,14 @@ jobsTimeFilterPane model =
           [ text "Day" ]
         ]
         [ case model.jobsTab of
-          0 -> jobsTab "All jobs"
-          1 -> jobsTab "Month's jobs"
-          2 -> jobsTab "Week's jobs"
-          3 -> jobsTab "Day's jobs"
-          _ -> text "404"
+          0 -> viewList model
+          1 -> viewList model
+          2 -> viewList model
+          3 -> viewList model
+          _ -> viewList model
         ]
       ]
     ]
-
 
 -- JOBS
 
