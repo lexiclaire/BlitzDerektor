@@ -13,6 +13,7 @@ import Material.Color as Color
 import Material.Card as Card
 import Material.Icon as Icon
 import Material.Tabs as Tabs
+import Material.List as List
 
 import Derektor.Stats as Stats
 import Derektor.Jobs as Jobs
@@ -222,6 +223,30 @@ metricsPane model =
       ]
     ]
 
+viewListItem : Model -> Html Msg
+viewListItem model =
+  List.li
+    []
+    [ List.content 
+      []
+      [ text "Job number" ]
+    , List.content 
+      []
+      [ text "Client" ]
+    , List.content 
+      []
+      [ text "Last edited" ]
+    , List.content 
+      []
+      [ text "Scheduled/Sent" ]
+    , List.content 
+      []
+      [ text "Recipients" ]
+    , List.content 
+      []
+      [ text "Template Used" ]
+    ]
+
 jobsTimeFilterPane : Model -> Cell Msg
 jobsTimeFilterPane model =
   cell
@@ -258,6 +283,7 @@ jobsTimeFilterPane model =
         ]
       ]
     ]
+
 
 -- JOBS
 
