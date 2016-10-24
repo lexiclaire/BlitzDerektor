@@ -13,6 +13,7 @@ import Material.Color as Color
 import Material.Card as Card
 import Material.Icon as Icon
 import Material.Tabs as Tabs
+import Material.Textfield as Textfield
 import Material.List as List
 
 import Derektor.Stats as Stats
@@ -317,7 +318,16 @@ singleJobPane : Model -> Cell Msg
 singleJobPane model =
   cell
     [ size All 6 ]
-    [ text "single job"]
+    [ grid
+      []
+      [ cell 
+        [ size All 12 ]
+        [ Options.img
+          [ Options.css "max-width" "100%" ]
+          [ Html.Attributes.src "/assets/images/template.jpg" ]
+        ]
+      ]
+    ]
 
 -- TEMPLATES
 
