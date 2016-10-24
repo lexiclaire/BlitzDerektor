@@ -25,6 +25,8 @@ import Derektor.Schedules as Schedules
 type alias Model =
   { mdl : Material.Model
   , jobsTab : Int
+  , templatesTab : Int
+  , queriesTab : Int
   , stepperTab : Int
   }
 
@@ -32,12 +34,16 @@ model : Model
 model =
   { mdl = Material.model
   , jobsTab = 0
+  , templatesTab = 0
+  , queriesTab = 0
   , stepperTab = 0
   }
 
 type Msg
   = Mdl (Material.Msg Msg)
   | SelectJobsTab Int
+  | SelectTemplatesTab Int
+  | SelectQueriesTab Int
   | SelectStepperTab Int
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -48,6 +54,12 @@ update msg model =
 
     SelectJobsTab num ->
       { model | jobsTab = num } ! []
+
+    SelectTemplatesTab num ->
+      { model | templatesTab = num } ! []  
+
+    SelectQueriesTab num ->
+      { model | queriesTab = num } ! [] 
 
     SelectStepperTab num ->
       { model | stepperTab = num } ! []
@@ -313,20 +325,41 @@ viewTemplates : Model -> Html Msg
 viewTemplates model =
   grid
     []
-    [ templatesPane model
+    [ templatesTimeFilterPane model
     , singleTemplatePane model ]
 
-templatesPane : Model -> Cell Msg
-templatesPane model =
+templatesTimeFilterPane : Model -> Cell Msg
+templatesTimeFilterPane model =
   cell
     [ size All 6 ]
-    [ text "templates list" ]
+    [ Options.div
+      [ Color.background ( Color.color Color.Teal Color.S50)
+      , Options.css "min-height" "70%" ]
+      [ Tabs.render Mdl [0] model.mdl
+        [ Tabs.onSelectTab SelectTemplatesTab
+        , Tabs.activeTab model.templatesTab ]
+        [ Tabs.label 
+          [ Options.center
+          , Options.css "cursor" "default" ] 
+          [ text "All" ]
+        , Tabs.label 
+          [ Options.center 
+          , Options.css "cursor" "default" ] 
+          [ text "Most recent" ]
+        ]
+        [ case model.jobsTab of
+          0 -> viewList model
+          1 -> viewList model
+          _ -> viewList model
+        ]
+      ]
+    ]
 
 singleTemplatePane : Model -> Cell Msg
 singleTemplatePane model =
   cell
     [ size All 6 ]
-    [ text "single template" ]
+    [ text "single template" ]    
 
 -- QUERIES
 
@@ -334,14 +367,35 @@ viewQueries : Model -> Html Msg
 viewQueries model =
   grid
     []
-    [ queriesPane model
+    [ queriesTimeFilterPane model
     , singleQueryPane model ]
 
-queriesPane : Model -> Cell Msg
-queriesPane model =
+queriesTimeFilterPane : Model -> Cell Msg
+queriesTimeFilterPane model =
   cell
     [ size All 6 ]
-    [ text "queries list" ]
+    [ Options.div
+      [ Color.background ( Color.color Color.Teal Color.S50)
+      , Options.css "min-height" "70%" ]
+      [ Tabs.render Mdl [0] model.mdl
+        [ Tabs.onSelectTab SelectQueriesTab
+        , Tabs.activeTab model.queriesTab ]
+        [ Tabs.label 
+          [ Options.center
+          , Options.css "cursor" "default" ] 
+          [ text "All" ]
+        , Tabs.label 
+          [ Options.center 
+          , Options.css "cursor" "default" ] 
+          [ text "Most recent" ]
+        ]
+        [ case model.jobsTab of
+          0 -> viewList model
+          1 -> viewList model
+          _ -> viewList model
+        ]
+      ]
+    ]
 
 singleQueryPane : Model -> Cell Msg
 singleQueryPane model =
@@ -383,7 +437,16 @@ schedulesPane : Model -> Cell Msg
 schedulesPane model =
   cell
     [ size All 6 ]
-    [ text "schedule list" ]
+    [ Options.div
+      [ Options.css "border" "3px solid blue" ]
+      [ h1
+        [ style [ ("text-align", "center" ) ] ]
+        [ text "Metrics" ]
+      , dummyGraphSet
+      , dummyGraphSet
+      , dummyGraphSet
+      ]
+    ]
 
 singleschedulePane : Model -> Cell Msg
 singleschedulePane model =
