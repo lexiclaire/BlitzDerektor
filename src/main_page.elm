@@ -566,8 +566,8 @@ singleReviewPane model =
           )
         ]
        , Options.img 
- -      [ Options.css "max-width" "100%" ]
- -      [ Html.Attributes.src "/assets/images/template.jpg"]
+        [ Options.css "max-width" "100%" ]
+        [ Html.Attributes.src "/assets/images/template.jpg"]
       ]
 
 -- SCHEDULES 
