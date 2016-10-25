@@ -15,6 +15,7 @@ import Material.Icon as Icon
 import Material.Tabs as Tabs
 import Material.Textfield as Textfield
 import Material.List as List
+import Material.Table as Table
 
 import Derektor.Stats as Stats
 import Derektor.Jobs as Jobs
@@ -488,13 +489,46 @@ reviewsPane : Model -> Cell Msg
 reviewsPane model =
   cell
     [ size All 6 ]
-    [ text "review list" ]
+    [ h4 [] [text "Recipients"]
+    , List.ul
+      []
+      [ List.li 
+        []
+        [text "sreed9@yellowbook.com"]
+      , List.li 
+        []
+        [text "pfields4@freewebs.com"]
+      , List.li 
+        []
+        [text "selliott8@cyberchimps.com"]    
+      ]
+    ]
 
 singleReviewPane : Model -> Cell Msg
 singleReviewPane model =
   cell
     [ size All 6 ]
-    [ text "single review" ]
+    [ h4 [] [text "Approvals"]
+    , Table.table 
+      []
+      [ Table.thead 
+        []
+        [ Table.tr
+          []
+          [ Table.th [] [ text "Person" ] 
+          ] 
+        , Table.tbody 
+          []
+          [ Table.tr
+            []
+            [ Table.td [] [text "You"] ] 
+          ]  
+        ]
+      ]
+    , Options.img 
+      [ Options.css "max-width" "100%" ]
+      [ Html.Attributes.src "/assets/images/template.jpg"]
+    ]
 
 -- SCHEDULES 
 
