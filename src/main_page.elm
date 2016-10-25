@@ -29,6 +29,7 @@ type alias Model =
   , templatesTab : Int
   , queriesTab : Int
   , stepperTab : Int
+  , jobsTabRight : Int
   }
 
 model : Model
@@ -38,6 +39,7 @@ model =
   , templatesTab = 0
   , queriesTab = 0
   , stepperTab = 0
+  , jobsTabRight = 0
   }
 
 type Msg
@@ -46,6 +48,7 @@ type Msg
   | SelectTemplatesTab Int
   | SelectQueriesTab Int
   | SelectStepperTab Int
+  | SelectJobsTabRight Int
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -64,6 +67,9 @@ update msg model =
 
     SelectStepperTab num ->
       { model | stepperTab = num } ! []
+
+    SelectJobsTabRight num ->
+      { model | jobsTabRight = num } ! []
 
 -- VIEW   
 main : Program Never
@@ -318,16 +324,25 @@ singleJobPane : Model -> Cell Msg
 singleJobPane model =
   cell
     [ size All 6 ]
-    [ grid
-      []
-      [ cell 
-        [ size All 12 ]
-        [ Options.img
-          [ Options.css "max-width" "100%" ]
-          [ Html.Attributes.src "/assets/images/template.jpg" ]
-        ]
+    [ Tabs.render Mdl [0] model.mdl
+      [ Tabs.onSelectTab SelectJobsTabRight 
+      , Tabs.activeTab model.jobsTabRight ]
+      [ Tabs.label
+        [ Options.center
+        , Options.css "cursor" "default" ]
+        [ text "Jobs"]
+      , Tabs.label
+        [ Options.center
+        , Options.css "cursor" "default" ]
+        [ text "New Jobs"]
+      ]
+      [ case model.jobsTabRight of
+        0 -> text "jobs tab content"
+        1 -> text "new jobs tab content"
+        _ -> text "404"
       ]
     ]
+
 
 -- TEMPLATES
 
@@ -447,15 +462,7 @@ schedulesPane : Model -> Cell Msg
 schedulesPane model =
   cell
     [ size All 6 ]
-    [ Options.div
-      [ Options.css "border" "3px solid blue" ]
-      [ h1
-        [ style [ ("text-align", "center" ) ] ]
-        [ text "Metrics" ]
-      , dummyGraphSet
-      , dummyGraphSet
-      , dummyGraphSet
-      ]
+    [ text "Recurring Schedules"
     ]
 
 singleschedulePane : Model -> Cell Msg
