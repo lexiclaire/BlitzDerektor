@@ -30,6 +30,8 @@ type alias Model =
   , queriesTab : Int
   , stepperTab : Int
   , jobsTabRight : Int
+  , templatesTabRight : Int
+  , queriesTabRight : Int
   }
 
 model : Model
@@ -40,6 +42,8 @@ model =
   , queriesTab = 0
   , stepperTab = 0
   , jobsTabRight = 0
+  , templatesTabRight = 0
+  , queriesTabRight = 0
   }
 
 type Msg
@@ -49,6 +53,8 @@ type Msg
   | SelectQueriesTab Int
   | SelectStepperTab Int
   | SelectJobsTabRight Int
+  | SelectTemplatesTabRight Int
+  | SelectQueriesTabRight Int
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -70,6 +76,12 @@ update msg model =
 
     SelectJobsTabRight num ->
       { model | jobsTabRight = num } ! []
+
+    SelectTemplatesTabRight num ->
+      { model | templatesTabRight = num } ! []
+
+    SelectQueriesTabRight num ->
+      { model | queriesTabRight = num } ! []
 
 -- VIEW   
 main : Program Never
@@ -373,9 +385,9 @@ templatesTimeFilterPane model =
           [ text "Most recent" ]
         ]
         [ case model.jobsTab of
-          0 -> viewList model
-          1 -> viewList model
-          _ -> viewList model
+          0 -> text "All Templates"
+          1 -> text "Most recent templates"
+          _ -> text "404"
         ]
       ]
     ]
@@ -384,7 +396,25 @@ singleTemplatePane : Model -> Cell Msg
 singleTemplatePane model =
   cell
     [ size All 6 ]
-    [ text "single template" ]    
+    [ Tabs.render Mdl [0] model.mdl
+      [ Tabs.onSelectTab SelectTemplatesTabRight 
+      , Tabs.activeTab model.templatesTabRight ]
+      [ Tabs.label
+        [ Options.center
+        , Options.css "cursor" "default" ]
+        [ text "Templates"]
+      , Tabs.label
+        [ Options.center
+        , Options.css "cursor" "default" ]
+        [ text "New Templates"]
+      ]
+      [ case model.templatesTabRight of
+        0 -> text "templates tab content"
+        1 -> text "new templates tab content"
+        _ -> text "404"
+      ]
+    ]
+      
 
 -- QUERIES
 
@@ -415,9 +445,9 @@ queriesTimeFilterPane model =
           [ text "Most recent" ]
         ]
         [ case model.jobsTab of
-          0 -> viewList model
-          1 -> viewList model
-          _ -> viewList model
+          0 -> text "View all queries"
+          1 -> text "View recent queries"
+          _ -> text "404"
         ]
       ]
     ]
@@ -426,7 +456,24 @@ singleQueryPane : Model -> Cell Msg
 singleQueryPane model =
   cell
     [ size All 6 ]
-    [ text "single query" ]
+    [ Tabs.render Mdl [0] model.mdl
+      [ Tabs.onSelectTab SelectQueriesTabRight 
+      , Tabs.activeTab model.queriesTabRight ]
+      [ Tabs.label
+        [ Options.center
+        , Options.css "cursor" "default" ]
+        [ text "Queries"]
+      , Tabs.label
+        [ Options.center
+        , Options.css "cursor" "default" ]
+        [ text "New Queries"]
+      ]
+      [ case model.queriesTabRight of
+        0 -> text "queries tab content"
+        1 -> text "new queries tab content"
+        _ -> text "404"
+      ]
+    ]
 
 -- REVIEWS
 
