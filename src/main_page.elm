@@ -7,6 +7,7 @@ import Material
 import Material.Scheme
 import Material.Button as Button
 import Material.Options as Options
+import Material.Options as Options exposing (when)
 import Material.Layout as Layout
 import Material.Grid exposing (..)
 import Material.Color as Color
@@ -16,6 +17,7 @@ import Material.Tabs as Tabs
 import Material.Textfield as Textfield
 import Material.List as List
 import Material.Table as Table
+import Material.Toggles as Toggles
 
 import Derektor.Stats as Stats
 import Derektor.Jobs as Jobs
@@ -23,6 +25,30 @@ import Derektor.Templates as Templates
 import Derektor.Queries as Queries
 import Derektor.Reviews as Reviews
 import Derektor.Schedules as Schedules
+
+import Set exposing (Set)
+
+type alias Data =
+  { name : String
+  , approval : String }
+
+data : List Data
+data =
+  [ { name = "Gina Vasiloff"
+    , approval = "No" }
+  , { name = "Derek Bischke"
+    , approval = "Yes" }
+  , { name = "Ashton Gabrielsen"
+    , approval = "Yes" }
+  , { name = "Christina Smithers"
+    , approval = "No" }
+  , { name = "Lexi Huefner"
+    , approval = "Yes" }
+  ]
+
+key : Data -> String
+key =
+  .name
 
 type alias Model =
   { mdl : Material.Model
@@ -33,6 +59,7 @@ type alias Model =
   , jobsTabRight : Int
   , templatesTabRight : Int
   , queriesTabRight : Int
+  , selected : Set String
   }
 
 model : Model
@@ -45,6 +72,7 @@ model =
   , jobsTabRight = 0
   , templatesTabRight = 0
   , queriesTabRight = 0
+  , selected = Set.empty
   }
 
 type Msg
@@ -56,6 +84,14 @@ type Msg
   | SelectJobsTabRight Int
   | SelectTemplatesTabRight Int
   | SelectQueriesTabRight Int
+  | Toggle String
+
+toggle : comparable -> Set comparable -> Set comparable
+toggle x set =
+  if Set.member x set then
+    Set.remove x set
+  else
+    Set.insert x set
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -83,6 +119,9 @@ update msg model =
 
     SelectQueriesTabRight num ->
       { model | queriesTabRight = num } ! []
+
+    Toggle idx ->
+      { model | selected = toggle idx model.selected } ! []
 
 -- VIEW   
 main : Program Never
@@ -508,27 +547,25 @@ singleReviewPane : Model -> Cell Msg
 singleReviewPane model =
   cell
     [ size All 6 ]
-    [ h4 [] [text "Approvals"]
-    , Table.table 
-      []
-      [ Table.thead 
-        []
-        [ Table.tr
-          []
-          [ Table.th [] [ text "Person" ] 
-          ] 
-        , Table.tbody 
-          []
-          [ Table.tr
-            []
-            [ Table.td [] [text "You"] ] 
-          ]  
+    [ Table.table []
+      [ Table.tbody []
+        ( data
+          |> List.indexedMap (\idx item ->
+            Table.tr
+              [ Table.selected `when` Set.member (key item) model.selected ]
+                [ Table.td []
+                  [ Toggles.checkbox Mdl [idx] model.mdl
+                    [ Toggles.onClick (Toggle <| key item)
+                    , Toggles.value <| Set.member (key item) model.selected
+                    ] []
+                  ]
+                , Table.td [] [ text item.name ]
+                , Table.td [ Table.numeric ] [ text item.approval ]
+              ]
+            )
+          )
         ]
       ]
-    , Options.img 
-      [ Options.css "max-width" "100%" ]
-      [ Html.Attributes.src "/assets/images/template.jpg"]
-    ]
 
 -- SCHEDULES 
 
