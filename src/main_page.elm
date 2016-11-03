@@ -164,12 +164,11 @@ iconEdit = Icon.i "create"
 stepperTab : Model -> Html Msg
 stepperTab model =
   case model.stepperTab of
-      0 -> viewDash model
-      1 -> viewJobs model
-      2 -> viewTemplates model
-      3 -> viewQueries model
-      4 -> viewReviews model
-      5 -> viewSchedules model
+      0 -> viewJobs model
+      1 -> viewTemplates model
+      2 -> viewQueries model
+      3 -> viewReviews model
+      4 -> viewSchedules model
       _ -> viewStepper404 model
 
 viewStepper : Model -> Html Msg
@@ -180,10 +179,6 @@ viewStepper model =
       [ Tabs.onSelectTab SelectStepperTab
       , Tabs.activeTab model.stepperTab ]
       [ Tabs.label 
-        [ Options.center
-        , Options.css "cursor" "default" ] 
-        [ text "Dash" ]
-      , Tabs.label 
         [ Options.center
         , Options.css "cursor" "default" ] 
         [ text "Jobs" ]
@@ -261,38 +256,13 @@ mainGrid model =
 
 viewTypes : List ( Model -> Html Msg )
 viewTypes =
-  [ viewDash
-  , viewJobs
+  [ viewJobs
   , viewTemplates
   , viewQueries
   , viewReviews
   , viewSchedules
   , viewStepper404
   ]
-
--- DASH
-
-viewDash : Model -> Html Msg
-viewDash model =
-  grid
-    []
-    [ metricsPane model
-    , jobsTimeFilterPane model ]
-
-metricsPane : Model -> Cell Msg
-metricsPane model =
-  cell
-    [ size All 6 ]
-    [ Options.div
-      [ Options.css "border" "3px solid blue" ]
-      [ h1
-        [ style [ ("text-align", "center" ) ] ]
-        [ text "Metrics" ]
-      , dummyGraphSet
-      , dummyGraphSet
-      , dummyGraphSet
-      ]
-    ]
 
 viewList : Model -> Html Msg
 viewList model =
@@ -326,41 +296,14 @@ viewListItem model =
       [ text "Month Template Used" ]
     ]
 
-jobsTimeFilterPane : Model -> Cell Msg
-jobsTimeFilterPane model =
+pastJobsPane : Model -> Cell Msg
+pastJobsPane model =
   cell
     [ size All 6 ]
     [ Options.div
       [ Color.background ( Color.color Color.Teal Color.S50)
       , Options.css "min-height" "70%" ]
-      [ Tabs.render Mdl [0] model.mdl
-        [ Tabs.onSelectTab SelectJobsTab
-        , Tabs.activeTab model.jobsTab ]
-        [ Tabs.label 
-          [ Options.center
-          , Options.css "cursor" "default" ] 
-          [ text "All" ]
-        , Tabs.label 
-          [ Options.center 
-          , Options.css "cursor" "default" ] 
-          [ text "Month" ]
-        , Tabs.label 
-          [ Options.center 
-          , Options.css "cursor" "default" ] 
-          [ text "Week" ]
-        , Tabs.label 
-          [ Options.center 
-          , Options.css "cursor" "default" ] 
-          [ text "Day" ]
-        ]
-        [ case model.jobsTab of
-          0 -> viewList model
-          1 -> viewList model
-          2 -> viewList model
-          3 -> viewList model
-          _ -> viewList model
-        ]
-      ]
+      [ viewList model ]
     ]
 
 -- JOBS
@@ -369,32 +312,7 @@ viewJobs : Model -> Html Msg
 viewJobs model =
   grid
     []
-    [ jobsTimeFilterPane model
-    , singleJobPane model ]
-
-singleJobPane : Model -> Cell Msg
-singleJobPane model =
-  cell
-    [ size All 6 ]
-    [ Tabs.render Mdl [0] model.mdl
-      [ Tabs.onSelectTab SelectJobsTabRight 
-      , Tabs.activeTab model.jobsTabRight ]
-      [ Tabs.label
-        [ Options.center
-        , Options.css "cursor" "default" ]
-        [ text "Jobs"]
-      , Tabs.label
-        [ Options.center
-        , Options.css "cursor" "default" ]
-        [ text "New Jobs"]
-      ]
-      [ case model.jobsTabRight of
-        0 -> text "jobs tab content"
-        1 -> text "new jobs tab content"
-        _ -> text "404"
-      ]
-    ]
-
+    [ pastJobsPane model ]
 
 -- TEMPLATES
 
