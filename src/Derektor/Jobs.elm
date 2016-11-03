@@ -10,7 +10,12 @@ import Material.List as List
 
 import Derektor.Data as Data
 
+
+-- UPDATE
+
+
 -- VIEW
+
 pastJobsPane : Data.Model -> Cell Data.Msg
 pastJobsPane model =
   cell

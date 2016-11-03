@@ -10,10 +10,14 @@ import Material.List as List
 
 import Derektor.Data as Data
 
--- SCHEDULES 
 
-viewSchedules : Data.Model -> Html Data.Msg
-viewSchedules model =
+-- UPDATE
+
+
+-- VIEW 
+
+view : Data.Model -> Html Data.Msg
+view model =
   grid
     []
     [ schedulesPane model
@@ -23,8 +27,7 @@ schedulesPane : Data.Model -> Cell Data.Msg
 schedulesPane model =
   cell
     [ size All 6 ]
-    [ text "Recurring Schedules"
-    ]
+    [ text "Recurring Schedules" ]
 
 singleschedulePane : Data.Model -> Cell Data.Msg
 singleschedulePane model =

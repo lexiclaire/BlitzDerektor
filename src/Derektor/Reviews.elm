@@ -14,6 +14,9 @@ import Derektor.Data as Data
 
 import Set exposing (Set)
 
+
+-- UPDATE
+
 type alias Data =
   { name : String
   , approval : String }
@@ -32,14 +35,15 @@ data =
     , approval = "Yes" }
   ]
 
+
+-- VIEW
+
 key : Data -> String
 key =
   .name
 
--- REVIEWS
-
-viewReviews : Data.Model -> Html Data.Msg
-viewReviews model =
+view : Data.Model -> Html Data.Msg
+view model =
   grid
     []
     [ reviewsPane model
