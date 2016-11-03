@@ -19,7 +19,7 @@ import Material.List as List
 import Material.Table as Table
 import Material.Toggles as Toggles
 
-import Derektor.Stats as Stats
+import Derektor.Data as Data
 import Derektor.Jobs as Jobs
 import Derektor.Templates as Templates
 import Derektor.Queries as Queries
@@ -28,41 +28,7 @@ import Derektor.Schedules as Schedules
 
 import Set exposing (Set)
 
-type alias Data =
-  { name : String
-  , approval : String }
-
-data : List Data
-data =
-  [ { name = "Gina Vasiloff"
-    , approval = "No" }
-  , { name = "Derek Bischke"
-    , approval = "Yes" }
-  , { name = "Ashton Gabrielsen"
-    , approval = "Yes" }
-  , { name = "Christina Smithers"
-    , approval = "No" }
-  , { name = "Lexi Huefner"
-    , approval = "Yes" }
-  ]
-
-key : Data -> String
-key =
-  .name
-
-type alias Model =
-  { mdl : Material.Model
-  , jobsTab : Int
-  , templatesTab : Int
-  , queriesTab : Int
-  , stepperTab : Int
-  , jobsTabRight : Int
-  , templatesTabRight : Int
-  , queriesTabRight : Int
-  , selected : Set String
-  }
-
-model : Model
+model : Data.Model
 model =
   { mdl = Material.model
   , jobsTab = 0
@@ -75,17 +41,6 @@ model =
   , selected = Set.empty
   }
 
-type Msg
-  = Mdl (Material.Msg Msg)
-  | SelectJobsTab Int
-  | SelectTemplatesTab Int
-  | SelectQueriesTab Int
-  | SelectStepperTab Int
-  | SelectJobsTabRight Int
-  | SelectTemplatesTabRight Int
-  | SelectQueriesTabRight Int
-  | Toggle String
-
 toggle : comparable -> Set comparable -> Set comparable
 toggle x set =
   if Set.member x set then
@@ -93,34 +48,34 @@ toggle x set =
   else
     Set.insert x set
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Data.Msg -> Data.Model -> ( Data.Model, Cmd Data.Msg )
 update msg model =
   case msg of
-    Mdl msg' ->
+    Data.Mdl msg' ->
       Material.update msg' model 
 
-    SelectJobsTab num ->
+    Data.SelectJobsTab num ->
       { model | jobsTab = num } ! []
 
-    SelectTemplatesTab num ->
+    Data.SelectTemplatesTab num ->
       { model | templatesTab = num } ! []  
 
-    SelectQueriesTab num ->
+    Data.SelectQueriesTab num ->
       { model | queriesTab = num } ! [] 
 
-    SelectStepperTab num ->
+    Data.SelectStepperTab num ->
       { model | stepperTab = num } ! []
 
-    SelectJobsTabRight num ->
+    Data.SelectJobsTabRight num ->
       { model | jobsTabRight = num } ! []
 
-    SelectTemplatesTabRight num ->
+    Data.SelectTemplatesTabRight num ->
       { model | templatesTabRight = num } ! []
 
-    SelectQueriesTabRight num ->
+    Data.SelectQueriesTabRight num ->
       { model | queriesTabRight = num } ! []
 
-    Toggle idx ->
+    Data.Toggle idx ->
       { model | selected = toggle idx model.selected } ! []
 
 -- VIEW   
@@ -133,9 +88,9 @@ main =
     , update = update
     }
 
-view : Model -> Html Msg
+view : Data.Model -> Html Data.Msg
 view model =
-  Layout.render Mdl
+  Layout.render Data.Mdl
     model.mdl
       [ Layout.fixedHeader ]
       { header = [ viewHeader ]
@@ -144,7 +99,7 @@ view model =
       , main = [ viewBody model ]
       }
 
-viewHeader : Html Msg
+viewHeader : Html Data.Msg
 viewHeader =
   Options.div
     [ Color.background (Color.color Color.Teal Color.S400) ]
@@ -161,32 +116,32 @@ iconEmail = Icon.i "email"
 iconEdit : Html msg 
 iconEdit = Icon.i "create" 
 
-stepperTab : Model -> Html Msg
+stepperTab : Data.Model -> Html Data.Msg
 stepperTab model =
   case model.stepperTab of
-      0 -> viewDash model
-      1 -> viewJobs model
-      2 -> viewTemplates model
-      3 -> viewQueries model
-      4 -> viewReviews model
-      5 -> viewSchedules model
+      0 -> Jobs.viewPastJobs model
+      1 -> Jobs.viewNewJob model
+      2 -> Templates.viewTemplates model
+      3 -> Queries.viewQueries model
+      4 -> Reviews.viewReviews model
+      5 -> Schedules.viewSchedules model
       _ -> viewStepper404 model
 
-viewStepper : Model -> Html Msg
+viewStepper : Data.Model -> Html Data.Msg
 viewStepper model = 
   Options.div
     []
-    [ Tabs.render Mdl [0] model.mdl
-      [ Tabs.onSelectTab SelectStepperTab
+    [ Tabs.render Data.Mdl [0] model.mdl
+      [ Tabs.onSelectTab Data.SelectStepperTab
       , Tabs.activeTab model.stepperTab ]
-      [ Tabs.label 
+      [ Tabs.label
         [ Options.center
         , Options.css "cursor" "default" ] 
-        [ text "Dash" ]
+        [ text "Past Jobs" ]
       , Tabs.label 
         [ Options.center
         , Options.css "cursor" "default" ] 
-        [ text "Jobs" ]
+        [ text "New Job" ]
       , Tabs.label 
         [ Options.center
         , Options.css "cursor" "default" ] 
@@ -207,12 +162,16 @@ viewStepper model =
       []
     ]
 
-viewBody : Model -> Html Msg
+viewStepper404 : Data.Model -> Html Data.Msg
+viewStepper404 model =
+  text "404"
+
+viewBody : Data.Model -> Html Data.Msg
 viewBody model =
   mainGrid model
     |> Material.Scheme.top
 
-dummyGraphSet : Html Msg
+dummyGraphSet : Html Data.Msg
 dummyGraphSet =
   Options.div
     []
@@ -224,7 +183,7 @@ dummyGraphSet =
       [ Html.Attributes.src "/assets/images/bar.png" ]
     ]
 
-jobsTab : String -> Html Msg
+jobsTab : String -> Html Data.Msg
 jobsTab tabName =
   grid
     []
@@ -233,7 +192,7 @@ jobsTab tabName =
       [ text tabName ]
     ]
 
-mainGrid : Model -> Html Msg
+mainGrid : Data.Model -> Html Data.Msg
 mainGrid model =
   Options.div
   []
@@ -259,339 +218,13 @@ mainGrid model =
 
 -- PANES
 
-viewTypes : List ( Model -> Html Msg )
+viewTypes : List ( Data.Model -> Html Data.Msg )
 viewTypes =
-  [ viewDash
-  , viewJobs
-  , viewTemplates
-  , viewQueries
-  , viewReviews
-  , viewSchedules
+  [ Jobs.viewPastJobs
+  , Jobs.viewNewJob
+  , Templates.viewTemplates
+  , Queries.viewQueries
+  , Reviews.viewReviews
+  , Schedules.viewSchedules
   , viewStepper404
   ]
-
--- DASH
-
-viewDash : Model -> Html Msg
-viewDash model =
-  grid
-    []
-    [ metricsPane model
-    , jobsTimeFilterPane model ]
-
-metricsPane : Model -> Cell Msg
-metricsPane model =
-  cell
-    [ size All 6 ]
-    [ Options.div
-      [ Options.css "border" "3px solid blue" ]
-      [ h1
-        [ style [ ("text-align", "center" ) ] ]
-        [ text "Metrics" ]
-      , dummyGraphSet
-      , dummyGraphSet
-      , dummyGraphSet
-      ]
-    ]
-
-viewList : Model -> Html Msg
-viewList model =
-  List.ul
-    []
-    [ viewListItem model
-    , viewListItem model
-    , viewListItem model ]
-
-viewListItem : Model -> Html Msg
-viewListItem model =
-  List.li
-    []
-    [ List.content 
-      []
-      [ text "Month Job number" ]
-    , List.content 
-      []
-      [ text "Month Client" ]
-    , List.content 
-      []
-      [ text "Month Last edited" ]
-    , List.content 
-      []
-      [ text "Month Scheduled/Sent" ]
-    , List.content 
-      []
-      [ text "Month Recipients" ]
-    , List.content 
-      []
-      [ text "Month Template Used" ]
-    ]
-
-jobsTimeFilterPane : Model -> Cell Msg
-jobsTimeFilterPane model =
-  cell
-    [ size All 6 ]
-    [ Options.div
-      [ Color.background ( Color.color Color.Teal Color.S50)
-      , Options.css "min-height" "70%" ]
-      [ Tabs.render Mdl [0] model.mdl
-        [ Tabs.onSelectTab SelectJobsTab
-        , Tabs.activeTab model.jobsTab ]
-        [ Tabs.label 
-          [ Options.center
-          , Options.css "cursor" "default" ] 
-          [ text "All" ]
-        , Tabs.label 
-          [ Options.center 
-          , Options.css "cursor" "default" ] 
-          [ text "Month" ]
-        , Tabs.label 
-          [ Options.center 
-          , Options.css "cursor" "default" ] 
-          [ text "Week" ]
-        , Tabs.label 
-          [ Options.center 
-          , Options.css "cursor" "default" ] 
-          [ text "Day" ]
-        ]
-        [ case model.jobsTab of
-          0 -> viewList model
-          1 -> viewList model
-          2 -> viewList model
-          3 -> viewList model
-          _ -> viewList model
-        ]
-      ]
-    ]
-
--- JOBS
-
-viewJobs : Model -> Html Msg
-viewJobs model =
-  grid
-    []
-    [ jobsTimeFilterPane model
-    , singleJobPane model ]
-
-singleJobPane : Model -> Cell Msg
-singleJobPane model =
-  cell
-    [ size All 6 ]
-    [ Tabs.render Mdl [0] model.mdl
-      [ Tabs.onSelectTab SelectJobsTabRight 
-      , Tabs.activeTab model.jobsTabRight ]
-      [ Tabs.label
-        [ Options.center
-        , Options.css "cursor" "default" ]
-        [ text "Jobs"]
-      , Tabs.label
-        [ Options.center
-        , Options.css "cursor" "default" ]
-        [ text "New Jobs"]
-      ]
-      [ case model.jobsTabRight of
-        0 -> text "jobs tab content"
-        1 -> text "new jobs tab content"
-        _ -> text "404"
-      ]
-    ]
-
-
--- TEMPLATES
-
-viewTemplates : Model -> Html Msg
-viewTemplates model =
-  grid
-    []
-    [ templatesTimeFilterPane model
-    , singleTemplatePane model ]
-
-templatesTimeFilterPane : Model -> Cell Msg
-templatesTimeFilterPane model =
-  cell
-    [ size All 6 ]
-    [ Options.div
-      [ Color.background ( Color.color Color.Teal Color.S50)
-      , Options.css "min-height" "70%" ]
-      [ Tabs.render Mdl [0] model.mdl
-        [ Tabs.onSelectTab SelectTemplatesTab
-        , Tabs.activeTab model.templatesTab ]
-        [ Tabs.label 
-          [ Options.center
-          , Options.css "cursor" "default" ] 
-          [ text "All" ]
-        , Tabs.label 
-          [ Options.center 
-          , Options.css "cursor" "default" ] 
-          [ text "Most recent" ]
-        ]
-        [ case model.jobsTab of
-          0 -> text "All Templates"
-          1 -> text "Most recent templates"
-          _ -> text "404"
-        ]
-      ]
-    ]
-
-singleTemplatePane : Model -> Cell Msg
-singleTemplatePane model =
-  cell
-    [ size All 6 ]
-    [ Tabs.render Mdl [0] model.mdl
-      [ Tabs.onSelectTab SelectTemplatesTabRight 
-      , Tabs.activeTab model.templatesTabRight ]
-      [ Tabs.label
-        [ Options.center
-        , Options.css "cursor" "default" ]
-        [ text "Templates"]
-      , Tabs.label
-        [ Options.center
-        , Options.css "cursor" "default" ]
-        [ text "New Templates"]
-      ]
-      [ case model.templatesTabRight of
-        0 -> text "templates tab content"
-        1 -> text "new templates tab content"
-        _ -> text "404"
-      ]
-    ]
-      
-
--- QUERIES
-
-viewQueries : Model -> Html Msg
-viewQueries model =
-  grid
-    []
-    [ queriesTimeFilterPane model
-    , singleQueryPane model ]
-
-queriesTimeFilterPane : Model -> Cell Msg
-queriesTimeFilterPane model =
-  cell
-    [ size All 6 ]
-    [ Options.div
-      [ Color.background ( Color.color Color.Teal Color.S50)
-      , Options.css "min-height" "70%" ]
-      [ Tabs.render Mdl [0] model.mdl
-        [ Tabs.onSelectTab SelectQueriesTab
-        , Tabs.activeTab model.queriesTab ]
-        [ Tabs.label 
-          [ Options.center
-          , Options.css "cursor" "default" ] 
-          [ text "All" ]
-        , Tabs.label 
-          [ Options.center 
-          , Options.css "cursor" "default" ] 
-          [ text "Most recent" ]
-        ]
-        [ case model.jobsTab of
-          0 -> text "View all queries"
-          1 -> text "View recent queries"
-          _ -> text "404"
-        ]
-      ]
-    ]
-
-singleQueryPane : Model -> Cell Msg
-singleQueryPane model =
-  cell
-    [ size All 6 ]
-    [ Tabs.render Mdl [0] model.mdl
-      [ Tabs.onSelectTab SelectQueriesTabRight 
-      , Tabs.activeTab model.queriesTabRight ]
-      [ Tabs.label
-        [ Options.center
-        , Options.css "cursor" "default" ]
-        [ text "Queries"]
-      , Tabs.label
-        [ Options.center
-        , Options.css "cursor" "default" ]
-        [ text "New Queries"]
-      ]
-      [ case model.queriesTabRight of
-        0 -> text "queries tab content"
-        1 -> text "new queries tab content"
-        _ -> text "404"
-      ]
-    ]
-
--- REVIEWS
-
-viewReviews : Model -> Html Msg
-viewReviews model =
-  grid
-    []
-    [ reviewsPane model
-    , singleReviewPane model ]
-
-reviewsPane : Model -> Cell Msg
-reviewsPane model =
-  cell
-    [ size All 6 ]
-    [ h4 [] [text "Recipients"]
-    , List.ul
-      []
-      [ List.li 
-        []
-        [text "sreed9@yellowbook.com"]
-      , List.li 
-        []
-        [text "pfields4@freewebs.com"]
-      , List.li 
-        []
-        [text "selliott8@cyberchimps.com"]    
-      ]
-    ]
-
-singleReviewPane : Model -> Cell Msg
-singleReviewPane model =
-  cell
-    [ size All 6 ]
-    [ Table.table []
-      [ Table.tbody []
-        ( data
-          |> List.indexedMap (\idx item ->
-            Table.tr
-              [ Table.selected `when` Set.member (key item) model.selected ]
-                [ Table.td []
-                  [ Toggles.checkbox Mdl [idx] model.mdl
-                    [ Toggles.onClick (Toggle <| key item)
-                    , Toggles.value <| Set.member (key item) model.selected
-                    ] []
-                  ]
-                , Table.td [] [ text item.name ]
-                , Table.td [ Table.numeric ] [ text item.approval ]
-              ]
-            )
-          )
-        ]
-       , Options.img 
-        [ Options.css "max-width" "100%" ]
-        [ Html.Attributes.src "/assets/images/template.jpg"]
-      ]
-
--- SCHEDULES 
-
-viewSchedules : Model -> Html Msg
-viewSchedules model =
-  grid
-    []
-    [ schedulesPane model
-    , singleschedulePane model ]
-
-schedulesPane : Model -> Cell Msg
-schedulesPane model =
-  cell
-    [ size All 6 ]
-    [ text "Recurring Schedules"
-    ]
-
-singleschedulePane : Model -> Cell Msg
-singleschedulePane model =
-  cell
-    [ size All 6 ]
-    [ text "single schedule"]
-
-viewStepper404 : Model -> Html Msg
-viewStepper404 model =
-  text "404"
