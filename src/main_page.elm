@@ -5,9 +5,11 @@ import Html.App as App
 
 import Material
 import Material.Layout as Layout
+import Material.Scheme
 
 import Derektor.Data as Data
 import Derektor.Common as Common
+import Derektor.Jobs as Jobs
 
 import Set exposing (Set)
 
@@ -17,6 +19,7 @@ import Set exposing (Set)
 init : Data.Model
 init =
   { mdl = Material.model
+  , jobsTab = 0
   , stepperTab = 0
   , selected = Set.empty
   }
@@ -29,6 +32,9 @@ update msg model =
   case msg of
     Data.Mdl msg' ->
       Material.update msg' model 
+
+    Data.SelectJobsTab num ->
+      { model | jobsTab = num } ! []  
 
     Data.SelectStepperTab num ->
       { model | stepperTab = num } ! []
@@ -48,13 +54,20 @@ main =
     , update = update
     }
 
+viewBody : Data.Model -> Html Data.Msg
+viewBody model =
+  Jobs.jobsTab model    
+
 view : Data.Model -> Html Data.Msg
 view model =
+  Material.Scheme.top <|
   Layout.render Data.Mdl
     model.mdl
-      [ Layout.fixedHeader ]
+      [ Layout.fixedHeader
+      , Layout.onSelectTab Data.SelectJobsTab  
+      ]
       { header = [ Common.viewHeader ]
       , drawer = []
-      , tabs = ( [], [] )
-      , main = [ Common.viewBody model ]
+      , tabs = ( [ text "Past Jobs", text "New Job" ], [] )
+      , main = [ viewBody model ]
       }
