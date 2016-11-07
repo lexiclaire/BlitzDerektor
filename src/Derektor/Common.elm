@@ -6,11 +6,9 @@ import Html.Attributes exposing (href, class, style, src)
 import Material.Color as Color
 import Material.Grid exposing (..)
 import Material.Options as Options
-import Material.Scheme
 import Material.Tabs as Tabs
 
 import Derektor.Data as Data
-import Derektor.Jobs as Jobs
 import Derektor.Templates as Templates
 import Derektor.Queries as Queries
 import Derektor.Reviews as Reviews
@@ -31,6 +29,7 @@ toggle x set =
 
 -- VIEW
 
+
 viewHeader : Html Data.Msg
 viewHeader =
   Options.div
@@ -45,12 +44,10 @@ viewHeader =
 stepperTab : Data.Model -> Html Data.Msg
 stepperTab model =
   case model.stepperTab of
-      0 -> Jobs.viewPastJobs model
-      1 -> Jobs.viewNewJob model
-      2 -> Templates.view model
-      3 -> Queries.view model
-      4 -> Reviews.view model
-      5 -> Schedules.view model
+      0 -> Templates.view model
+      1 -> Queries.view model
+      2 -> Reviews.view model
+      3 -> Schedules.view model
       _ -> viewStepper404 model
 
 
@@ -68,9 +65,7 @@ viewStepper model =
     [ Tabs.render Data.Mdl [0] model.mdl
       [ Tabs.onSelectTab Data.SelectStepperTab
       , Tabs.activeTab model.stepperTab ]
-      [ stepperTabLabel "Past Jobs"
-      , stepperTabLabel "New Job"
-      , stepperTabLabel "Templates"
+      [ stepperTabLabel "Templates"
       , stepperTabLabel "Queries"
       , stepperTabLabel "Reviews"
       , stepperTabLabel "Schedules" 
@@ -82,10 +77,6 @@ viewStepper404 : Data.Model -> Html Data.Msg
 viewStepper404 model =
   text "404"
 
-viewBody : Data.Model -> Html Data.Msg
-viewBody model =
-  mainGrid model
-    |> Material.Scheme.top
 
 mainGrid : Data.Model -> Html Data.Msg
 mainGrid model =
@@ -113,9 +104,7 @@ mainGrid model =
 
 viewTypes : List ( Data.Model -> Html Data.Msg )
 viewTypes =
-  [ Jobs.viewPastJobs
-  , Jobs.viewNewJob
-  , Templates.view
+  [ Templates.view
   , Queries.view
   , Reviews.view
   , Schedules.view
