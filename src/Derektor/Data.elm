@@ -1,6 +1,7 @@
 module Derektor.Data exposing (..)
 
 import Material
+import Material.Color as Color
 
 import Set exposing (Set)
 
@@ -9,6 +10,8 @@ type alias Model =
   , jobsTab : Int
   , stepperTab : Int
   , selected : Set String
+  , primaryColor : Color.Hue
+  , accentColor : Color.Hue
   }
 
 type Msg

@@ -20,10 +20,10 @@ import Derektor.Schedules as Schedules
 -- VIEW
 
 
-viewHeader : Html Data.Msg
-viewHeader =
+viewHeader : Data.Model -> Html Data.Msg
+viewHeader model =
   Options.div
-    [ Color.background (Color.color Color.Teal Color.S400) ]
+    [ Color.background Color.primary ]
     [ h1
       [ style
         [ ( "padding", "2rem" ) ]
@@ -78,13 +78,6 @@ mainGrid model =
       , Options.css "margin" "0px 8px" ]
       [ viewStepper model ]
     ]
-  , grid
-    [ Options.css "width" "100%"
-    , Options.css "padding" "48px 0px 0px"]
-    [ cell
-      [ size All 12 ]
-      [ model |> (List.drop model.stepperTab viewTypes |> List.head |> Maybe.withDefault Templates.view) ]
-    ]
   ]
 
 viewTypes : List ( Data.Model -> Html Data.Msg )
@@ -101,3 +94,17 @@ jobsTab model =
       0 -> Jobs.viewPastJobs model
       1 -> Jobs.viewNewJob model
       _ -> Jobs.viewPastJobs model
+
+stepperNav : Data.Model -> Html Data.Msg
+stepperNav model =
+  grid
+      [ Options.css "width" "100%" 
+      , Options.css "margin" "0px" 
+      , Options.css "padding" "0px"
+      ]
+      [ cell
+        [ size All 12 ]
+        [ viewStepper model
+        , model |> (List.drop model.stepperTab viewTypes |> List.head |> Maybe.withDefault Templates.view) 
+        ]
+      ]

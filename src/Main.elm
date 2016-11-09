@@ -6,6 +6,7 @@ import Html.App as App
 import Material
 import Material.Layout as Layout
 import Material.Scheme
+import Material.Color as Color
 
 import Derektor.Common as Common
 import Derektor.Data as Data
@@ -23,6 +24,8 @@ init =
   , jobsTab = 0
   , stepperTab = 0
   , selected = Set.empty
+  , primaryColor = Color.Purple
+  , accentColor = Color.Teal
   }
 
 
@@ -57,14 +60,15 @@ main =
 
 view : Data.Model -> Html Data.Msg
 view model =
-  Material.Scheme.top <|
+  Material.Scheme.topWithScheme model.primaryColor model.accentColor <|
   Layout.render Data.Mdl
     model.mdl
       [ Layout.fixedHeader
+      , Layout.selectedTab model.jobsTab
       , Layout.onSelectTab Data.SelectJobsTab  
       ]
-      { header = [ Derektor.viewHeader ]
+      { header = [ Derektor.viewHeader model ]
       , drawer = []
       , tabs = ( [ text "Past Jobs", text "New Job" ], [] )
-      , main = [ Derektor.jobsTab model ]
+      , main = [ Derektor.stepperNav model, Derektor.jobsTab model ]
       }
