@@ -9,13 +9,13 @@ import Material.Options as Options
 import Material.Tabs as Tabs
 
 import Derektor.Data as Data
+import Derektor.Jobs as Jobs
 import Derektor.Templates as Templates
 import Derektor.Queries as Queries
 import Derektor.Reviews as Reviews
 import Derektor.Schedules as Schedules
 
 import Set exposing (Set)
-
 
 -- UPDATE
 
@@ -48,7 +48,7 @@ stepperTab model =
       1 -> Queries.view model
       2 -> Reviews.view model
       3 -> Schedules.view model
-      _ -> viewStepper404 model
+      _ -> Templates.view model
 
 
 stepperTabLabel : String -> Tabs.Label a
@@ -73,11 +73,6 @@ viewStepper model =
       []
     ]
 
-viewStepper404 : Data.Model -> Html Data.Msg
-viewStepper404 model =
-  text "404"
-
-
 mainGrid : Data.Model -> Html Data.Msg
 mainGrid model =
   Options.div
@@ -98,7 +93,7 @@ mainGrid model =
     , Options.css "padding" "48px 0px 0px"]
     [ cell
       [ size All 12 ]
-      [ model |> (List.drop model.stepperTab viewTypes |> List.head |> Maybe.withDefault viewStepper404) ]
+      [ model |> (List.drop model.stepperTab viewTypes |> List.head |> Maybe.withDefault Templates.view) ]
     ]
   ]
 
@@ -108,5 +103,11 @@ viewTypes =
   , Queries.view
   , Reviews.view
   , Schedules.view
-  , viewStepper404
   ]
+
+jobsTab : Data.Model -> Html Data.Msg
+jobsTab model =
+  case model.jobsTab of
+      0 -> Jobs.viewPastJobs model
+      1 -> Jobs.viewNewJob model
+      _ -> Jobs.viewPastJobs model

@@ -9,21 +9,10 @@ import Material.Color as Color
 import Material.List as List
 
 import Derektor.Data as Data
-import Derektor.Common as Common
-
 
 -- UPDATE
 
-
 -- VIEW
-
-
-jobsTab : Data.Model -> Html Data.Msg
-jobsTab model =
-  case model.jobsTab of
-      0 -> viewPastJobs model
-      1 -> viewNewJob model
-      _ -> Common.viewStepper404 model     
 
 pastJobsPane : Data.Model -> Cell Data.Msg
 pastJobsPane model =
@@ -34,21 +23,6 @@ pastJobsPane model =
       , Options.css "min-height" "70%" ]
       [ viewList model ]
     ]
-
-viewPastJobs : Data.Model -> Html Data.Msg
-viewPastJobs model =
-  grid
-    []
-    [ pastJobsPane model ]
-
-viewNewJob : Data.Model -> Html Data.Msg
-viewNewJob model =
-  grid
-    []
-    [ cell 
-      []
-      [ Common.mainGrid model ]
-    ]  
 
 viewList : Data.Model -> Html Data.Msg
 viewList model =
@@ -78,4 +52,22 @@ viewListItem model =
     , List.content 
       []
       [ text "Month Template Used" ]
+    ]
+
+viewPastJobs : Data.Model -> Html Data.Msg
+viewPastJobs model =
+  grid
+    []
+    [ cell
+      []
+      [ text "Past Jobs" ]
+    ]
+
+viewNewJob : Data.Model -> Html Data.Msg
+viewNewJob model =
+  grid
+    []
+    [ cell 
+      []
+      [ text "New Job" ]
     ]

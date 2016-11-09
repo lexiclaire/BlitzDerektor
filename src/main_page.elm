@@ -65,5 +65,5 @@ view model =
       { header = [ Common.viewHeader ]
       , drawer = []
       , tabs = ( [ text "Past Jobs", text "New Job" ], [] )
-      , main = [ Jobs.jobsTab model ]
+      , main = [ Common.jobsTab model ]
       }
