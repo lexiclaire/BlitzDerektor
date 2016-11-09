@@ -54,10 +54,6 @@ main =
     , update = update
     }
 
-viewBody : Data.Model -> Html Data.Msg
-viewBody model =
-  Jobs.jobsTab model    
-
 view : Data.Model -> Html Data.Msg
 view model =
   Material.Scheme.top <|
@@ -69,5 +65,5 @@ view model =
       { header = [ Common.viewHeader ]
       , drawer = []
       , tabs = ( [ text "Past Jobs", text "New Job" ], [] )
-      , main = [ viewBody model ]
+      , main = [ Jobs.jobsTab model ]
       }
