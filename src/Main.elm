@@ -7,8 +7,9 @@ import Material
 import Material.Layout as Layout
 import Material.Scheme
 
-import Derektor.Data as Data
 import Derektor.Common as Common
+import Derektor.Data as Data
+import Derektor.Derektor as Derektor
 import Derektor.Jobs as Jobs
 
 import Set exposing (Set)
@@ -62,8 +63,8 @@ view model =
       [ Layout.fixedHeader
       , Layout.onSelectTab Data.SelectJobsTab  
       ]
-      { header = [ Common.viewHeader ]
+      { header = [ Derektor.viewHeader ]
       , drawer = []
       , tabs = ( [ text "Past Jobs", text "New Job" ], [] )
-      , main = [ Common.jobsTab model ]
+      , main = [ Derektor.jobsTab model ]
       }
