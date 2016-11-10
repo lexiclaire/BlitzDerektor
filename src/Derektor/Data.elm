@@ -26,7 +26,6 @@ type Msg
 type alias Job =
   { uuid : Uuid.Uuid
   , name : String
-  , stp : Int
   , locked : Bool
   , lastEdited : Date.Date
   , template : Template

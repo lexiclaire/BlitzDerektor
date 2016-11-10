@@ -34,12 +34,12 @@ viewHeader model =
 stepperTab : Data.Model -> Html Data.Msg
 stepperTab model =
   case model.stepperTab of
-      0 -> Templates.view model
-      1 -> Queries.view model
-      2 -> Reviews.view model
-      3 -> Schedules.view model
-      _ -> Templates.view model
-
+      0 -> Jobs.view model
+      1 -> Templates.view model
+      2 -> Queries.view model
+      3 -> Reviews.view model
+      4 -> Schedules.view model
+      _ -> Jobs.view model
 
 stepperTabLabel : String -> Tabs.Label a
 stepperTabLabel string =
@@ -55,7 +55,8 @@ viewStepper model =
     [ Tabs.render Data.Mdl [0] model.mdl
       [ Tabs.onSelectTab Data.SelectStepperTab
       , Tabs.activeTab model.stepperTab ]
-      [ stepperTabLabel "Templates"
+      [ stepperTabLabel "Jobs"
+      , stepperTabLabel "Templates"
       , stepperTabLabel "Queries"
       , stepperTabLabel "Reviews"
       , stepperTabLabel "Schedules" 
@@ -81,7 +82,8 @@ mainGrid model =
 
 viewTypes : List ( Data.Model -> Html Data.Msg )
 viewTypes =
-  [ Templates.view
+  [ Jobs.view
+  , Templates.view
   , Queries.view
   , Reviews.view
   , Schedules.view

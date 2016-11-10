@@ -1,23 +1,9 @@
 module Mock_data exposing (..)
 
-type alias Data =
-  { uuid : Uuid.Uuid
-  , name : String
-  , stp : Int
-  , locked : Bool
-  , lastEdited : Date.Date
-  , template : Template
-  , query : Query
-  , review : Review
-  , schedule : Schedule
-  , recipients : List Recipient
-  }
-
 mockData : Data -> Data
 mockData data =
   { uuid = data.uuid
   , name = data.name
-  , stp = data.stp
   , locked = data.locked
   , lastEdited = data.lastEdited
   , template = data.template
@@ -29,8 +15,8 @@ mockData data =
 
 mocked : List Data
 mocked =
-  [ { "name":"Oloo"
-    , "stp":18
+  [ { "uuid":
+    , "name":"Oloo"
     , "locked":false
     , "lastEdited":"2016-08-25"
     , "template":"<p>Mock Data: 1</p>"
@@ -39,8 +25,8 @@ mocked =
     , "schedule":"2016-10-13"
     , "recipients":[wfowler0@amazon.com]
     }
-  , { "name":"Quatz"
-    , "stp":27
+  , { "uuid":
+    , "name":"Quatz"
     , "locked":false
     , "lastEdited":"2015-12-01"
     , "template":"<p>Mock Data: 2</p>"
@@ -49,8 +35,8 @@ mocked =
     , "schedule":"2016-09-28"
     , "recipients":[tgraham1@adobe.com]
     }
-  , { "name":"Jayo"
-    , "stp":2
+  , { "uuid":
+    , "name":"Jayo"
     , "locked":true
     , "lastEdited":"2016-08-07"
     , "template":"<p>Mock Data: 3</p>"
@@ -59,8 +45,8 @@ mocked =
     , "schedule":"2016-09-08"
     , "recipients":[mweaver2@naver.com]
     }
-  , { "name":"Meetz"
-    , "stp":11
+  , { "uuid":
+    , "name":"Meetz"
     , "locked":true
     , "lastEdited":"2015-11-17"
     , "template":"<p>Mock Data: 4</p>"
@@ -69,8 +55,8 @@ mocked =
     , "schedule":"2016-04-01"
     , "recipients":[bpayne3@mysql.com]
     }
-  , { "name":"Npath"
-    , "stp":28
+  , { "uuid":
+    , "name":"Npath"
     , "locked":true
     , "lastEdited":"2016-05-12"
     , "template":"<p>Mock Data: 5</p>"
@@ -79,8 +65,8 @@ mocked =
     , "schedule":"2016-06-27"
     , "recipients":[bdiaz4@un.org]
     }
-  , { "name":"Reallinks"
-    , "stp":15
+  , { "uuid":
+    , "name":"Reallinks"
     , "locked":false
     , "lastEdited":"2016-07-06"
     , "template":"<p>Mock Data: 6</p>"
@@ -89,8 +75,8 @@ mocked =
     , "schedule":"2016-10-06"
     , "recipients":[mgardner5@elegantthemes.com]
     }
-  , { "name":"Roomm"
-    , "stp":5
+  , { "uuid":
+    , "name":"Roomm"
     , "locked":true
     , "lastEdited":"2016-04-18"
     , "template":"<p>Mock Data: 7</p>"
@@ -99,8 +85,8 @@ mocked =
     , "schedule":"2016-05-25"
     , "recipients":[rruiz6@tumblr.com]
     }
-  , { "name":"Rhyzio"
-    , "stp":21
+  , { "uuid":
+    , "name":"Rhyzio"
     , "locked":true
     , "lastEdited":"2016-04-27"
     , "template":"<p>Mock Data: 8</p>"
@@ -109,8 +95,8 @@ mocked =
     , "schedule":"2016-09-04"
     , "recipients":[jstewart7@google.es]
     }
-  , { "name":"Yotz"
-    , "stp":18
+  , { "uuid":
+    , "name":"Yotz"
     , "locked":true
     , "lastEdited":"2015-12-31"
     , "template":"<p>Mock Data: 9</p>"
@@ -119,8 +105,8 @@ mocked =
     , "schedule":"2016-06-24"
     , "recipients":[rchavez8@webmd.com]
     }
-  , { "name":"Yata"
-    , "stp":28
+  , { "uuid":
+    , "name":"Yata"
     , "locked":true
     , "lastEdited":"2016-01-19"
     , "template":"<p>Mock Data: 10</p>"
@@ -129,8 +115,8 @@ mocked =
     , "schedule":"2016-05-13"
     , "recipients":[jjohnson9@wired.com]
     }
-  , { "name":"Meemm"
-    , "stp":20
+  , { "uuid":
+    , "name":"Meemm"
     , "locked":false
     , "lastEdited":"2016-08-23"
     , "template":"<p>Mock Data: 11</p>"
@@ -139,8 +125,8 @@ mocked =
     , "schedule":"2016-09-11"
     , "recipients":[abrowna@weebly.com]
     }
-  , { "name":"Shufflester"
-    , "stp":24
+  , { "uuid":
+    , "name":"Shufflester"
     , "locked":false
     , "lastEdited":"2016-08-28"
     , "template":"<p>Mock Data: 12</p>"
@@ -149,8 +135,8 @@ mocked =
     , "schedule":"2016-09-24"
     , "recipients":[ncruzb@ustream.tv]
     }
-  , { "name":"Trilith"
-    , "stp":3
+  , { "uuid":
+    , "name":"Trilith"
     , "locked":false
     , "lastEdited":"2016-09-01"
     , "template":"<p>Mock Data: 13</p>"
@@ -159,8 +145,8 @@ mocked =
     , "schedule":"2016-10-13"
     , "recipients":[chillc@freewebs.com]
     }
-  , { "name":"Dazzlesphere"
-    , "stp":6
+  , { "uuid":
+    , "name":"Dazzlesphere"
     , "locked":false
     , "lastEdited":"2016-10-19"
     , "template":"<p>Mock Data: 14</p>"
@@ -169,8 +155,8 @@ mocked =
     , "schedule":"2016-10-28"
     , "recipients":[frobertsd@engadget.com]
     }
-  , { "name":"Zoombox"
-    , "stp":27
+  , { "uuid":
+    , "name":"Zoombox"
     , "locked":false
     , "lastEdited":"2016-05-22"
     , "template":"<p>Mock Data: 15</p>"
@@ -179,8 +165,8 @@ mocked =
     , "schedule":"2016-08-29"
     , "recipients":[swarde@sciencedaily.com]
     }
-  , { "name":"Meedoo"
-    , "stp":11
+  , { "uuid":
+    , "name":"Meedoo"
     , "locked":true
     , "lastEdited":"2016-07-30"
     , "template":"<p>Mock Data: 16</p>"
@@ -189,8 +175,8 @@ mocked =
     , "schedule":"2016-10-30"
     , "recipients":[tjonesf@people.com.cn]
     }
-  , { "name":"Jetwire"
-    , "stp":8
+  , { "uuid":
+    , "name":"Jetwire"
     , "locked":false
     , "lastEdited":"2016-09-12"
     , "template":"<p>Mock Data: 17</p>"
@@ -199,8 +185,8 @@ mocked =
     , "schedule":"2016-10-25"
     , "recipients":[eknightg@elpais.com]
     }
-  , { "name":"Flipbug"
-    , "stp":20
+  , { "uuid":
+    , "name":"Flipbug"
     , "locked":true
     , "lastEdited":"2016-09-27"
     , "template":"<p>Mock Data: 18</p>"
@@ -209,8 +195,8 @@ mocked =
     , "schedule":"2016-10-12"
     , "recipients":[dmoralesh@prweb.com]
     }
-  , { "name":"Meeveo"
-    , "stp":15
+  , { "uuid":
+    , "name":"Meeveo"
     , "locked":true
     , "lastEdited":"2016-05-18"
     , "template":"<p>Mock Data: 19</p>"
@@ -219,8 +205,8 @@ mocked =
     , "schedule":"2016-08-14"
     , "recipients":[lpricei@jimdo.com]
     }
-  , { "name":"Flashpoint"
-    , "stp":10
+  , { "uuid":
+    , "name":"Flashpoint"
     , "locked":true
     , "lastEdited":"2016-01-13"
     , "template":"<p>Mock Data: 20</p>"
@@ -229,8 +215,8 @@ mocked =
     , "schedule":"2016-06-03"
     , "recipients":[kkimj@washingtonpost.com]
     }
-  , { "name":"Twimm"
-    , "stp":14
+  , { "uuid":
+    , "name":"Twimm"
     , "locked":false
     , "lastEdited":"2015-12-31"
     , "template":"<p>Mock Data: 21</p>"
@@ -239,8 +225,8 @@ mocked =
     , "schedule":"2016-05-30"
     , "recipients":[hduncank@nasa.gov]
     }
-  , { "name":"Aimbo"
-    , "stp":13
+  , { "uuid":
+    , "name":"Aimbo"
     , "locked":true
     , "lastEdited":"2015-12-28"
     , "template":"<p>Mock Data: 22</p>"
@@ -249,8 +235,8 @@ mocked =
     , "schedule":"2016-07-29"
     , "recipients":[eyoungl@senate.gov]
     }
-  , { "name":"Katz"
-    , "stp":18
+  , { "uuid":
+    , "name":"Katz"
     , "locked":true
     , "lastEdited":"2015-11-13"
     , "template":"<p>Mock Data: 23</p>"
@@ -259,8 +245,8 @@ mocked =
     , "schedule":"2016-05-27"
     , "recipients":[cgeorgem@cyberchimps.com]
     }
-  , { "name":"Oyope"
-    , "stp":13
+  , { "uuid":
+    , "name":"Oyope"
     , "locked":false
     , "lastEdited":"2015-11-21"
     , "template":"<p>Mock Data: 24</p>"
@@ -269,8 +255,8 @@ mocked =
     , "schedule":"2016-09-27"
     , "recipients":[cjenkinsn@github.com]
     }
-  , { "name":"Jabbersphere"
-    , "stp":1
+  , { "uuid":
+    , "name":"Jabbersphere"
     , "locked":false
     , "lastEdited":"2016-08-25"
     , "template":"<p>Mock Data: 25</p>"
@@ -279,8 +265,8 @@ mocked =
     , "schedule":"2016-09-30"
     , "recipients":[wwarreno@e-recht24.de]
     }
-  , { "name":"Quinu"
-    , "stp":25
+  , { "uuid":
+    , "name":"Quinu"
     , "locked":true
     , "lastEdited":"2016-02-01"
     , "template":"<p>Mock Data: 26</p>"
@@ -289,8 +275,8 @@ mocked =
     , "schedule":"2016-09-07"
     , "recipients":[jburtonp@fotki.com]
     }
-  , { "name":"Edgeblab"
-    , "stp":11
+  , { "uuid":
+    , "name":"Edgeblab"
     , "locked":true
     , "lastEdited":"2015-11-22"
     , "template":"<p>Mock Data: 27</p>"
@@ -299,8 +285,8 @@ mocked =
     , "schedule":"2016-01-24"
     , "recipients":[pkennedyq@wix.com]
     }
-  , { "name":"Vitz"
-    , "stp":1
+  , { "uuid":
+    , "name":"Vitz"
     , "locked":true
     , "lastEdited":"2016-02-19"
     , "template":"<p>Mock Data: 28</p>"
@@ -309,8 +295,8 @@ mocked =
     , "schedule":"2016-07-27"
     , "recipients":[fwestr@sogou.com]
     }
-  , { "name":"Gigabox"
-    , "stp":23
+  , { "uuid":
+    , "name":"Gigabox"
     , "locked":false
     , "lastEdited":"2016-05-20"
     , "template":"<p>Mock Data: 29</p>"
@@ -319,8 +305,8 @@ mocked =
     , "schedule":"2016-08-05"
     , "recipients":[ahowards@cnn.com]
     }
-  , { "name":"Midel"
-    , "stp":13
+  , { "uuid":
+    , "name":"Midel"
     , "locked":false
     , "lastEdited":"2016-11-02"
     , "template":"<p>Mock Data: 30</p>"
@@ -329,8 +315,8 @@ mocked =
     , "schedule":"2016-11-05"
     , "recipients":[pbrownt@vkontakte.ru]
     }
-  , { "name":"Latz"
-    , "stp":12
+  , { "uuid":
+    , "name":"Latz"
     , "locked":true
     , "lastEdited":"2016-10-03"
     , "template":"<p>Mock Data: 31</p>"
@@ -339,8 +325,8 @@ mocked =
     , "schedule":"2016-10-16"
     , "recipients":[aparkeru@loc.gov]
     }
-  , { "name":"Dabfeed"
-    , "stp":16
+  , { "uuid":
+    , "name":"Dabfeed"
     , "locked":false
     , "lastEdited":"2016-11-03"
     , "template":"<p>Mock Data: 32</p>"
@@ -349,8 +335,8 @@ mocked =
     , "schedule":"2016-11-04"
     , "recipients":[cgriffinv@hubpages.com]
     }
-  , { "name":"Skalith"
-    , "stp":20
+  , { "uuid":
+    , "name":"Skalith"
     , "locked":false
     , "lastEdited":"2016-05-24"
     , "template":"<p>Mock Data: 33</p>"
@@ -359,8 +345,8 @@ mocked =
     , "schedule":"2016-11-06"
     , "recipients":[kfullerw@mlb.com]
     }
-  , { "name":"Rhynyx"
-    , "stp":3
+  , { "uuid":
+    , "name":"Rhynyx"
     , "locked":true
     , "lastEdited":"2016-06-09"
     , "template":"<p>Mock Data: 34</p>"
@@ -369,8 +355,8 @@ mocked =
     , "schedule":"2016-10-11"
     , "recipients":[nwallacex@google.com]
     }
-  , { "name":"Bubbletube"
-    , "stp":12
+  , { "uuid":
+    , "name":"Bubbletube"
     , "locked":true
     , "lastEdited":"2016-02-03"
     , "template":"<p>Mock Data: 35</p>"
@@ -379,8 +365,8 @@ mocked =
     , "schedule":"2016-05-16"
     , "recipients":[mfieldsy@bandcamp.com]
     }
-  , { "name":"Cogilith"
-    , "stp":12
+  , { "uuid":
+    , "name":"Cogilith"
     , "locked":false
     , "lastEdited":"2016-09-23"
     , "template":"<p>Mock Data: 36</p>"
@@ -389,8 +375,8 @@ mocked =
     , "schedule":"2016-10-01"
     , "recipients":[cromeroz@goo.ne.jp]
     }
-  , { "name":"Babblestorm"
-    , "stp":11
+  , { "uuid":
+    , "name":"Babblestorm"
     , "locked":true
     , "lastEdited":"2016-03-01"
     , "template":"<p>Mock Data: 37</p>"
@@ -399,8 +385,8 @@ mocked =
     , "schedule":"2016-03-16"
     , "recipients":[fpeterson10@dailymail.co.uk]
     }
-  , { "name":"Feedmix"
-    , "stp":1
+  , { "uuid":
+    , "name":"Feedmix"
     , "locked":true
     , "lastEdited":"2016-04-13"
     , "template":"<p>Mock Data: 38</p>"
@@ -409,8 +395,8 @@ mocked =
     , "schedule":"2016-05-26"
     , "recipients":[kwheeler11@ezinearticles.com]
     }
-  , { "name":"Plajo"
-    , "stp":23
+  , { "uuid":
+    , "name":"Plajo"
     , "locked":false
     , "lastEdited":"2016-03-01"
     , "template":"<p>Mock Data: 39</p>"
@@ -419,8 +405,8 @@ mocked =
     , "schedule":"2016-10-23"
     , "recipients":[rgrant12@bloglines.com]
     }
-  , { "name":"Voomm"
-    , "stp":2
+  , { "uuid":
+    , "name":"Voomm"
     , "locked":true
     , "lastEdited":"2016-03-17"
     , "template":"<p>Mock Data: 40</p>"
@@ -429,8 +415,8 @@ mocked =
     , "schedule":"2016-04-23"
     , "recipients":[lhernandez13@boston.com]
     }
-  , { "name":"Rooxo"
-    , "stp":12
+  , { "uuid":
+    , "name":"Rooxo"
     , "locked":false
     , "lastEdited":"2016-06-13"
     , "template":"<p>Mock Data: 41</p>"
@@ -439,8 +425,8 @@ mocked =
     , "schedule":"2016-08-14"
     , "recipients":[folson14@flickr.com]
     }
-  , { "name":"Tazz"
-    , "stp":11
+  , { "uuid":
+    , "name":"Tazz"
     , "locked":true
     , "lastEdited":"2016-05-12"
     , "template":"<p>Mock Data: 42</p>"
@@ -449,8 +435,8 @@ mocked =
     , "schedule":"2016-06-06"
     , "recipients":[ahunt15@oracle.com]
     }
-  , { "name":"Edgetag"
-    , "stp":24
+  , { "uuid":
+    , "name":"Edgetag"
     , "locked":false
     , "lastEdited":"2016-04-29"
     , "template":"<p>Mock Data: 43</p>"
@@ -459,8 +445,8 @@ mocked =
     , "schedule":"2016-06-07"
     , "recipients":[eoliver16@hexun.com]
     }
-  , { "name":"Quimm"
-    , "stp":1
+  , { "uuid":
+    , "name":"Quimm"
     , "locked":false
     , "lastEdited":"2016-10-02"
     , "template":"<p>Mock Data: 44</p>"
@@ -469,8 +455,8 @@ mocked =
     , "schedule":"2016-10-23"
     , "recipients":[jday17@newsvine.com]
     }
-  , { "name":"Aivee"
-    , "stp":27
+  , { "uuid":
+    , "name":"Aivee"
     , "locked":false
     , "lastEdited":"2016-08-23"
     , "template":"<p>Mock Data: 45</p>"
@@ -479,8 +465,8 @@ mocked =
     , "schedule":"2016-09-07"
     , "recipients":[cwilliams18@telegraph.co.uk]
     }
-  , { "name":"Oyope"
-    , "stp":10
+  , { "uuid":
+    , "name":"Oyope"
     , "locked":true
     , "lastEdited":"2015-12-15"
     , "template":"<p>Mock Data: 46</p>"
@@ -489,8 +475,8 @@ mocked =
     , "schedule":"2016-05-13"
     , "recipients":[pjames19@tamu.edu]
     }
-  , { "name":"Feednation"
-    , "stp":1
+  , { "uuid":
+    , "name":"Feednation"
     , "locked":false
     , "lastEdited":"2016-01-09"
     , "template":"<p>Mock Data: 47</p>"
@@ -499,8 +485,8 @@ mocked =
     , "schedule":"2016-06-07"
     , "recipients":[lprice1a@google.com.au]
     }
-  , { "name":"Mycat"
-    , "stp":19
+  , { "uuid":
+    , "name":"Mycat"
     , "locked":false
     , "lastEdited":"2016-08-28"
     , "template":"<p>Mock Data: 48</p>"
@@ -509,8 +495,8 @@ mocked =
     , "schedule":"2016-11-02"
     , "recipients":[anguyen1b@deviantart.com]
     }
-  , { "name":"Katz"
-    , "stp":20
+  , { "uuid":
+    , "name":"Katz"
     , "locked":true
     , "lastEdited":"2016-11-04"
     , "template":"<p>Mock Data: 49</p>"
@@ -519,8 +505,8 @@ mocked =
     , "schedule":"2016-11-05"
     , "recipients":[hgreen1c@mysql.com]
     }
-  , { "name":"Buzzbean"
-    , "stp":16
+  , { "uuid":
+    , "name":"Buzzbean"
     , "locked":true
     , "lastEdited":"2015-12-19"
     , "template":"<p>Mock Data: 50</p>"
@@ -529,8 +515,8 @@ mocked =
     , "schedule":"2016-04-06"
     , "recipients":[aarnold1d@psu.edu]
     }
-  , { "name":"Skilith"
-    , "stp":18
+  , { "uuid":
+    , "name":"Skilith"
     , "locked":false
     , "lastEdited":"2015-12-14"
     , "template":"<p>Mock Data: 51</p>"
@@ -539,8 +525,8 @@ mocked =
     , "schedule":"2016-09-01"
     , "recipients":[ebrown1e@prnewswire.com]
     }
-  , { "name":"Twitterlist"
-    , "stp":8
+  , { "uuid":
+    , "name":"Twitterlist"
     , "locked":false
     , "lastEdited":"2016-04-05"
     , "template":"<p>Mock Data: 52</p>"
@@ -549,8 +535,8 @@ mocked =
     , "schedule":"2016-08-24"
     , "recipients":[abennett1f@imgur.com]
     }
-  , { "name":"Trunyx"
-    , "stp":13
+  , { "uuid":
+    , "name":"Trunyx"
     , "locked":false
     , "lastEdited":"2016-06-20"
     , "template":"<p>Mock Data: 53</p>"
@@ -559,8 +545,8 @@ mocked =
     , "schedule":"2016-07-11"
     , "recipients":[pcruz1g@moonfruit.com]
     }
-  , { "name":"Topicware"
-    , "stp":17
+  , { "uuid":
+    , "name":"Topicware"
     , "locked":false
     , "lastEdited":"2016-06-25"
     , "template":"<p>Mock Data: 54</p>"
@@ -569,8 +555,8 @@ mocked =
     , "schedule":"2016-07-30"
     , "recipients":[nstevens1h@sakura.ne.jp]
     }
-  , { "name":"Realcube"
-    , "stp":19
+  , { "uuid":
+    , "name":"Realcube"
     , "locked":false
     , "lastEdited":"2016-10-26"
     , "template":"<p>Mock Data: 55</p>"
@@ -579,8 +565,8 @@ mocked =
     , "schedule":"2016-11-07"
     , "recipients":[jwatkins1i@exblog.jp]
     }
-  , { "name":"Midel"
-    , "stp":22
+  , { "uuid":
+    , "name":"Midel"
     , "locked":false
     , "lastEdited":"2016-10-18"
     , "template":"<p>Mock Data: 56</p>"
@@ -589,8 +575,8 @@ mocked =
     , "schedule":"2016-11-02"
     , "recipients":[nwilson1j@histats.com]
     }
-  , { "name":"Oloo"
-    , "stp":19
+  , { "uuid":
+    , "name":"Oloo"
     , "locked":true
     , "lastEdited":"2016-10-13"
     , "template":"<p>Mock Data: 57</p>"
@@ -599,8 +585,8 @@ mocked =
     , "schedule":"2016-11-07"
     , "recipients":[bmoore1k@dyndns.org]
     }
-  , { "name":"Katz"
-    , "stp":11
+  , { "uuid":
+    , "name":"Katz"
     , "locked":true
     , "lastEdited":"2016-02-28"
     , "template":"<p>Mock Data: 58</p>"
@@ -609,8 +595,8 @@ mocked =
     , "schedule":"2016-06-30"
     , "recipients":[kortiz1l@angelfire.com]
     }
-  , { "name":"Topicware"
-    , "stp":18
+  , { "uuid":
+    , "name":"Topicware"
     , "locked":false
     , "lastEdited":"2015-12-08"
     , "template":"<p>Mock Data: 59</p>"
@@ -619,8 +605,8 @@ mocked =
     , "schedule":"2016-06-09"
     , "recipients":[cgreen1m@usgs.gov]
     }
-  , { "name":"Talane"
-    , "stp":8
+  , { "uuid":
+    , "name":"Talane"
     , "locked":false
     , "lastEdited":"2016-02-18"
     , "template":"<p>Mock Data: 60</p>"
@@ -629,8 +615,8 @@ mocked =
     , "schedule":"2016-07-18"
     , "recipients":[lferguson1n@digg.com]
     }
-  , { "name":"Gevee"
-    , "stp":10
+  , { "uuid":
+    , "name":"Gevee"
     , "locked":true
     , "lastEdited":"2015-12-13"
     , "template":"<p>Mock Data: 61</p>"
@@ -639,8 +625,8 @@ mocked =
     , "schedule":"2016-01-19"
     , "recipients":[lrice1o@gmpg.org]
     }
-  , { "name":"Dabjam"
-    , "stp":21
+  , { "uuid":
+    , "name":"Dabjam"
     , "locked":false
     , "lastEdited":"2016-09-22"
     , "template":"<p>Mock Data: 62</p>"
@@ -649,8 +635,8 @@ mocked =
     , "schedule":"2016-09-25"
     , "recipients":[kalexander1p@linkedin.com]
     }
-  , { "name":"Brainbox"
-    , "stp":27
+  , { "uuid":
+    , "name":"Brainbox"
     , "locked":false
     , "lastEdited":"2016-08-03"
     , "template":"<p>Mock Data: 63</p>"
@@ -659,8 +645,8 @@ mocked =
     , "schedule":"2016-08-23"
     , "recipients":[rross1q@unc.edu]
     }
-  , { "name":"Yamia"
-    , "stp":17
+  , { "uuid":
+    , "name":"Yamia"
     , "locked":true
     , "lastEdited":"2016-05-01"
     , "template":"<p>Mock Data: 64</p>"
@@ -669,8 +655,8 @@ mocked =
     , "schedule":"2016-06-27"
     , "recipients":[rsullivan1r@tamu.edu]
     }
-  , { "name":"Abatz"
-    , "stp":13
+  , { "uuid":
+    , "name":"Abatz"
     , "locked":true
     , "lastEdited":"2016-01-17"
     , "template":"<p>Mock Data: 65</p>"
@@ -679,8 +665,8 @@ mocked =
     , "schedule":"2016-11-03"
     , "recipients":[jbailey1s@mozilla.com]
     }
-  , { "name":"Babbleopia"
-    , "stp":21
+  , { "uuid":
+    , "name":"Babbleopia"
     , "locked":true
     , "lastEdited":"2015-12-18"
     , "template":"<p>Mock Data: 66</p>"
@@ -689,8 +675,8 @@ mocked =
     , "schedule":"2016-06-20"
     , "recipients":[jwatkins1t@weibo.com]
     }
-  , { "name":"Skilith"
-    , "stp":18
+  , { "uuid":
+    , "name":"Skilith"
     , "locked":true
     , "lastEdited":"2016-03-03"
     , "template":"<p>Mock Data: 67</p>"
@@ -699,8 +685,8 @@ mocked =
     , "schedule":"2016-05-07"
     , "recipients":[jshaw1u@cpanel.net]
     }
-  , { "name":"Voolia"
-    , "stp":17
+  , { "uuid":
+    , "name":"Voolia"
     , "locked":true
     , "lastEdited":"2016-08-21"
     , "template":"<p>Mock Data: 68</p>"
@@ -709,8 +695,8 @@ mocked =
     , "schedule":"2016-10-07"
     , "recipients":[sgraham1v@posterous.com]
     }
-  , { "name":"Thoughtbeat"
-    , "stp":11
+  , { "uuid":
+    , "name":"Thoughtbeat"
     , "locked":false
     , "lastEdited":"2016-05-12"
     , "template":"<p>Mock Data: 69</p>"
@@ -719,8 +705,8 @@ mocked =
     , "schedule":"2016-06-09"
     , "recipients":[lgray1w@state.gov]
     }
-  , { "name":"Rhynyx"
-    , "stp":3
+  , { "uuid":
+    , "name":"Rhynyx"
     , "locked":true
     , "lastEdited":"2016-02-26"
     , "template":"<p>Mock Data: 70</p>"
@@ -729,8 +715,8 @@ mocked =
     , "schedule":"2016-06-14"
     , "recipients":[dnelson1x@jimdo.com]
     }
-  , { "name":"Npath"
-    , "stp":22
+  , { "uuid":
+    , "name":"Npath"
     , "locked":true
     , "lastEdited":"2016-08-27"
     , "template":"<p>Mock Data: 71</p>"
@@ -739,8 +725,8 @@ mocked =
     , "schedule":"2016-10-07"
     , "recipients":[rmartin1y@google.cn]
     }
-  , { "name":"Fivebridge"
-    , "stp":25
+  , { "uuid":
+    , "name":"Fivebridge"
     , "locked":true
     , "lastEdited":"2016-08-31"
     , "template":"<p>Mock Data: 72</p>"
@@ -749,8 +735,8 @@ mocked =
     , "schedule":"2016-11-09"
     , "recipients":[shughes1z@ovh.net]
     }
-  , { "name":"Demivee"
-    , "stp":3
+  , { "uuid":
+    , "name":"Demivee"
     , "locked":true
     , "lastEdited":"2016-10-13"
     , "template":"<p>Mock Data: 73</p>"
@@ -759,8 +745,8 @@ mocked =
     , "schedule":"2016-10-21"
     , "recipients":[jkim20@slashdot.org]
     }
-  , { "name":"Eimbee"
-    , "stp":27
+  , { "uuid":
+    , "name":"Eimbee"
     , "locked":false
     , "lastEdited":"2016-11-08"
     , "template":"<p>Mock Data: 74</p>"
@@ -769,8 +755,8 @@ mocked =
     , "schedule":"2016-11-09"
     , "recipients":[hreed21@stanford.edu]
     }
-  , { "name":"Edgeify"
-    , "stp":20
+  , { "uuid":
+    , "name":"Edgeify"
     , "locked":true
     , "lastEdited":"2016-02-28"
     , "template":"<p>Mock Data: 75</p>"
@@ -779,8 +765,8 @@ mocked =
     , "schedule":"2016-08-12"
     , "recipients":[sjones22@ycombinator.com]
     }
-  , { "name":"Photobug"
-    , "stp":25
+  , { "uuid":
+    , "name":"Photobug"
     , "locked":false
     , "lastEdited":"2016-07-17"
     , "template":"<p>Mock Data: 76</p>"
@@ -789,8 +775,8 @@ mocked =
     , "schedule":"2016-11-08"
     , "recipients":[mmurphy23@cnn.com]
     }
-  , { "name":"Topdrive"
-    , "stp":16
+  , { "uuid":
+    , "name":"Topdrive"
     , "locked":true
     , "lastEdited":"2016-06-17"
     , "template":"<p>Mock Data: 77</p>"
@@ -799,8 +785,8 @@ mocked =
     , "schedule":"2016-07-18"
     , "recipients":[hthomas24@ycombinator.com]
     }
-  , { "name":"Mynte"
-    , "stp":1
+  , { "uuid":
+    , "name":"Mynte"
     , "locked":true
     , "lastEdited":"2016-05-04"
     , "template":"<p>Mock Data: 78</p>"
@@ -809,8 +795,8 @@ mocked =
     , "schedule":"2016-10-16"
     , "recipients":[klee25@google.com.au]
     }
-  , { "name":"Kamba"
-    , "stp":18
+  , { "uuid":
+    , "name":"Kamba"
     , "locked":true
     , "lastEdited":"2016-07-08"
     , "template":"<p>Mock Data: 79</p>"
@@ -819,8 +805,8 @@ mocked =
     , "schedule":"2016-07-24"
     , "recipients":[ahill26@mediafire.com]
     }
-  , { "name":"Trudoo"
-    , "stp":12
+  , { "uuid":
+    , "name":"Trudoo"
     , "locked":true
     , "lastEdited":"2016-09-09"
     , "template":"<p>Mock Data: 80</p>"
@@ -829,8 +815,8 @@ mocked =
     , "schedule":"2016-10-07"
     , "recipients":[wwells27@seattletimes.com]
     }
-  , { "name":"Cogidoo"
-    , "stp":8
+  , { "uuid":
+    , "name":"Cogidoo"
     , "locked":true
     , "lastEdited":"2016-02-14"
     , "template":"<p>Mock Data: 81</p>"
@@ -839,8 +825,8 @@ mocked =
     , "schedule":"2016-08-24"
     , "recipients":[sfoster28@vistaprint.com]
     }
-  , { "name":"Voomm"
-    , "stp":6
+  , { "uuid":
+    , "name":"Voomm"
     , "locked":true
     , "lastEdited":"2016-05-21"
     , "template":"<p>Mock Data: 82</p>"
@@ -849,8 +835,8 @@ mocked =
     , "schedule":"2016-09-16"
     , "recipients":[rlee29@storify.com]
     }
-  , { "name":"Fanoodle"
-    , "stp":16
+  , { "uuid":
+    , "name":"Fanoodle"
     , "locked":true
     , "lastEdited":"2016-11-09"
     , "template":"<p>Mock Data: 83</p>"
@@ -859,8 +845,8 @@ mocked =
     , "schedule":"2016-11-10"
     , "recipients":[jhoward2a@wired.com]
     }
-  , { "name":"Bubblemix"
-    , "stp":13
+  , { "uuid":
+    , "name":"Bubblemix"
     , "locked":false
     , "lastEdited":"2016-01-10"
     , "template":"<p>Mock Data: 84</p>"
@@ -869,8 +855,8 @@ mocked =
     , "schedule":"2016-08-21"
     , "recipients":[lramirez2b@hatena.ne.jp]
     }
-  , { "name":"Blognation"
-    , "stp":19
+  , { "uuid":
+    , "name":"Blognation"
     , "locked":true
     , "lastEdited":"2016-07-15"
     , "template":"<p>Mock Data: 85</p>"
@@ -879,8 +865,8 @@ mocked =
     , "schedule":"2016-08-01"
     , "recipients":[jwalker2c@canalblog.com]
     }
-  , { "name":"Teklist"
-    , "stp":15
+  , { "uuid":
+    , "name":"Teklist"
     , "locked":true
     , "lastEdited":"2016-08-11"
     , "template":"<p>Mock Data: 86</p>"
@@ -889,8 +875,8 @@ mocked =
     , "schedule":"2016-09-09"
     , "recipients":[jparker2d@salon.com]
     }
-  , { "name":"Fivespan"
-    , "stp":13
+  , { "uuid":
+    , "name":"Fivespan"
     , "locked":false
     , "lastEdited":"2016-10-09"
     , "template":"<p>Mock Data: 87</p>"
@@ -899,8 +885,8 @@ mocked =
     , "schedule":"2016-10-23"
     , "recipients":[lboyd2e@ihg.com]
     }
-  , { "name":"Divanoodle"
-    , "stp":24
+  , { "uuid":
+    , "name":"Divanoodle"
     , "locked":true
     , "lastEdited":"2015-11-14"
     , "template":"<p>Mock Data: 88</p>"
@@ -909,8 +895,8 @@ mocked =
     , "schedule":"2016-08-07"
     , "recipients":[cbradley2f@ebay.com]
     }
-  , { "name":"Innotype"
-    , "stp":9
+  , { "uuid":
+    , "name":"Innotype"
     , "locked":true
     , "lastEdited":"2016-05-18"
     , "template":"<p>Mock Data: 89</p>"
@@ -919,8 +905,8 @@ mocked =
     , "schedule":"2016-10-04"
     , "recipients":[jrose2g@java.com]
     }
-  , { "name":"Meembee"
-    , "stp":21
+  , { "uuid":
+    , "name":"Meembee"
     , "locked":true
     , "lastEdited":"2016-07-31"
     , "template":"<p>Mock Data: 90</p>"
@@ -929,8 +915,8 @@ mocked =
     , "schedule":"2016-09-02"
     , "recipients":[lsanchez2h@friendfeed.com]
     }
-  , { "name":"Skaboo"
-    , "stp":15
+  , { "uuid":
+    , "name":"Skaboo"
     , "locked":false
     , "lastEdited":"2016-08-03"
     , "template":"<p>Mock Data: 91</p>"
@@ -939,8 +925,8 @@ mocked =
     , "schedule":"2016-10-13"
     , "recipients":[cholmes2i@scribd.com]
     }
-  , { "name":"Meevee"
-    , "stp":9
+  , { "uuid":
+    , "name":"Meevee"
     , "locked":false
     , "lastEdited":"2016-02-22"
     , "template":"<p>Mock Data: 92</p>"
@@ -949,8 +935,8 @@ mocked =
     , "schedule":"2016-08-24"
     , "recipients":[lrose2j@google.co.uk]
     }
-  , { "name":"Oyondu"
-    , "stp":2
+  , { "uuid":
+    , "name":"Oyondu"
     , "locked":false
     , "lastEdited":"2016-05-07"
     , "template":"<p>Mock Data: 93</p>"
@@ -959,8 +945,8 @@ mocked =
     , "schedule":"2016-06-03"
     , "recipients":[jporter2k@scientificamerican.com]
     }
-  , { "name":"Skipfire"
-    , "stp":3
+  , { "uuid":
+    , "name":"Skipfire"
     , "locked":false
     , "lastEdited":"2015-11-25"
     , "template":"<p>Mock Data: 94</p>"
@@ -969,8 +955,8 @@ mocked =
     , "schedule":"2015-12-28"
     , "recipients":[pcoleman2l@answers.com]
     }
-  , { "name":"Eayo"
-    , "stp":26
+  , { "uuid":
+    , "name":"Eayo"
     , "locked":true
     , "lastEdited":"2016-01-16"
     , "template":"<p>Mock Data: 95</p>"
@@ -979,8 +965,8 @@ mocked =
     , "schedule":"2016-10-06"
     , "recipients":[jbryant2m@blogtalkradio.com]
     }
-  , { "name":"Geba"
-    , "stp":20
+  , { "uuid":
+    , "name":"Geba"
     , "locked":false
     , "lastEdited":"2016-07-07"
     , "template":"<p>Mock Data: 96</p>"
@@ -989,8 +975,8 @@ mocked =
     , "schedule":"2016-10-03"
     , "recipients":[cferguson2n@elpais.com]
     }
-  , { "name":"Voonyx"
-    , "stp":12
+  , { "uuid":
+    , "name":"Voonyx"
     , "locked":false
     , "lastEdited":"2016-09-19"
     , "template":"<p>Mock Data: 97</p>"
@@ -999,8 +985,8 @@ mocked =
     , "schedule":"2016-10-14"
     , "recipients":[rrussell2o@theglobeandmail.com]
     }
-  , { "name":"Skyba"
-    , "stp":7
+  , { "uuid":
+    , "name":"Skyba"
     , "locked":true
     , "lastEdited":"2016-03-06"
     , "template":"<p>Mock Data: 98</p>"
@@ -1009,8 +995,8 @@ mocked =
     , "schedule":"2016-04-13"
     , "recipients":[bmoore2p@dagondesign.com]
     }
-  , { "name":"Realcube"
-    , "stp":3
+  , { "uuid":
+    , "name":"Realcube"
     , "locked":true
     , "lastEdited":"2016-01-08"
     , "template":"<p>Mock Data: 99</p>"
@@ -1019,8 +1005,8 @@ mocked =
     , "schedule":"2016-05-06"
     , "recipients":[hgreene2q@wikia.com]
     }
-  , { "name":"Jabberbean"
-    , "stp":20
+  , { "uuid":
+    , "name":"Jabberbean"
     , "locked":true
     , "lastEdited":"2016-08-04"
     , "template":"<p>Mock Data: 100</p>"
