@@ -1,4 +1,4 @@
-[{ "name":"Oloo"
+[ { "name":"Oloo"
 	, "stp":18
 	, "locked":false
 	, "lastEdited":"2016-08-25"
@@ -996,4 +996,6 @@
 	, "query":"amontgomery2r@uiuc.edu"
 	, "review":"Aaron Montgomery"
 	, "schedule":"2016-10-13"
-	, "recipients":[amontgomery2r@umn.edu]}]
+	, "recipients":[amontgomery2r@umn.edu]
+	}
+]
