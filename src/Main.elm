@@ -24,8 +24,8 @@ init =
   , jobsTab = 0
   , stepperTab = 0
   , selected = Set.empty
-  , primaryColor = Color.Purple
-  , accentColor = Color.Teal
+  , primaryColor = Color.Grey
+  , accentColor = Color.Orange
   }
 
 

@@ -29,8 +29,7 @@ templatesTimeFilterPane model =
   cell
     [ size All 6 ]
     [ Options.div
-      [ Color.background ( Color.color Color.Teal Color.S50)
-      , Options.css "min-height" "70%" ]
+      [ Options.css "min-height" "70%" ]
       [ text "List of Templates" ]
     ]
 

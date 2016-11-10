@@ -23,7 +23,7 @@ import Derektor.Schedules as Schedules
 viewHeader : Data.Model -> Html Data.Msg
 viewHeader model =
   Options.div
-    [ Color.background Color.primary ]
+    [ Options.css "background-color" "#ffffff" ]
     [ h1
       [ style
         [ ( "padding", "2rem" ) ]
@@ -70,7 +70,6 @@ mainGrid model =
   [ grid 
     [ Options.css "width" "100%"
     , Options.css "position" "fixed"
-    , Options.css "background-color" "#FFF"
     , Options.css "z-index" "1"
     , Options.css "padding" "0px 8px" ]
     [ cell
