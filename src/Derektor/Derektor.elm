@@ -104,7 +104,9 @@ stepperNav model =
       , Options.css "padding" "0px"
       ]
       [ cell
-        [ size All 12 ]
+        [ size All 12
+        , Options.css "position" "fixed"
+        , Options.css "width" "100%" ]
         [ viewStepper model
         , model |> (List.drop model.stepperTab viewTypes |> List.head |> Maybe.withDefault Templates.view) 
         ]
