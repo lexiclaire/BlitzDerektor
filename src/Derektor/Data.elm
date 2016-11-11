@@ -1,6 +1,7 @@
 module Derektor.Data exposing (..)
 
-import Date
+import Date exposing (Month(..))
+import Date.Extra as Date
 import Set exposing (Set)
 
 import Uuid exposing (..)
@@ -15,6 +16,7 @@ type alias Model =
   , selected : Set String
   , primaryColor : Color.Hue
   , accentColor : Color.Hue
+  , jobSummary : Jobs
   }
 
 type Msg
@@ -24,7 +26,7 @@ type Msg
   | Toggle String
 
 type alias Job =
-  { uuid : Uuid.Uuid
+  { uuid : Maybe Uuid.Uuid
   , name : String
   , locked : Bool
   , lastEdited : Date.Date
@@ -36,9 +38,8 @@ type alias Job =
   }
 
 type alias JobSummary =
-  { uuid : Uuid.Uuid
+  { uuid : Maybe Uuid.Uuid
   , name : String
-  , stp : Int
   , locked : Bool
   , lastEdited : Date.Date
   }
