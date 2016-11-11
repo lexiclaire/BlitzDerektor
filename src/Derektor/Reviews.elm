@@ -47,29 +47,42 @@ view model =
   grid
     []
     [ reviewsPane model
-    , singleReviewPane model ]
+    , approvalsPane model ]
 
 reviewsPane : Data.Model -> Cell Data.Msg
 reviewsPane model =
-  cell
-    [ size All 6 ]
-    [ h4 [] [text "Recipients"]
-    , List.ul
-      []
-      [ List.li 
-        []
-        [text "sreed9@yellowbook.com"]
-      , List.li 
-        []
-        [text "pfields4@freewebs.com"]
-      , List.li 
-        []
-        [text "selliott8@cyberchimps.com"]    
+  cell []
+    [ Options.div
+      [ Options.css "max-height" "400px" 
+      , Options.css "overflow-y" "scroll" ]
+      [ Table.table 
+        [ Options.css "width" "100%" ]
+        [ Table.thead []
+          [ Table.th [] [ text "S" ]
+          , Table.th [] [ text "R" ]
+          , Table.th [] [ text "O" ]
+          , Table.th [] [ text "C" ]
+          , Table.th []
+            [ text "Recipient" ]
+          ]
+        , Table.tbody []
+          ( model.job.recipients
+            |> List.map (\item ->
+              Table.tr [] 
+                [ Table.td [] [] 
+                , Table.td [] [] 
+                , Table.td [] [] 
+                , Table.td [] [] 
+                , Table.td [] [ text item.email ]  
+                ]
+            )
+          )  
+        ]
       ]
-    ]
+    ]  
 
-singleReviewPane : Data.Model -> Cell Data.Msg
-singleReviewPane model =
+approvalsPane : Data.Model -> Cell Data.Msg
+approvalsPane model =
   cell
     [ size All 6 ]
     [ Table.table []

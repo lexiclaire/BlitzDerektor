@@ -29,6 +29,7 @@ init =
   , primaryColor = Color.Grey
   , accentColor = Color.Orange
   , jobSummary = Jobs.getJobSummary
+  , job = Nothing
   }
 
 

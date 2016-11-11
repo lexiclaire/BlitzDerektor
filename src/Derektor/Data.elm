@@ -17,6 +17,7 @@ type alias Model =
   , primaryColor : Color.Hue
   , accentColor : Color.Hue
   , jobSummary : Jobs
+  , job : Job
   }
 
 type Msg
@@ -35,6 +36,18 @@ type alias Job =
   , review : Review
   , schedule : Schedule
   , recipients : List Recipient
+  }
+
+newJob : Job
+  { uuid = Nothing
+  , name = ""
+  , locked = False
+  , lastEdited = Date.fromTime 0
+  , template = ""
+  , query = ""
+  , review = ""
+  , schedule = ""
+  , recipients = []
   }
 
 type alias JobSummary =
@@ -56,7 +69,13 @@ type alias Review = String
 
 type alias Schedule = String
 
-type alias Recipient = String
+type alias Recipient = 
+  { sentFlag : Bool
+  , receivedFlag : Bool
+  , openedFlag : Bool
+  , clickedFlag : Bool
+  , email : String
+  }
 
 type alias Jobs = List JobSummary
 

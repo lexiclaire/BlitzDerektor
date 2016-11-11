@@ -14,6 +14,16 @@ mockedJobs jobList =
   , lastEdited = job.lastEdited 
   }) jobList 
 
+mockRecipientList : List Data.Job -> List Data.Recipient
+mockRecipientList recipientList =
+  List.map (\rec -> {
+    sentFlag = False
+  , receivedFlag = False
+  , openedFlag = False
+  , clickedFlag = False
+  , email = List.head rec.recipients |> Maybe.withDefault ""
+  }) recipientList 
+
 mockedJobList : List Data.Job
 mockedJobList =
   [ { name = "Oloo"
