@@ -24,6 +24,10 @@ import Set exposing (Set)
 
 -- UPDATE
 
+getJobSummary : Data.Jobs 
+getJobSummary =
+  Mock_data.mockedJobs Mock_data.mockedJobList
+
 -- VIEW
 view : Data.Model -> Html Data.Msg
 view model =

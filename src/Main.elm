@@ -28,7 +28,7 @@ init =
   , selected = Set.empty
   , primaryColor = Color.Grey
   , accentColor = Color.Orange
-  , jobSummary = Mock_data.mockedJobs Mock_data.mockedJobList
+  , jobSummary = Jobs.getJobSummary
   }
 
 
