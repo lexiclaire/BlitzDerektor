@@ -13,6 +13,8 @@ import Derektor.Data as Data
 import Derektor.Derektor as Derektor
 import Derektor.Jobs as Jobs
 
+import Mock_data exposing (..)
+
 import Set exposing (Set)
 
 
@@ -26,6 +28,7 @@ init =
   , selected = Set.empty
   , primaryColor = Color.Grey
   , accentColor = Color.Orange
+  , jobSummary = Mock_data.mockedJobs Mock_data.mockedJobList
   }
 
 
