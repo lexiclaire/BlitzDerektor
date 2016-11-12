@@ -15,12 +15,14 @@ import Derektor.Jobs as Jobs
 
 import Mock_data exposing (..)
 
+
+import String
 import Set exposing (Set)
 
 
 -- MODEL
 
-init : Data.Model
+init : ( Data.Model, Cmd Data.Msg )
 init =
   { mdl = Material.model
   , jobsTab = 0
@@ -29,7 +31,8 @@ init =
   , primaryColor = Color.Grey
   , accentColor = Color.Orange
   , jobSummary = Jobs.getJobSummary
-  }
+  , initialSeed = "n/a"
+  } ! [ Data.getRandomNumber ]
 
 
 -- UPDATE
@@ -49,13 +52,22 @@ update msg model =
     Data.Toggle idx ->
       { model | selected = Common.toggle idx model.selected } ! []
 
+    Data.RandomSeed ->
+      model ! [ Data.getRandomNumber ]
+
+    Data.FetchSucceed seed ->
+      { model | initialSeed = seed } ! []
+
+    Data.FetchFail _ ->
+      model ! []
+
 
 -- VIEW   
 
 main : Program Never
 main =
   App.program
-    { init = ( init, Cmd.none )
+    { init = init
     , view = view
     , subscriptions = always Sub.none
     , update = update
