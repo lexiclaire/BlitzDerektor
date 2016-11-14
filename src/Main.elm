@@ -17,6 +17,8 @@ import Mock_data exposing (..)
 
 
 import String
+import Result
+import Time exposing (Time, second)
 import Set exposing (Set)
 
 
@@ -31,7 +33,8 @@ init =
   , primaryColor = Color.Grey
   , accentColor = Color.Orange
   , jobSummary = Jobs.getJobSummary
-  , initialSeed = "n/a"
+  , currentTime = 0
+  , initialSeed = 0
   } ! [ Data.getRandomNumber ]
 
 
@@ -55,12 +58,22 @@ update msg model =
     Data.RandomSeed ->
       model ! [ Data.getRandomNumber ]
 
-    Data.FetchSucceed seed ->
-      { model | initialSeed = seed } ! []
+    Data.RandomSeedSucceed seed ->
+      { model | initialSeed = ( String.trim seed |> String.toInt |> Result.toMaybe |> Maybe.withDefault model.currentTime ) } ! []
 
-    Data.FetchFail _ ->
-      model ! []
+    Data.RandomSeedFail _ ->
+      { model | initialSeed = model.currentTime } ! []
 
+    Data.Tick newTime ->
+      {
+        model |
+          currentTime = round ( Time.inSeconds newTime ),
+          initialSeed = if model.initialSeed == 0 then model.currentTime else model.initialSeed
+      } ! []
+
+subscriptions : Data.Model -> Sub Data.Msg
+subscriptions model =
+  Time.every second Data.Tick
 
 -- VIEW   
 
@@ -69,7 +82,7 @@ main =
   App.program
     { init = init
     , view = view
-    , subscriptions = always Sub.none
+    , subscriptions = subscriptions
     , update = update
     }
 

@@ -3,6 +3,7 @@ module Derektor.Data exposing (..)
 import Date exposing (Month(..))
 import Date.Extra as Date
 import Set exposing (Set)
+import Time exposing (Time)
 import Task
 import Http
 import String
@@ -19,7 +20,8 @@ type alias Model =
   , selected : Set String
   , primaryColor : Color.Hue
   , accentColor : Color.Hue
-  , initialSeed : String
+  , currentTime : Int
+  , initialSeed : Int
   , jobSummary : Jobs
   }
 
@@ -29,8 +31,9 @@ type Msg
   | SelectStepperTab Int
   | Toggle String
   | RandomSeed 
-  | FetchSucceed String
-  | FetchFail Http.Error
+  | RandomSeedSucceed String
+  | RandomSeedFail Http.Error
+  | Tick Time
 
 type alias Job =
   { uuid : Maybe Uuid.Uuid
@@ -78,4 +81,4 @@ getRandomNumber =
   let
     url = "https://www.random.org/integers/?num=1&min=1&max=1000000000&col=1&base=10&format=plain&rnd=new"
   in
-    Task.perform FetchFail FetchSucceed (Http.getString url)
+    Task.perform RandomSeedFail RandomSeedSucceed (Http.getString url)

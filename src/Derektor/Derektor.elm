@@ -28,7 +28,7 @@ viewHeader model =
       [ style
         [ ( "padding", "2rem" ) ]
       ]
-      [ text ("BlitzDerektor: " ++ toString(model.initialSeed)) ]
+      [ text "BlitzDerektor" ]
     ]
 
 stepperTab : Data.Model -> Html Data.Msg
