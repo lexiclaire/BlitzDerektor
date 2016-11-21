@@ -48,14 +48,20 @@ dummyJob =
   , query = ""
   , review = ""
   , schedule = ""
-  , recipients = [  
-    { sentFlag = False
-    , receivedFlag = False
-    , openedFlag = False
-    , clickedFlag = False
-    , email = "ginavasiloff@gmail.com"
-    }
-  ]
+  , recipients =
+    [ { sentFlag = False
+      , receivedFlag = False
+      , openedFlag = False
+      , clickedFlag = False
+      , email = "ginavasiloff@gmail.com"
+      }
+      , { sentFlag = False
+      , receivedFlag = False
+      , openedFlag = False
+      , clickedFlag = False
+      , email = "anlevier@gmail.com"
+      }
+    ]
   }
 
 

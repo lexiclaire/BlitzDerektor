@@ -16,17 +16,15 @@ mockedJobs jobList =
 
 mockRecipientList : List Data.Job -> List Data.Recipient
 mockRecipientList recipientList =
-  List.map (\rec -> {
-    sentFlag = False
-  , receivedFlag = False
-  , openedFlag = False
-  , clickedFlag = False
-  , email = case (List.take 1 rec.recipients) of 
+  List.map (\rec ->
+    { sentFlag = False
+    , receivedFlag = False
+    , openedFlag = False
+    , clickedFlag = False
+    , email = case (List.take 1 rec.recipients) of
       [] -> ""
-      [a] -> a.email
-      [a, _] -> a.email
-      a :: _ :: _ :: _ -> a.email
-  }) recipientList 
+      a :: _ -> a.email
+    }) recipientList
 
 mockedJobList : List Data.Job
 mockedJobList =
