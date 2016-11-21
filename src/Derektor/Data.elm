@@ -39,6 +39,7 @@ type alias Job =
   }
 
 newJob : Job
+newJob =
   { uuid = Nothing
   , name = ""
   , locked = False
