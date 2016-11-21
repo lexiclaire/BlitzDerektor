@@ -38,6 +38,27 @@ type alias Job =
   , recipients : List Recipient
   }
 
+dummyJob : Job
+dummyJob =
+  { uuid = Nothing
+  , name = ""
+  , locked = False
+  , lastEdited = Date.fromTime 0
+  , template = ""
+  , query = ""
+  , review = ""
+  , schedule = ""
+  , recipients = [  
+    { sentFlag = False
+    , receivedFlag = False
+    , openedFlag = False
+    , clickedFlag = False
+    , email = "ginavasiloff@gmail.com"
+    }
+  ]
+  }
+
+
 newJob : Job
 newJob =
   { uuid = Nothing
