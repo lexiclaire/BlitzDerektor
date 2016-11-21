@@ -15,12 +15,16 @@ import Derektor.Jobs as Jobs
 
 import Mock_data exposing (..)
 
+
+import String
+import Result
+import Time exposing (Time, second)
 import Set exposing (Set)
 
 
 -- MODEL
 
-init : Data.Model
+init : ( Data.Model, Cmd Data.Msg )
 init =
   { mdl = Material.model
   , jobsTab = 0
@@ -30,8 +34,9 @@ init =
   , accentColor = Color.Orange
   , jobSummary = Jobs.getJobSummary
   , job = Just Data.dummyJob
-  }
-
+  , currentTime = 0
+  , initialSeed = 0
+  } ! [ Data.getRandomNumber ]
 
 -- UPDATE
 
@@ -50,15 +55,34 @@ update msg model =
     Data.Toggle idx ->
       { model | selected = Common.toggle idx model.selected } ! []
 
+    Data.RandomSeed ->
+      model ! [ Data.getRandomNumber ]
+
+    Data.RandomSeedSucceed seed ->
+      { model | initialSeed = ( String.trim seed |> String.toInt |> Result.toMaybe |> Maybe.withDefault model.currentTime ) } ! []
+
+    Data.RandomSeedFail _ ->
+      { model | initialSeed = model.currentTime } ! []
+
+    Data.Tick newTime ->
+      {
+        model |
+          currentTime = round ( Time.inSeconds newTime ),
+          initialSeed = if model.initialSeed == 0 then model.currentTime else model.initialSeed
+      } ! []
+
+subscriptions : Data.Model -> Sub Data.Msg
+subscriptions model =
+  Time.every second Data.Tick
 
 -- VIEW   
 
 main : Program Never
 main =
   App.program
-    { init = ( init, Cmd.none )
+    { init = init
     , view = view
-    , subscriptions = always Sub.none
+    , subscriptions = subscriptions
     , update = update
     }
 
