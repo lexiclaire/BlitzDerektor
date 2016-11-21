@@ -17,7 +17,7 @@ type alias Model =
   , primaryColor : Color.Hue
   , accentColor : Color.Hue
   , jobSummary : Jobs
-  , job : Job
+  , job : Maybe Job
   }
 
 type Msg

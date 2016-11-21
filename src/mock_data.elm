@@ -21,7 +21,11 @@ mockRecipientList recipientList =
   , receivedFlag = False
   , openedFlag = False
   , clickedFlag = False
-  , email = List.head rec.recipients |> Maybe.withDefault ""
+  , email = case (List.take 1 rec.recipients) of 
+      [] -> ""
+      [a] -> a.email
+      [a, _] -> a.email
+      a :: _ :: _ :: _ -> a.email
   }) recipientList 
 
 mockedJobList : List Data.Job
