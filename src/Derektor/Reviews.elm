@@ -51,35 +51,44 @@ view model =
 
 reviewsPane : Data.Model -> Cell Data.Msg
 reviewsPane model =
-  cell []
-    [ Options.div
-      [ Options.css "max-height" "400px" 
-      , Options.css "overflow-y" "scroll" ]
-      [ Table.table 
-        [ Options.css "width" "100%" ]
-        [ Table.thead []
-          [ Table.th [] [ text "S" ]
-          , Table.th [] [ text "R" ]
-          , Table.th [] [ text "O" ]
-          , Table.th [] [ text "C" ]
-          , Table.th []
-            [ text "Recipient" ]
+  let
+    recipients =
+    case model.job of
+      Just job ->
+        job.recipients
+      Nothing ->
+        []
+  in
+    cell []
+      [ Options.div
+        [ Options.css "max-height" "400px" 
+        , Options.css "overflow-y" "scroll" ]
+        [ Table.table 
+          [ Options.css "width" "100%" ]
+          [ Table.thead []
+            [ Table.th [] [ text "S" ]
+            , Table.th [] [ text "R" ]
+            , Table.th [] [ text "O" ]
+            , Table.th [] [ text "C" ]
+            , Table.th []
+              [ text "Recipient" ]
+            ]
+          , Table.tbody []
+            ( recipients
+              |> List.map (\item ->
+                Table.tr [] 
+                  [ Table.td [] [] 
+                  , Table.td [] [] 
+                  , Table.td [] [] 
+                  , Table.td [] [] 
+                  , Table.td [] [ text item.email ]  
+                  ]
+              )
+            )  
           ]
-        , Table.tbody []
-          ( model.job.recipients
-            |> List.map (\item ->
-              Table.tr [] 
-                [ Table.td [] [] 
-                , Table.td [] [] 
-                , Table.td [] [] 
-                , Table.td [] [] 
-                , Table.td [] [ text item.email ]  
-                ]
-            )
-          )  
         ]
       ]
-    ]  
+
 
 approvalsPane : Data.Model -> Cell Data.Msg
 approvalsPane model =
