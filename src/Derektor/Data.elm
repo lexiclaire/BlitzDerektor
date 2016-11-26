@@ -47,46 +47,6 @@ type alias Job =
   , recipients : List Recipient
   }
 
-dummyJob : Job
-dummyJob =
-  { uuid = Nothing
-  , name = ""
-  , locked = False
-  , lastEdited = Date.fromTime 0
-  , template = ""
-  , query = ""
-  , review = ""
-  , schedule = ""
-  , recipients =
-    [ { sentFlag = False
-      , receivedFlag = False
-      , openedFlag = False
-      , clickedFlag = False
-      , email = "ginavasiloff@gmail.com"
-      }
-      , { sentFlag = False
-      , receivedFlag = False
-      , openedFlag = False
-      , clickedFlag = False
-      , email = "anlevier@gmail.com"
-      }
-    ]
-  }
-
-
-newJob : Job
-newJob =
-  { uuid = Nothing
-  , name = ""
-  , locked = False
-  , lastEdited = Date.fromTime 0
-  , template = ""
-  , query = ""
-  , review = ""
-  , schedule = ""
-  , recipients = []
-  }
-
 type alias JobSummary =
   { uuid : Maybe Uuid.Uuid
   , name : String
@@ -94,7 +54,11 @@ type alias JobSummary =
   , lastEdited : Date.Date
   }
 
-type alias Template = String
+type alias Template = 
+  { name : String
+  , lastEdited : Date.Date
+  , contents : String
+  }
 
 type alias TemplateSummary = String
 

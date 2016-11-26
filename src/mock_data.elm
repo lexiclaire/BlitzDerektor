@@ -5,6 +5,53 @@ import Date.Extra as Date
 
 import Derektor.Data as Data
 
+dummyTemplate : Data.Template
+dummyTemplate =
+  { name = "Template Name"
+  , lastEdited = Date.fromTime 0
+  , contents = "<p>Mock Data: 1</p>"
+  }
+
+dummyJob : Data.Job
+dummyJob =
+  { uuid = Nothing
+  , name = ""
+  , locked = False
+  , lastEdited = Date.fromTime 0
+  , template = dummyTemplate
+  , query = ""
+  , review = ""
+  , schedule = ""
+  , recipients =
+    [ { sentFlag = False
+      , receivedFlag = False
+      , openedFlag = False
+      , clickedFlag = False
+      , email = "ginavasiloff@gmail.com"
+      }
+      , { sentFlag = False
+      , receivedFlag = False
+      , openedFlag = False
+      , clickedFlag = False
+      , email = "anlevier@gmail.com"
+      }
+    ]
+  }
+  
+newJob : Data.Job
+newJob =
+  { uuid = Nothing
+  , name = ""
+  , locked = False
+  , lastEdited = Date.fromTime 0
+  , template = dummyTemplate
+  , query = ""
+  , review = ""
+  , schedule = ""
+  , recipients = []
+  }
+
+
 mockedJobs : List Data.Job -> Data.Jobs
 mockedJobs jobList =
   List.map (\job -> {
@@ -13,6 +60,12 @@ mockedJobs jobList =
   , locked = job.locked
   , lastEdited = job.lastEdited 
   }) jobList 
+
+mockedTemplatesList : List Data.Template
+mockedTemplatesList =
+  [ dummyTemplate
+  , dummyTemplate
+  ]
 
 mockRecipientList : List Data.Job -> List Data.Recipient
 mockRecipientList recipientList =
@@ -32,7 +85,7 @@ mockedJobList =
     , uuid = Nothing
     , locked = False
     , lastEdited = Date.fromIsoString "2016-08-25" |> Maybe.withDefault (Date.fromTime 0)
-    , template = "<p>Mock Data: 1</p>"
+    , template = dummyTemplate
     , query = "wfowler0@cmu.edu"
     , review = "Wanda Fowler"
     , schedule = "2016-10-13"
