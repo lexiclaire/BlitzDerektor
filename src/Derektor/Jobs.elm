@@ -1,17 +1,15 @@
 module Derektor.Jobs exposing (..)
 
-import Html.App as App
 import Html.Attributes exposing (style)
 import Html exposing (..)
 
 import Material
 import Material.Grid exposing (..)
-import Material.Options as Options exposing (..)
-import Material.Color as Color
+import Material.Options as Options
+
 import Material.List as List
 import Material.Table as Table
 import Material.Textfield as Textfield
-import Material.Toggles as Toggles
 
 import Date exposing (Month(..))
 import Date.Extra as Date
@@ -20,7 +18,6 @@ import Derektor.Data as Data
 
 import Mock_data 
 
-import Set exposing (Set)
 
 -- UPDATE
 

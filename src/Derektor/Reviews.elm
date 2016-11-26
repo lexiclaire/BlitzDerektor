@@ -1,12 +1,10 @@
 module Derektor.Reviews exposing (..)
 
-import Html.App as App
 import Html exposing (..)
+
 import Material
 import Material.Grid exposing (..)
 import Material.Options as Options exposing (..)
-import Material.Color as Color
-import Material.List as List
 import Material.Table as Table
 import Material.Toggles as Toggles
 

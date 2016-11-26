@@ -6,7 +6,6 @@ import Set exposing (Set)
 import Time exposing (Time)
 import Task
 import Http
-import String
 
 import Uuid exposing (..)
 

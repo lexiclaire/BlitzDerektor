@@ -15,9 +15,7 @@ import Derektor.Jobs as Jobs
 
 import Mock_data exposing (..)
 
-
 import String
-import Result
 import Time exposing (Time, second)
 import Set exposing (Set)
 

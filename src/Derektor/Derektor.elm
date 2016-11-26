@@ -3,7 +3,6 @@ module Derektor.Derektor exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (href, class, style, src)
 
-import Material.Color as Color
 import Material.Grid exposing (..)
 import Material.Options as Options
 import Material.Tabs as Tabs
