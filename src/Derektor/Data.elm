@@ -62,7 +62,10 @@ type alias Template =
 
 type alias TemplateSummary = String
 
-type alias Query = String
+type alias Query = 
+  { name : String
+  , lastEdited : Date.Date
+  }
 
 type alias QuerySummary = String
 

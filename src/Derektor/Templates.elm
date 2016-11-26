@@ -59,6 +59,6 @@ list model =
             [ Date.toFormattedString "yyyy-MM-dd HH:mm" template.lastEdited |> text
             ]
           ]
-           ) Mock_data.mockedTemplatesList)
+        ) Mock_data.mockedTemplatesList)
       ]
     ]

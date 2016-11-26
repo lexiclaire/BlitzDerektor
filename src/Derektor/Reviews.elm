@@ -57,7 +57,7 @@ reviewsPane model =
       Nothing ->
         []
   in
-    cell []
+    cell [size All 6]
       [ Options.div
         [ Options.css "max-height" "400px" 
         , Options.css "overflow-y" "scroll" ]

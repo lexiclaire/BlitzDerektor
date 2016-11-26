@@ -12,6 +12,12 @@ dummyTemplate =
   , contents = "<p>Mock Data: 1</p>"
   }
 
+dummyQuery : Data.Query
+dummyQuery =
+  { name = "Query Name"
+  , lastEdited = Date.fromTime 0
+  }
+
 dummyJob : Data.Job
 dummyJob =
   { uuid = Nothing
@@ -19,7 +25,7 @@ dummyJob =
   , locked = False
   , lastEdited = Date.fromTime 0
   , template = dummyTemplate
-  , query = ""
+  , query = dummyQuery
   , review = ""
   , schedule = ""
   , recipients =
@@ -45,7 +51,7 @@ newJob =
   , locked = False
   , lastEdited = Date.fromTime 0
   , template = dummyTemplate
-  , query = ""
+  , query = dummyQuery
   , review = ""
   , schedule = ""
   , recipients = []
@@ -67,6 +73,12 @@ mockedTemplatesList =
   , dummyTemplate
   ]
 
+mockedQueriesList : List Data.Query
+mockedQueriesList =
+  [ dummyQuery
+  , dummyQuery
+  ]
+
 mockRecipientList : List Data.Job -> List Data.Recipient
 mockRecipientList recipientList =
   List.map (\rec ->
@@ -86,7 +98,7 @@ mockedJobList =
     , locked = False
     , lastEdited = Date.fromIsoString "2016-08-25" |> Maybe.withDefault (Date.fromTime 0)
     , template = dummyTemplate
-    , query = "wfowler0@cmu.edu"
+    , query = dummyQuery
     , review = "Wanda Fowler"
     , schedule = "2016-10-13"
     , recipients =
