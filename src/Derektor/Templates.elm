@@ -52,14 +52,33 @@ singleTemplatePane model =
 
 templateVariable : Data.Model -> List (Html Data.Msg)
 templateVariable model = 
-  ( model.template.variables
-    |> List.map (\ ( index, a, _ ) -> 
-      Textfield.render Data.Mdl [ index ] model.mdl 
-      [ Textfield.label a 
-      , Textfield.floatingLabel
-      ]
-    )
-  )
+  let 
+    ( _, tvars ) = 
+      ( model.template.variables
+        |> List.foldl (\ ( index, a, _ ) ( idx, acc ) -> 
+          ( idx + 1
+          , List.concat 
+            [ acc
+            , [ Textfield.render Data.Mdl [ idx ] model.mdl 
+                [ Textfield.label a 
+                , Textfield.floatingLabel
+                ]
+              ]
+            ]
+          )
+        ) ( 0, [] )
+      )
+  in
+    tvars
+
+  --( model.template.variables
+  --  |> List.map (\ ( index, a, _ ) -> 
+  --    Textfield.render Data.Mdl [ index ] model.mdl 
+  --    [ Textfield.label a 
+  --    , Textfield.floatingLabel
+  --    ]
+  --  )
+  --)
 
 templateTextArea : Data.Model -> Html Data.Msg
 templateTextArea model =
