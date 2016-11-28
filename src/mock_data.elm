@@ -11,6 +11,7 @@ dummyTemplate =
   { name = "Template Name"
   , lastEdited = Date.fromTime 0
   , contents = Mock_template.mockTemplate
+  , variables = [ ( 0, "Subject", "Happy Holidays!"), ( 1, "Sender", "appreciate@appreciatehub.com" ) ]
   }
 
 dummyQuery : Data.Query

@@ -59,6 +59,7 @@ type alias Template =
   { name : String
   , lastEdited : Date.Date
   , contents : String
+  , variables : List ( Int, String, String )
   }
 
 type alias TemplateSummary = String

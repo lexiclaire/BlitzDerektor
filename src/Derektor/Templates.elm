@@ -43,19 +43,23 @@ singleTemplatePane model =
       []
       [ cell 
         [ size All 12 ]
-        [ templateVariable model ]
+        ( templateVariable model )
       , cell
         [ size All 12 ]
         [ templateTextArea model ]
       ]
     ]
 
-templateVariable : Data.Model -> Html Data.Msg
+templateVariable : Data.Model -> List (Html Data.Msg)
 templateVariable model = 
-  Textfield.render Data.Mdl [1] model.mdl 
-    [ Textfield.label "variable" 
-    , Textfield.floatingLabel 
-    ]
+  ( model.template.variables
+    |> List.map (\ ( index, a, _ ) -> 
+      Textfield.render Data.Mdl [ index ] model.mdl 
+      [ Textfield.label a 
+      , Textfield.floatingLabel
+      ]
+    )
+  )
 
 templateTextArea : Data.Model -> Html Data.Msg
 templateTextArea model =
