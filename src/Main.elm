@@ -15,9 +15,7 @@ import Derektor.Jobs as Jobs
 
 import Mock_data exposing (..)
 
-
 import String
-import Result
 import Time exposing (Time, second)
 import Set exposing (Set)
 
@@ -33,7 +31,8 @@ init =
   , primaryColor = Color.Grey
   , accentColor = Color.Orange
   , jobSummary = Jobs.getJobSummary
-  , job = Just Data.dummyJob
+  , job = Just Mock_data.dummyJob
+  , template = Mock_data.dummyTemplate
   , currentTime = 0
   , initialSeed = 0
   } ! [ Data.getRandomNumber ]

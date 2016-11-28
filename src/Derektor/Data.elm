@@ -6,7 +6,6 @@ import Set exposing (Set)
 import Time exposing (Time)
 import Task
 import Http
-import String
 
 import Uuid exposing (..)
 
@@ -24,6 +23,7 @@ type alias Model =
   , initialSeed : Int
   , jobSummary : Jobs
   , job : Maybe Job
+  , template : Template
   }
 
 type Msg
@@ -48,46 +48,6 @@ type alias Job =
   , recipients : List Recipient
   }
 
-dummyJob : Job
-dummyJob =
-  { uuid = Nothing
-  , name = ""
-  , locked = False
-  , lastEdited = Date.fromTime 0
-  , template = ""
-  , query = ""
-  , review = ""
-  , schedule = ""
-  , recipients =
-    [ { sentFlag = False
-      , receivedFlag = False
-      , openedFlag = False
-      , clickedFlag = False
-      , email = "ginavasiloff@gmail.com"
-      }
-      , { sentFlag = False
-      , receivedFlag = False
-      , openedFlag = False
-      , clickedFlag = False
-      , email = "anlevier@gmail.com"
-      }
-    ]
-  }
-
-
-newJob : Job
-newJob =
-  { uuid = Nothing
-  , name = ""
-  , locked = False
-  , lastEdited = Date.fromTime 0
-  , template = ""
-  , query = ""
-  , review = ""
-  , schedule = ""
-  , recipients = []
-  }
-
 type alias JobSummary =
   { uuid : Maybe Uuid.Uuid
   , name : String
@@ -95,11 +55,18 @@ type alias JobSummary =
   , lastEdited : Date.Date
   }
 
-type alias Template = String
+type alias Template = 
+  { name : String
+  , lastEdited : Date.Date
+  , contents : String
+  }
 
 type alias TemplateSummary = String
 
-type alias Query = String
+type alias Query = 
+  { name : String
+  , lastEdited : Date.Date
+  }
 
 type alias QuerySummary = String
 

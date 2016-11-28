@@ -4,6 +4,60 @@ import Date exposing (Month(..))
 import Date.Extra as Date
 
 import Derektor.Data as Data
+import Mock_template
+
+dummyTemplate : Data.Template
+dummyTemplate =
+  { name = "Template Name"
+  , lastEdited = Date.fromTime 0
+  , contents = Mock_template.mockTemplate
+  }
+
+dummyQuery : Data.Query
+dummyQuery =
+  { name = "Query Name"
+  , lastEdited = Date.fromTime 0
+  }
+
+dummyJob : Data.Job
+dummyJob =
+  { uuid = Nothing
+  , name = ""
+  , locked = False
+  , lastEdited = Date.fromTime 0
+  , template = dummyTemplate
+  , query = dummyQuery
+  , review = ""
+  , schedule = ""
+  , recipients =
+    [ { sentFlag = False
+      , receivedFlag = False
+      , openedFlag = False
+      , clickedFlag = False
+      , email = "ginavasiloff@gmail.com"
+      }
+      , { sentFlag = False
+      , receivedFlag = False
+      , openedFlag = False
+      , clickedFlag = False
+      , email = "anlevier@gmail.com"
+      }
+    ]
+  }
+  
+newJob : Data.Job
+newJob =
+  { uuid = Nothing
+  , name = ""
+  , locked = False
+  , lastEdited = Date.fromTime 0
+  , template = dummyTemplate
+  , query = dummyQuery
+  , review = ""
+  , schedule = ""
+  , recipients = []
+  }
+
 
 mockedJobs : List Data.Job -> Data.Jobs
 mockedJobs jobList =
@@ -13,6 +67,18 @@ mockedJobs jobList =
   , locked = job.locked
   , lastEdited = job.lastEdited 
   }) jobList 
+
+mockedTemplatesList : List Data.Template
+mockedTemplatesList =
+  [ dummyTemplate
+  , dummyTemplate
+  ]
+
+mockedQueriesList : List Data.Query
+mockedQueriesList =
+  [ dummyQuery
+  , dummyQuery
+  ]
 
 mockRecipientList : List Data.Job -> List Data.Recipient
 mockRecipientList recipientList =
@@ -32,8 +98,8 @@ mockedJobList =
     , uuid = Nothing
     , locked = False
     , lastEdited = Date.fromIsoString "2016-08-25" |> Maybe.withDefault (Date.fromTime 0)
-    , template = "<p>Mock Data: 1</p>"
-    , query = "wfowler0@cmu.edu"
+    , template = dummyTemplate
+    , query = dummyQuery
     , review = "Wanda Fowler"
     , schedule = "2016-10-13"
     , recipients =
