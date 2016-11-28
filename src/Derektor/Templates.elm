@@ -8,6 +8,7 @@ import Html exposing (..)
 import Material.Grid exposing (..)
 import Material.Options as Options
 import Material.Table as Table
+import Material.Textfield as Textfield
 
 import Derektor.Data as Data
 import Mock_data
@@ -37,7 +38,31 @@ singleTemplatePane : Data.Model -> Cell Data.Msg
 singleTemplatePane model =
   cell
     [ size All 6 ]
-    [ text "Template Preview" ]
+    [ grid 
+      []
+      [ cell 
+        [ size All 12 ]
+        [ templateVariable model ]
+      , cell
+        [ size All 12 ]
+        [ templateTextArea model ]
+      ]
+    ]
+
+templateVariable : Data.Model -> Html Data.Msg
+templateVariable model = 
+  Textfield.render Data.Mdl [1] model.mdl 
+    [ Textfield.label "variable" 
+    , Textfield.floatingLabel 
+    ]
+
+templateTextArea : Data.Model -> Html Data.Msg
+templateTextArea model =
+  Textfield.render Data.Mdl [2] model.mdl
+    [ Textfield.label "template source" 
+    , Textfield.textarea
+    , Textfield.rows 15  
+    ]    
 
 list : Data.Model -> Html Data.Msg
 list model =
