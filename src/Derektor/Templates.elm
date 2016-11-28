@@ -11,7 +11,8 @@ import Material.Table as Table
 import Material.Textfield as Textfield
 
 import Derektor.Data as Data
-import Mock_data
+import Mock_data 
+import Mock_template
 
 -- UPDATE
 
@@ -59,7 +60,7 @@ templateVariable model =
 templateTextArea : Data.Model -> Html Data.Msg
 templateTextArea model =
   Textfield.render Data.Mdl [2] model.mdl
-    [ Textfield.label "template source" 
+    [ Textfield.value model.template.contents
     , Textfield.textarea
     , Textfield.rows 15  
     ]    

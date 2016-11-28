@@ -23,6 +23,7 @@ type alias Model =
   , initialSeed : Int
   , jobSummary : Jobs
   , job : Maybe Job
+  , template : Template
   }
 
 type Msg

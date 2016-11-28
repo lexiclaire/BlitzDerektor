@@ -4,12 +4,13 @@ import Date exposing (Month(..))
 import Date.Extra as Date
 
 import Derektor.Data as Data
+import Mock_template
 
 dummyTemplate : Data.Template
 dummyTemplate =
   { name = "Template Name"
   , lastEdited = Date.fromTime 0
-  , contents = "<p>Mock Data: 1</p>"
+  , contents = Mock_template.mockTemplate
   }
 
 dummyQuery : Data.Query

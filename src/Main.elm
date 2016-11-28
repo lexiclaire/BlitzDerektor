@@ -32,6 +32,7 @@ init =
   , accentColor = Color.Orange
   , jobSummary = Jobs.getJobSummary
   , job = Just Mock_data.dummyJob
+  , template = Mock_data.dummyTemplate
   , currentTime = 0
   , initialSeed = 0
   } ! [ Data.getRandomNumber ]
