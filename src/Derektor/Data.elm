@@ -24,6 +24,7 @@ type alias Model =
   , jobSummary : Jobs
   , job : Maybe Job
   , template : Template
+  , query : Query
   }
 
 type Msg
@@ -66,6 +67,7 @@ type alias TemplateSummary = String
 type alias Query = 
   { name : String
   , lastEdited : Date.Date
+  , results : List String
   }
 
 type alias QuerySummary = String

@@ -60,7 +60,7 @@ templateVariable model =
 templateTextArea : Data.Model -> Html Data.Msg
 templateTextArea model =
   Textfield.render Data.Mdl [2] model.mdl
-    [ Textfield.value model.template.contents
+    [ Textfield.value ""
     , Textfield.textarea
     , Textfield.rows 15  
     ]    

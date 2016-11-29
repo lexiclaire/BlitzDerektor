@@ -35,6 +35,7 @@ init =
   , template = Mock_data.dummyTemplate
   , currentTime = 0
   , initialSeed = 0
+  , query = Mock_data.dummyQuery
   } ! [ Data.getRandomNumber ]
 
 -- UPDATE

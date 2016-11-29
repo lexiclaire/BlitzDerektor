@@ -4,8 +4,10 @@ import Date exposing (Month(..))
 import Date.Extra as Date
 
 import Html exposing (..)
+import Html.Attributes
 
 import Material.Grid exposing (..)
+import Material.List as MdlList
 import Material.Options as Options
 import Material.Table as Table
 
@@ -21,7 +23,7 @@ view model =
   grid
     []
     [ queriesTimeFilterPane model
-    , singleQueryPane model ]
+    , singleQueryPane model.query.results ]
 
 queriesTimeFilterPane : Data.Model -> Cell Data.Msg
 queriesTimeFilterPane model =
@@ -32,11 +34,26 @@ queriesTimeFilterPane model =
       [ list model ]
     ]
 
-singleQueryPane : Data.Model -> Cell Data.Msg
-singleQueryPane model =
+singleQueryPane : List String -> Cell Data.Msg
+singleQueryPane results =
   cell
     [ size All 6 ]
-    [ text "Single Query" ]
+    [   Options.div
+      [ Options.css "max-height" "400px" 
+      , Options.css "overflow-y" "scroll" ]
+      [ Table.table 
+        [ Options.css "width" "100%" ]
+        [ Table.thead []
+          [ Table.th []
+            [ text "Results" ]
+          ]
+        , Table.tbody []
+          (List.map (\(result) -> (Table.tr []
+            [Table.td [] [ text result ]])
+          ) results) 
+        ]
+      ]
+    ]
 
 list : Data.Model -> Html Data.Msg
 list model =

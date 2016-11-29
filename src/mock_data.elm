@@ -17,6 +17,7 @@ dummyQuery : Data.Query
 dummyQuery =
   { name = "Query Name"
   , lastEdited = Date.fromTime 0
+  , results = ["result 1", "result 2", "result 3"]
   }
 
 dummyJob : Data.Job
