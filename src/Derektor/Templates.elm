@@ -11,6 +11,7 @@ import Material.Table as Table
 import Material.Textfield as Textfield
 
 import Derektor.Data as Data
+import Derektor.Common as Common
 import Mock_data 
 import Mock_template
 
@@ -24,7 +25,8 @@ view model =
   grid
     []
     [ templatesTimeFilterPane model
-    , singleTemplatePane model ]
+    , singleTemplatePane model 
+    , Common.nextButton model ]
 
 templatesTimeFilterPane : Data.Model -> Cell Data.Msg
 templatesTimeFilterPane model =
@@ -97,7 +99,7 @@ list model =
       [ Options.css "width" "100%" ]
       [ Table.thead []
         [ Table.th []
-          [ text "Job Name" ]
+          [ text "Template Name" ]
         , Table.th []
           [ text "Last Edited Date" ]  
         ]

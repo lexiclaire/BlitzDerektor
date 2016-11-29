@@ -73,7 +73,10 @@ type alias QuerySummary = String
 
 type alias Review = String
 
-type alias Schedule = String
+type alias Schedule = 
+  { name : String
+  , lastEdited : Date.Date
+  }
 
 type alias Recipient = 
   { sentFlag : Bool

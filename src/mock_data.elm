@@ -20,6 +20,12 @@ dummyQuery =
   , lastEdited = Date.fromTime 0
   }
 
+dummySchedule : Data.Schedule 
+dummySchedule =
+  { name = "Schedule Name"
+  , lastEdited = Date.fromTime 0 
+  }  
+
 dummyJob : Data.Job
 dummyJob =
   { uuid = Nothing
@@ -29,7 +35,7 @@ dummyJob =
   , template = dummyTemplate
   , query = dummyQuery
   , review = ""
-  , schedule = ""
+  , schedule = dummySchedule
   , recipients =
     [ { sentFlag = False
       , receivedFlag = False
@@ -55,7 +61,7 @@ newJob =
   , template = dummyTemplate
   , query = dummyQuery
   , review = ""
-  , schedule = ""
+  , schedule = dummySchedule
   , recipients = []
   }
 
@@ -81,6 +87,12 @@ mockedQueriesList =
   , dummyQuery
   ]
 
+mockedSchedulesList : List Data.Schedule
+mockedSchedulesList = 
+  [ dummySchedule
+  , dummySchedule
+  ]
+
 mockRecipientList : List Data.Job -> List Data.Recipient
 mockRecipientList recipientList =
   List.map (\rec ->
@@ -102,7 +114,7 @@ mockedJobList =
     , template = dummyTemplate
     , query = dummyQuery
     , review = "Wanda Fowler"
-    , schedule = "2016-10-13"
+    , schedule = dummySchedule
     , recipients =
       [ { sentFlag = False
         , receivedFlag = False

@@ -10,6 +10,7 @@ import Material.Options as Options
 import Material.Table as Table
 
 import Derektor.Data as Data
+import Derektor.Common as Common
 import Mock_data 
 -- UPDATE
 
@@ -21,7 +22,8 @@ view model =
   grid
     []
     [ queriesTimeFilterPane model
-    , singleQueryPane model ]
+    , singleQueryPane model 
+    , Common.nextButton model ]
 
 queriesTimeFilterPane : Data.Model -> Cell Data.Msg
 queriesTimeFilterPane model =
@@ -47,7 +49,7 @@ list model =
       [ Options.css "width" "100%" ]
       [ Table.thead []
         [ Table.th []
-          [ text "Job Name" ]
+          [ text "Query Name" ]
         , Table.th []
           [ text "Last Edited Date" ]  
         ]
