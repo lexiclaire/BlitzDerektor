@@ -12,6 +12,7 @@ import Material.Table as Table
 import Material.Textfield as Textfield
 
 import Derektor.Data as Data
+import Derektor.Common as Common
 import Mock_data 
 import Mock_template
 
@@ -25,7 +26,8 @@ view model =
   grid
     []
     [ templatesTimeFilterPane model
-    , singleTemplatePane model ]
+    , singleTemplatePane model 
+    , Common.nextButton model ]
 
 templatesTimeFilterPane : Data.Model -> Cell Data.Msg
 templatesTimeFilterPane model =
@@ -44,19 +46,39 @@ singleTemplatePane model =
       []
       [ cell 
         [ size All 12 ]
-        [ templateVariable model ]
+        ( templateVariable model )
       , cell
         [ size All 12 ]
         [ templateTextArea model ]
       ]
     ]
 
-templateVariable : Data.Model -> Html Data.Msg
+templateVariable : Data.Model -> List (Html Data.Msg)
 templateVariable model = 
-  Textfield.render Data.Mdl [1] model.mdl 
-    [ Textfield.label "variable" 
-    , Textfield.floatingLabel 
-    ]
+  let 
+    variables =
+      case model.template of
+        Nothing ->
+          []
+        Just template ->
+          template.variables
+    ( _, tvars ) = 
+      ( variables
+        |> List.foldl (\ ( index, a, _ ) ( idx, acc ) -> 
+          ( idx + 1
+          , List.concat 
+            [ acc
+            , [ Textfield.render Data.Mdl [ idx ] model.mdl 
+                [ Textfield.label a 
+                , Textfield.floatingLabel
+                ]
+              ]
+            ]
+          )
+        ) ( 0, [] )
+      )
+  in
+    tvars
 
 templateTextArea : Data.Model -> Html Data.Msg
 templateTextArea model =

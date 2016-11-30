@@ -10,30 +10,15 @@ import Mock_template
 
 mockedTemplatesList : List Data.Template
 mockedTemplatesList =
-  [ { name = "Template 1"
-    , contents = Mock_template.mockTemplate
-    , variables = 
-        [ ("name 1", "default 1")
-        , ("name 2", "default 2")
-        , ("name 3", "default 3") ]
-    }
-  , { name = "Template 2"
-    , contents = Mock_template.mockTemplate
-    , variables = 
-        [ ("name 1", "default 1")
-        , ("name 2", "default 2")
-        , ("name 3", "default 3") ]
-    }
+  [ dummyTemplate
+  , dummyTemplate
   ]
 
 dummyTemplate : Data.Template
 dummyTemplate =
   { name = "Template 1"
   , contents = Mock_template.mockTemplate
-  , variables = 
-      [ ("name 1", "default 1")
-      , ("name 2", "default 2")
-      , ("name 3", "default 3") ]
+  , variables = [ ( 0, "Subject", "Happy Holidays!"), ( 1, "Sender", "appreciate@appreciatehub.com" ) ]
   }
 
 dummyQuery : Data.Query
@@ -42,6 +27,12 @@ dummyQuery =
   , lastEdited = Date.fromTime 0
   , results = ["result 1", "result 2", "result 3"]
   }
+
+dummySchedule : Data.Schedule 
+dummySchedule =
+  { name = "Schedule Name"
+  , lastEdited = Date.fromTime 0 
+  }  
 
 dummyJob : Data.Job
 dummyJob =
@@ -52,7 +43,7 @@ dummyJob =
   , template = dummyTemplate
   , query = dummyQuery
   , review = ""
-  , schedule = ""
+  , schedule = dummySchedule
   , recipients =
     [ { sentFlag = False
       , receivedFlag = False
@@ -78,7 +69,7 @@ newJob =
   , template = dummyTemplate
   , query = dummyQuery
   , review = ""
-  , schedule = ""
+  , schedule = dummySchedule
   , recipients = []
   }
 
@@ -96,6 +87,12 @@ mockedQueriesList : List Data.Query
 mockedQueriesList =
   [ dummyQuery
   , dummyQuery
+  ]
+
+mockedSchedulesList : List Data.Schedule
+mockedSchedulesList = 
+  [ dummySchedule
+  , dummySchedule
   ]
 
 mockRecipientList : List Data.Job -> List Data.Recipient
@@ -119,7 +116,7 @@ mockedJobList =
     , template = dummyTemplate
     , query = dummyQuery
     , review = "Wanda Fowler"
-    , schedule = "2016-10-13"
+    , schedule = dummySchedule
     , recipients =
       [ { sentFlag = False
         , receivedFlag = False

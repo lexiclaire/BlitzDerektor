@@ -9,6 +9,7 @@ import Material.Table as Table
 import Material.Toggles as Toggles
 
 import Derektor.Data as Data
+import Derektor.Common as Common
 
 import Set exposing (Set)
 
@@ -45,7 +46,8 @@ view model =
   grid
     []
     [ reviewsPane model
-    , approvalsPane model ]
+    , approvalsPane model 
+    , Common.nextButton model ]
 
 reviewsPane : Data.Model -> Cell Data.Msg
 reviewsPane model =
