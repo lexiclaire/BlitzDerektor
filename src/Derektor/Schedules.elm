@@ -10,6 +10,7 @@ import Material.Grid exposing (..)
 import Material.Icon as Icon
 import Material.Options as Options
 import Material.Table as Table
+import Material.Textfield as Textfield
 
 import Derektor.Data as Data
 import Mock_data
@@ -90,19 +91,39 @@ createNewSchedule model =
         ]
       , Table.tbody []
         [ Table.td []
-          []
+          [ Textfield.render Data.Mdl [0] model.mdl 
+            [ Textfield.maxlength 2
+            , Options.css "width" "100%" ]
+          ]
         , Table.td []
-          [] 
+          [ Textfield.render Data.Mdl [1] model.mdl 
+            [ Textfield.maxlength 2
+            , Options.css "width" "100%" ]
+          ] 
         , Table.td []
-          []
+          [ Textfield.render Data.Mdl [2] model.mdl 
+            [ Textfield.maxlength 2
+            , Options.css "width" "100%" ]
+          ]
         , Table.td []
-          []
+          [ Textfield.render Data.Mdl [3] model.mdl 
+            [ Textfield.maxlength 2
+            , Options.css "width" "100%" ]
+          ]
         , Table.td []
-          [] 
+          [ Textfield.render Data.Mdl [4] model.mdl 
+            [ Textfield.maxlength 4
+            , Options.css "width" "100%" ]
+          ] 
         , Table.td []
-          []
+          [Textfield.render Data.Mdl [5] model.mdl 
+            [ Textfield.maxlength 2
+            , Options.css "width" "100%" ]
+          ]
         , Table.td []
-          []       
+          [ Textfield.render Data.Mdl [6] model.mdl 
+            [ Options.css "width" "100%" ]
+          ]       
         ]  
       ]
     ]
