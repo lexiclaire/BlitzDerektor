@@ -12,9 +12,17 @@ mockedTemplatesList : List Data.Template
 mockedTemplatesList =
   [ { name = "Template 1"
     , contents = Mock_template.mockTemplate
+    , variables = 
+        [ ("name 1", "default 1")
+        , ("name 2", "default 2")
+        , ("name 3", "default 3") ]
     }
   , { name = "Template 2"
     , contents = Mock_template.mockTemplate
+    , variables = 
+        [ ("name 1", "default 1")
+        , ("name 2", "default 2")
+        , ("name 3", "default 3") ]
     }
   ]
 
@@ -22,6 +30,10 @@ dummyTemplate : Data.Template
 dummyTemplate =
   { name = "Template 1"
   , contents = Mock_template.mockTemplate
+  , variables = 
+      [ ("name 1", "default 1")
+      , ("name 2", "default 2")
+      , ("name 3", "default 3") ]
   }
 
 dummyQuery : Data.Query

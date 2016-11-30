@@ -60,6 +60,7 @@ type alias JobSummary =
 type alias Template = 
   { name : String
   , contents : String
+  , variables : List ( String, String )
   }
 
 type alias TemplateSummary = String
