@@ -15,7 +15,7 @@ import Date exposing (Month(..))
 import Date.Extra as Date
 
 import Derektor.Data as Data
-
+import Derektor.Common as Common
 import Mock_data 
 
 
@@ -31,7 +31,8 @@ view model =
   grid
     []
     [ pastJobsPane model
-    , newJobsPane model ]
+    , newJobsPane model
+    , Common.nextButton model ]
 
 pastJobsPane : Data.Model -> Cell Data.Msg
 pastJobsPane model =

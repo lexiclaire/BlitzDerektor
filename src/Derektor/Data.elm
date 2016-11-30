@@ -59,6 +59,7 @@ type alias Template =
   { name : String
   , lastEdited : Date.Date
   , contents : String
+  , variables : List ( Int, String, String )
   }
 
 type alias TemplateSummary = String
@@ -72,7 +73,10 @@ type alias QuerySummary = String
 
 type alias Review = String
 
-type alias Schedule = String
+type alias Schedule = 
+  { name : String
+  , lastEdited : Date.Date
+  }
 
 type alias Recipient = 
   { sentFlag : Bool

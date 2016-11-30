@@ -11,6 +11,7 @@ dummyTemplate =
   { name = "Template Name"
   , lastEdited = Date.fromTime 0
   , contents = Mock_template.mockTemplate
+  , variables = [ ( 0, "Subject", "Happy Holidays!"), ( 1, "Sender", "appreciate@appreciatehub.com" ) ]
   }
 
 dummyQuery : Data.Query
@@ -18,6 +19,12 @@ dummyQuery =
   { name = "Query Name"
   , lastEdited = Date.fromTime 0
   }
+
+dummySchedule : Data.Schedule 
+dummySchedule =
+  { name = "Schedule Name"
+  , lastEdited = Date.fromTime 0 
+  }  
 
 dummyJob : Data.Job
 dummyJob =
@@ -28,7 +35,7 @@ dummyJob =
   , template = dummyTemplate
   , query = dummyQuery
   , review = ""
-  , schedule = ""
+  , schedule = dummySchedule
   , recipients =
     [ { sentFlag = False
       , receivedFlag = False
@@ -54,7 +61,7 @@ newJob =
   , template = dummyTemplate
   , query = dummyQuery
   , review = ""
-  , schedule = ""
+  , schedule = dummySchedule
   , recipients = []
   }
 
@@ -80,6 +87,12 @@ mockedQueriesList =
   , dummyQuery
   ]
 
+mockedSchedulesList : List Data.Schedule
+mockedSchedulesList = 
+  [ dummySchedule
+  , dummySchedule
+  ]
+
 mockRecipientList : List Data.Job -> List Data.Recipient
 mockRecipientList recipientList =
   List.map (\rec ->
@@ -101,7 +114,7 @@ mockedJobList =
     , template = dummyTemplate
     , query = dummyQuery
     , review = "Wanda Fowler"
-    , schedule = "2016-10-13"
+    , schedule = dummySchedule
     , recipients =
       [ { sentFlag = False
         , receivedFlag = False

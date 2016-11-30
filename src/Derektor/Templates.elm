@@ -11,6 +11,7 @@ import Material.Table as Table
 import Material.Textfield as Textfield
 
 import Derektor.Data as Data
+import Derektor.Common as Common
 import Mock_data 
 import Mock_template
 
@@ -24,7 +25,8 @@ view model =
   grid
     []
     [ templatesTimeFilterPane model
-    , singleTemplatePane model ]
+    , singleTemplatePane model 
+    , Common.nextButton model ]
 
 templatesTimeFilterPane : Data.Model -> Cell Data.Msg
 templatesTimeFilterPane model =
@@ -43,19 +45,42 @@ singleTemplatePane model =
       []
       [ cell 
         [ size All 12 ]
-        [ templateVariable model ]
+        ( templateVariable model )
       , cell
         [ size All 12 ]
         [ templateTextArea model ]
       ]
     ]
 
-templateVariable : Data.Model -> Html Data.Msg
+templateVariable : Data.Model -> List (Html Data.Msg)
 templateVariable model = 
-  Textfield.render Data.Mdl [1] model.mdl 
-    [ Textfield.label "variable" 
-    , Textfield.floatingLabel 
-    ]
+  let 
+    ( _, tvars ) = 
+      ( model.template.variables
+        |> List.foldl (\ ( index, a, _ ) ( idx, acc ) -> 
+          ( idx + 1
+          , List.concat 
+            [ acc
+            , [ Textfield.render Data.Mdl [ idx ] model.mdl 
+                [ Textfield.label a 
+                , Textfield.floatingLabel
+                ]
+              ]
+            ]
+          )
+        ) ( 0, [] )
+      )
+  in
+    tvars
+
+  --( model.template.variables
+  --  |> List.map (\ ( index, a, _ ) -> 
+  --    Textfield.render Data.Mdl [ index ] model.mdl 
+  --    [ Textfield.label a 
+  --    , Textfield.floatingLabel
+  --    ]
+  --  )
+  --)
 
 templateTextArea : Data.Model -> Html Data.Msg
 templateTextArea model =
@@ -74,7 +99,7 @@ list model =
       [ Options.css "width" "100%" ]
       [ Table.thead []
         [ Table.th []
-          [ text "Job Name" ]
+          [ text "Template Name" ]
         , Table.th []
           [ text "Last Edited Date" ]  
         ]
