@@ -32,7 +32,7 @@ init =
   , accentColor = Color.Orange
   , jobSummary = Jobs.getJobSummary
   , job = Just Mock_data.dummyJob
-  , template = Mock_data.dummyTemplate
+  , template = Nothing
   , currentTime = 0
   , initialSeed = 0
   , query = Mock_data.dummyQuery
@@ -70,6 +70,9 @@ update msg model =
           currentTime = round ( Time.inSeconds newTime ),
           initialSeed = if model.initialSeed == 0 then model.currentTime else model.initialSeed
       } ! []
+
+    Data.SelectTemplate  template ->
+      { model | template = Just template } ! []
 
 subscriptions : Data.Model -> Sub Data.Msg
 subscriptions model =
