@@ -23,7 +23,8 @@ type alias Model =
   , initialSeed : Int
   , jobSummary : Jobs
   , job : Maybe Job
-  , template : Template
+  , template : Maybe Template
+  , query : Query
   }
 
 type Msg
@@ -35,6 +36,7 @@ type Msg
   | RandomSeedSucceed String
   | RandomSeedFail Http.Error
   | Tick Time
+  | SelectTemplate Template
 
 type alias Job =
   { uuid : Maybe Uuid.Uuid
@@ -57,7 +59,6 @@ type alias JobSummary =
 
 type alias Template = 
   { name : String
-  , lastEdited : Date.Date
   , contents : String
   , variables : List ( Int, String, String )
   }
@@ -67,6 +68,7 @@ type alias TemplateSummary = String
 type alias Query = 
   { name : String
   , lastEdited : Date.Date
+  , results : List String
   }
 
 type alias QuerySummary = String

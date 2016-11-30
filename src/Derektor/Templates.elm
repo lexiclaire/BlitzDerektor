@@ -4,6 +4,7 @@ import Date exposing (Month(..))
 import Date.Extra as Date
 
 import Html exposing (..)
+import Html.Events
 
 import Material.Grid exposing (..)
 import Material.Options as Options
@@ -55,8 +56,14 @@ singleTemplatePane model =
 templateVariable : Data.Model -> List (Html Data.Msg)
 templateVariable model = 
   let 
+    variables =
+      case model.template of
+        Nothing ->
+          []
+        Just template ->
+          template.variables
     ( _, tvars ) = 
-      ( model.template.variables
+      ( variables
         |> List.foldl (\ ( index, a, _ ) ( idx, acc ) -> 
           ( idx + 1
           , List.concat 
@@ -73,43 +80,46 @@ templateVariable model =
   in
     tvars
 
-  --( model.template.variables
-  --  |> List.map (\ ( index, a, _ ) -> 
-  --    Textfield.render Data.Mdl [ index ] model.mdl 
-  --    [ Textfield.label a 
-  --    , Textfield.floatingLabel
-  --    ]
-  --  )
-  --)
-
 templateTextArea : Data.Model -> Html Data.Msg
 templateTextArea model =
-  Textfield.render Data.Mdl [2] model.mdl
-    [ Textfield.value model.template.contents
-    , Textfield.textarea
-    , Textfield.rows 15  
-    ]    
+  let
+    contents =
+      case model.template of
+        Nothing ->
+          ""
+        Just template ->
+          template.contents
+  in
+    Textfield.render Data.Mdl [2] model.mdl
+      [ Textfield.value contents
+      , Textfield.textarea
+      , Textfield.rows 15  
+      ]    
 
 list : Data.Model -> Html Data.Msg
 list model =
-  Options.div
-    [ Options.css "max-height" "400px" 
-    , Options.css "overflow-y" "scroll" ]
-    [ Table.table 
-      [ Options.css "width" "100%" ]
-      [ Table.thead []
-        [ Table.th []
-          [ text "Template Name" ]
-        , Table.th []
-          [ text "Last Edited Date" ]  
-        ]
-      , Table.tbody []
-        (List.map (\(template) -> Table.tr []
-          [ Table.td [] [ text template.name ]
-          , Table.td [] 
-            [ Date.toFormattedString "yyyy-MM-dd HH:mm" template.lastEdited |> text
-            ]
+  let
+    (currentName, currentContents) =
+      case model.template of
+        Nothing ->
+          ("", "")
+        Just template ->
+          (template.name, template.contents)
+    in
+      Options.div
+        [ Options.css "max-height" "400px" 
+        , Options.css "overflow-y" "scroll" ]
+        [ Table.table 
+          [ Options.css "width" "100%" ]
+          [ Table.thead []
+            [ Table.th [] [ text "Job Name" ] ]
+          , Table.tbody []
+            ( List.map (\(template) -> 
+              Table.tr 
+              [if template.name == currentName then Table.selected else Options.nop]
+              [ Table.td []
+                [ div [ Html.Events.onClick (Data.SelectTemplate template )] [ text template.name ] ]
+              ]
+            ) Mock_data.mockedTemplatesList)
           ]
-        ) Mock_data.mockedTemplatesList)
-      ]
-    ]
+        ]
