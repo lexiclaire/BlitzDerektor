@@ -77,12 +77,12 @@ templateTextArea model =
 list : Data.Model -> Html Data.Msg
 list model =
   let
-    currentContents =
+    (currentName, currentContents) =
       case model.template of
         Nothing ->
-          ""
+          ("", "")
         Just template ->
-          template.contents
+          (template.name, template.contents)
     in
       Options.div
         [ Options.css "max-height" "400px" 
@@ -94,7 +94,7 @@ list model =
           , Table.tbody []
             ( List.map (\(template) -> 
               Table.tr 
-              [if template.name == currentContents then Table.selected else Options.nop]
+              [if template.name == currentName then Table.selected else Options.nop]
               [ Table.td []
                 [ div [ Html.Events.onClick (Data.SelectTemplate template )] [ text template.name ] ]
               ]

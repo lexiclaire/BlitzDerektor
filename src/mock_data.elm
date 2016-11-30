@@ -3,12 +3,26 @@ module Mock_data exposing (..)
 import Date exposing (Month(..))
 import Date.Extra as Date
 
+import Random
+
 import Derektor.Data as Data
 import Mock_template
 
+mockedTemplatesList : List Data.Template
+mockedTemplatesList =
+  [ { name = "Template 1"
+    , lastEdited = Date.fromTime 0
+    , contents = Mock_template.mockTemplate
+    }
+  , { name = "Template 2"
+    , lastEdited = Date.fromTime 0
+    , contents = Mock_template.mockTemplate
+    }
+  ]
+
 dummyTemplate : Data.Template
 dummyTemplate =
-  { name = "Template Name"
+  { name = "Template 1"
   , lastEdited = Date.fromTime 0
   , contents = Mock_template.mockTemplate
   }
@@ -68,12 +82,6 @@ mockedJobs jobList =
   , locked = job.locked
   , lastEdited = job.lastEdited 
   }) jobList 
-
-mockedTemplatesList : List Data.Template
-mockedTemplatesList =
-  [ dummyTemplate
-  , dummyTemplate
-  ]
 
 mockedQueriesList : List Data.Query
 mockedQueriesList =
