@@ -25,6 +25,7 @@ type alias Model =
   , job : Maybe Job
   , template : Maybe Template
   , query : Query
+  , schedules : Schedules
   }
 
 type Msg
@@ -37,6 +38,7 @@ type Msg
   | RandomSeedFail Http.Error
   | Tick Time
   | SelectTemplate Template
+  | AddScheduleRow
 
 type alias Job =
   { uuid : Maybe Uuid.Uuid
@@ -46,7 +48,7 @@ type alias Job =
   , template : Template
   , query : Query
   , review : Review
-  , schedule : Schedule
+  , schedules : Schedules
   , recipients : List Recipient
   }
 
@@ -76,9 +78,18 @@ type alias QuerySummary = String
 type alias Review = String
 
 type alias Schedule = 
-  { name : String
-  , lastEdited : Date.Date
+  { minute : Int
+  , hour : Int
+  , date : Int
+  , month : Int
+  , year : Int
+  , dayOfWeek : Int
+  , quantity : Int
   }
+
+type alias Schedules = 
+  { name : String
+  , batches : List Schedule }
 
 type alias Recipient = 
   { sentFlag : Bool
@@ -93,8 +104,6 @@ type alias Jobs = List JobSummary
 type alias Templates = List TemplateSummary
 
 type alias Queries = List QuerySummary
-
-type alias Schedules = List Schedule
 
 getRandomNumber : Cmd Msg
 getRandomNumber =

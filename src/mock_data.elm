@@ -30,9 +30,19 @@ dummyQuery =
 
 dummySchedule : Data.Schedule 
 dummySchedule =
-  { name = "Schedule Name"
-  , lastEdited = Date.fromTime 0 
+  { minute = 1
+  , hour = 5
+  , date = 22
+  , month = 3
+  , year = 2016
+  , dayOfWeek = 4
+  , quantity = 1000
   }  
+
+dummySchedules : Data.Schedules
+dummySchedules =
+  { name = "Every Festivus, 1000 per hour"
+  , batches = [dummySchedule] }
 
 dummyJob : Data.Job
 dummyJob =
@@ -43,7 +53,7 @@ dummyJob =
   , template = dummyTemplate "name"
   , query = dummyQuery
   , review = ""
-  , schedule = dummySchedule
+  , schedules = dummySchedules
   , recipients =
     [ { sentFlag = False
       , receivedFlag = False
@@ -102,7 +112,7 @@ mockedJobList =
     , template = dummyTemplate "name"
     , query = dummyQuery
     , review = "Wanda Fowler"
-    , schedule = dummySchedule
+    , schedules = dummySchedules
     , recipients =
       [ { sentFlag = False
         , receivedFlag = False

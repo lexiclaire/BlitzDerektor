@@ -36,6 +36,7 @@ init =
   , currentTime = 0
   , initialSeed = 0
   , query = Mock_data.dummyQuery
+  , schedules = Mock_data.dummySchedules
   } ! [ Data.getRandomNumber ]
 
 -- UPDATE
@@ -73,6 +74,9 @@ update msg model =
 
     Data.SelectTemplate  template ->
       { model | template = Just template } ! []
+
+    Data.AddScheduleRow ->
+      model ! []
 
 subscriptions : Data.Model -> Sub Data.Msg
 subscriptions model =

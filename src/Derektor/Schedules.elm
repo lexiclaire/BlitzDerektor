@@ -53,18 +53,10 @@ list model =
       [ Options.css "width" "100%" ]
       [ Table.thead []
         [ Table.th []
-          [ text "Schedule Name" ]
-        , Table.th []
-          [ text "Last Edited Date" ]  
+          [ text "Schedule Name" ] 
         ]
       , Table.tbody []
-        (List.map (\(item) -> Table.tr []
-          [ Table.td [] [ text item.name ]
-          , Table.td [] 
-            [ Date.toFormattedString "yyyy-MM-dd HH:mm" item.lastEdited |> text
-            ]
-          ]
-        ) Mock_data.mockedSchedulesList) 
+        [ Table.td [] [ text model.schedules.name ] ]
       ]
     ] 
 
@@ -126,20 +118,18 @@ createNewSchedule model =
           ]       
         ]  
       ]
+      , addAnotherScheduleButton model
     ]
 
---addAnotherScheduleButton : Data.Model -> Cell Data.Msg
---addAnotherScheduleButton model = 
---  cell
---    [ size All 6 ]
---    [ Button.render Data.Mdl [0] model.mdl
---      [ Button.minifab
---      , Button.raised
---      , Button.ripple
---      --, Button.onClick SendMsg
---      ]
---      [ Icon.i "add" ]
---    ]
+addAnotherScheduleButton : Data.Model -> Html Data.Msg
+addAnotherScheduleButton model = 
+  Button.render Data.Mdl [1] model.mdl
+    [ Button.minifab
+    , Button.raised
+    , Button.ripple
+    , Button.onClick Data.AddScheduleRow 
+    ]
+    [ Icon.i "add" ]
 
 sendButton : Data.Model -> Cell Data.Msg
 sendButton model = 
