@@ -59,7 +59,6 @@ type alias JobSummary =
 
 type alias Template = 
   { name : String
-  , lastEdited : Date.Date
   , contents : String
   }
 

@@ -11,11 +11,9 @@ import Mock_template
 mockedTemplatesList : List Data.Template
 mockedTemplatesList =
   [ { name = "Template 1"
-    , lastEdited = Date.fromTime 0
     , contents = Mock_template.mockTemplate
     }
   , { name = "Template 2"
-    , lastEdited = Date.fromTime 0
     , contents = Mock_template.mockTemplate
     }
   ]
@@ -23,7 +21,6 @@ mockedTemplatesList =
 dummyTemplate : Data.Template
 dummyTemplate =
   { name = "Template 1"
-  , lastEdited = Date.fromTime 0
   , contents = Mock_template.mockTemplate
   }
 
