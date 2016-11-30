@@ -47,10 +47,7 @@ newJobsPane : Data.Model -> Cell Data.Msg
 newJobsPane model =
   cell
     [ size All 6 ]
-    [ h4 
-      [ style [ ("text-align", "center") ] ]
-      [ text "Create new job" ]
-    , Options.div
+    [ Options.div
       []
       [ Options.div
         []
@@ -58,6 +55,7 @@ newJobsPane model =
           [ 0 ]
           model.mdl
           [ Textfield.label "Enter Job Name" 
+          , Textfield.floatingLabel
           ]
         ]
       ]

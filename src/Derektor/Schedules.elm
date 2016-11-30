@@ -5,7 +5,9 @@ import Date.Extra as Date
 
 import Html exposing (..)
 
+import Material.Button as Button
 import Material.Grid exposing (..)
+import Material.Icon as Icon
 import Material.Options as Options
 import Material.Table as Table
 
@@ -22,7 +24,8 @@ view model =
   grid
     []
     [ schedulesTimeFilterPane model
-    , singleschedulePane model ]
+    , singleschedulePane model 
+    , sendButton model ]
 
 schedulesTimeFilterPane : Data.Model -> Cell Data.Msg
 schedulesTimeFilterPane model =
@@ -68,10 +71,8 @@ createNewSchedule : Data.Model -> Html Data.Msg
 createNewSchedule model =
   Options.div
     []
-    [ Table.table 
-      []
-      [ Table.thead
-        []
+    [ Table.table []
+      [ Table.thead []
         [ Table.th []
           [ text "Minute" ]
         , Table.th []
@@ -81,12 +82,13 @@ createNewSchedule model =
         , Table.th []
           [ text "Month" ]
         , Table.th []
-          [ text "Day" ]
+          [ text "Year" ]
+        , Table.th []
+          [ text "Day of week" ]
         , Table.th []
           [ text "Quantity" ]          
         ]
-      , Table.tbody 
-        []
+      , Table.tbody []
         [ Table.td []
           []
         , Table.td []
@@ -98,7 +100,34 @@ createNewSchedule model =
         , Table.td []
           [] 
         , Table.td []
+          []
+        , Table.td []
           []       
         ]  
       ]
-    ] 
+    ]
+
+--addAnotherScheduleButton : Data.Model -> Cell Data.Msg
+--addAnotherScheduleButton model = 
+--  cell
+--    [ size All 6 ]
+--    [ Button.render Data.Mdl [0] model.mdl
+--      [ Button.minifab
+--      , Button.raised
+--      , Button.ripple
+--      --, Button.onClick SendMsg
+--      ]
+--      [ Icon.i "add" ]
+--    ]
+
+sendButton : Data.Model -> Cell Data.Msg
+sendButton model = 
+  cell
+    [ offset All 12 ]
+    [ Button.render Data.Mdl [0] model.mdl
+      [ Button.raised
+      , Button.ripple
+      --, Button.onClick NextPage
+      ]
+      [ text "Send" ]
+    ]   

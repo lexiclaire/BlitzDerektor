@@ -95,7 +95,15 @@ approvalsPane model =
   cell
     [ size All 6 ]
     [ Table.table []
-      [ Table.tbody []
+      [ Table.thead []
+        [ Table.th []
+          []
+        , Table.th []
+          [ text "Name" ]
+        , Table.th []
+          [ text "Required?" ]
+        ]
+      , Table.tbody []
         ( data
           |> List.indexedMap (\idx item ->
             Table.tr

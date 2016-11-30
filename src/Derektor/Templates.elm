@@ -112,7 +112,7 @@ list model =
         [ Table.table 
           [ Options.css "width" "100%" ]
           [ Table.thead []
-            [ Table.th [] [ text "Job Name" ] ]
+            [ Table.th [] [ text "Template Name" ] ]
           , Table.tbody []
             ( List.map (\(template) -> 
               Table.tr 

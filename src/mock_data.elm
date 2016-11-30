@@ -10,13 +10,13 @@ import Mock_template
 
 mockedTemplatesList : List Data.Template
 mockedTemplatesList =
-  [ dummyTemplate
-  , dummyTemplate
+  [ dummyTemplate "template 1"
+  , dummyTemplate "template 1 also"
   ]
 
-dummyTemplate : Data.Template
-dummyTemplate =
-  { name = "Template 1"
+dummyTemplate : String -> Data.Template
+dummyTemplate name =
+  { name = name
   , contents = Mock_template.mockTemplate
   , variables = [ ( 0, "Subject", "Happy Holidays!"), ( 1, "Sender", "appreciate@appreciatehub.com" ) ]
   }
@@ -40,7 +40,7 @@ dummyJob =
   , name = ""
   , locked = False
   , lastEdited = Date.fromTime 0
-  , template = dummyTemplate
+  , template = dummyTemplate "name"
   , query = dummyQuery
   , review = ""
   , schedule = dummySchedule
@@ -59,20 +59,6 @@ dummyJob =
       }
     ]
   }
-  
-newJob : Data.Job
-newJob =
-  { uuid = Nothing
-  , name = ""
-  , locked = False
-  , lastEdited = Date.fromTime 0
-  , template = dummyTemplate
-  , query = dummyQuery
-  , review = ""
-  , schedule = dummySchedule
-  , recipients = []
-  }
-
 
 mockedJobs : List Data.Job -> Data.Jobs
 mockedJobs jobList =
@@ -113,7 +99,7 @@ mockedJobList =
     , uuid = Nothing
     , locked = False
     , lastEdited = Date.fromIsoString "2016-08-25" |> Maybe.withDefault (Date.fromTime 0)
-    , template = dummyTemplate
+    , template = dummyTemplate "name"
     , query = dummyQuery
     , review = "Wanda Fowler"
     , schedule = dummySchedule
