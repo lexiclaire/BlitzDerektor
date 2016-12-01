@@ -38,7 +38,9 @@ type Msg
   | RandomSeedFail Http.Error
   | Tick Time
   | SelectTemplate Template
+  | NextPage  
   | AddScheduleRow
+
 
 type alias Job =
   { uuid : Maybe Uuid.Uuid

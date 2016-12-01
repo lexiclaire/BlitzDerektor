@@ -71,7 +71,8 @@ mainGrid model =
     [ Options.css "width" "100%"
     , Options.css "position" "fixed"
     , Options.css "z-index" "1"
-    , Options.css "padding" "0px 8px" ]
+    , Options.css "padding" "0px 8px" 
+    ]
     [ cell
       [ size All 12
       , Options.css "margin" "0px 8px" ]
@@ -104,7 +105,6 @@ stepperNav model =
       ]
       [ cell
         [ size All 12
-        , Options.css "position" "fixed"
         , Options.css "width" "100%" ]
         [ viewStepper model
         , model |> (List.drop model.stepperTab viewTypes |> List.head |> Maybe.withDefault Templates.view) 

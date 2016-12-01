@@ -75,6 +75,12 @@ update msg model =
     Data.SelectTemplate  template ->
       { model | template = Just template } ! []
 
+    Data.NextPage -> 
+      let
+        newStep = model.stepperTab + 1
+      in  
+        { model | stepperTab = newStep } ! []
+
     Data.AddScheduleRow ->
       model ! []
 

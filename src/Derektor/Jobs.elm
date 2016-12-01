@@ -101,8 +101,7 @@ viewListItem model =
 viewPastJobs : Data.Model -> Html Data.Msg
 viewPastJobs model =
   grid
-    [ Options.css "position" "relative"
-    , Options.css "top" "50px" ]
+    []
     [ cell
       []
       [ text "Past Jobs" ]

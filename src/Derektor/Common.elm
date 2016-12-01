@@ -25,7 +25,7 @@ nextButton model =
     [ Button.render Data.Mdl [0] model.mdl
       [ Button.raised
       , Button.ripple
-      --, Button.onClick NextPage
+      , Button.onClick Data.NextPage
       ]
       [ text "Next" ]
     ]  

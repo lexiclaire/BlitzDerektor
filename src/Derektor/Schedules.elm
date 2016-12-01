@@ -56,7 +56,10 @@ list model =
           [ text "Schedule Name" ] 
         ]
       , Table.tbody []
-        [ Table.td [] [ text model.schedules.name ] ]
+        [ Table.tr [] 
+          [ Table.td [] [ text model.schedules.name ] 
+          ]
+        ]
       ]
     ] 
 
