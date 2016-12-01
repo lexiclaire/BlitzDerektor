@@ -36,7 +36,7 @@ init =
   , currentTime = 0
   , initialSeed = 0
   , query = Mock_data.dummyQuery
-  , schedules = Mock_data.dummySchedules
+  , schedules = Mock_data.dummySchedulesList
   } ! [ Data.getRandomNumber ]
 
 -- UPDATE
@@ -74,6 +74,9 @@ update msg model =
 
     Data.SelectTemplate  template ->
       { model | template = Just template } ! []
+
+    Data.SelectSchedules schedules ->
+      model ! []
 
     Data.NextPage -> 
       let

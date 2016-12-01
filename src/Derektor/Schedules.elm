@@ -4,6 +4,7 @@ import Date exposing (Month(..))
 import Date.Extra as Date
 
 import Html exposing (..)
+import Html.Events
 
 import Material.Button as Button
 import Material.Grid exposing (..)
@@ -46,22 +47,36 @@ singleschedulePane model =
 
 list : Data.Model -> Html Data.Msg
 list model =
-  Options.div
-    [ Options.css "max-height" "400px" 
-    , Options.css "overflow-y" "scroll" ]
-    [ Table.table 
-      [ Options.css "width" "100%" ]
-      [ Table.thead []
-        [ Table.th []
-          [ text "Schedule Name" ] 
-        ]
-      , Table.tbody []
-        [ Table.tr [] 
-          [ Table.td [] [ text model.schedules.name ] 
+  let
+    currentSchedulesName = 
+      case model.job of
+        Nothing ->
+          ""
+        Just job ->
+          job.schedules.name
+  in
+    Options.div
+      [ Options.css "max-height" "400px" 
+      , Options.css "overflow-y" "scroll" ]
+      [ Table.table 
+        [ Options.css "width" "100%" ]
+        [ Table.thead []
+          [ Table.th []
+            [ text "Schedule Name" ] 
           ]
+        , Table.tbody []
+          ( List.map (\(schedules) -> 
+            Table.tr 
+              [ if schedules.name == currentSchedulesName then Table.selected else Options.nop ] 
+              [ Table.td [] 
+                [ div 
+                  [ Html.Events.onClick (Data.SelectSchedules schedules ) ] 
+                  [ text schedules.name ] 
+                ]
+              ]
+            ) model.schedules )
         ]
-      ]
-    ] 
+      ] 
 
 createNewSchedule : Data.Model -> Html Data.Msg
 createNewSchedule model =

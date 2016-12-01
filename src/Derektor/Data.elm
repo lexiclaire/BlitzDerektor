@@ -25,7 +25,7 @@ type alias Model =
   , job : Maybe Job
   , template : Maybe Template
   , query : Query
-  , schedules : Schedules
+  , schedules : List Schedules
   }
 
 type Msg
@@ -38,6 +38,7 @@ type Msg
   | RandomSeedFail Http.Error
   | Tick Time
   | SelectTemplate Template
+  | SelectSchedules Schedules
   | NextPage  
   | AddScheduleRow
 

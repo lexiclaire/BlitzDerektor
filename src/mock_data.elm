@@ -39,10 +39,17 @@ dummySchedule =
   , quantity = 1000
   }  
 
-dummySchedules : Data.Schedules
-dummySchedules =
-  { name = "Every Festivus, 1000 per hour"
-  , batches = [dummySchedule] }
+dummySchedules : String -> Data.Schedules
+dummySchedules name =
+  { name = name
+  , batches = [dummySchedule, dummySchedule] }
+
+dummySchedulesList : List Data.Schedules
+dummySchedulesList =  
+  [ dummySchedules "Every Festivus, 1000 per hour"
+  , dummySchedules "Friday Mornings"
+  ]
+
 
 dummyJob : Data.Job
 dummyJob =
@@ -53,7 +60,7 @@ dummyJob =
   , template = dummyTemplate "name"
   , query = dummyQuery
   , review = ""
-  , schedules = dummySchedules
+  , schedules = dummySchedules ""
   , recipients =
     [ { sentFlag = False
       , receivedFlag = False
@@ -112,7 +119,7 @@ mockedJobList =
     , template = dummyTemplate "name"
     , query = dummyQuery
     , review = "Wanda Fowler"
-    , schedules = dummySchedules
+    , schedules = dummySchedules ""
     , recipients =
       [ { sentFlag = False
         , receivedFlag = False
