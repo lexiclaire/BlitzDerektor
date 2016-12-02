@@ -16,6 +16,10 @@ import Material.Textfield as Textfield
 import Derektor.Data as Data
 import Mock_data
 
+
+-- MODEL
+
+
 -- UPDATE
 
 
@@ -38,11 +42,11 @@ schedulesTimeFilterPane model =
       [ list model ]
     ]
 
-
 singleschedulePane : Data.Model -> Cell Data.Msg
 singleschedulePane model =
   cell
-    [ size All 6 ]
+    [ size All 6
+    , Options.attribute <| Html.Events.onClick Data.UnselectSchedules  ]
     [ createNewSchedule model ]
 
 list : Data.Model -> Html Data.Msg

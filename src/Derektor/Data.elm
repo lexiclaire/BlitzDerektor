@@ -39,6 +39,7 @@ type Msg
   | Tick Time
   | SelectTemplate Template
   | SelectSchedules Schedules
+  | UnselectSchedules
   | NextPage  
   | AddScheduleRow
 

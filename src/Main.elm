@@ -76,7 +76,18 @@ update msg model =
       { model | template = Just template } ! []
 
     Data.SelectSchedules schedules ->
-      model ! []
+      case model.job of
+        Nothing ->
+          model ! []
+        Just job -> 
+          { model | job = Just { job | schedules = schedules } } ! []
+
+    Data.UnselectSchedules ->
+      case model.job of
+        Nothing ->
+          model ! []
+        Just job -> 
+          { model | job = Nothing } ! []
 
     Data.NextPage -> 
       let
