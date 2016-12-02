@@ -1,8 +1,5 @@
 module Derektor.Templates exposing (..)
 
-import Date exposing (Month(..))
-import Date.Extra as Date
-
 import Html exposing (..)
 import Html.Events
 
@@ -14,7 +11,6 @@ import Material.Textfield as Textfield
 import Derektor.Data as Data
 import Derektor.Common as Common
 import Mock_data 
-import Mock_template
 
 -- UPDATE
 
@@ -23,8 +19,7 @@ import Mock_template
 
 view : Data.Model -> Html Data.Msg
 view model =
-  grid
-    []
+  grid []
     [ templatesTimeFilterPane model
     , singleTemplatePane model 
     , Common.nextButton model ]
@@ -33,21 +28,17 @@ templatesTimeFilterPane : Data.Model -> Cell Data.Msg
 templatesTimeFilterPane model =
   cell
     [ size All 6 ]
-    [ Options.div
-      [ Options.css "min-height" "70%" ]
-      [ list model ]
-    ]
+    [ list model ]
 
 singleTemplatePane : Data.Model -> Cell Data.Msg
 singleTemplatePane model =
   cell
     [ size All 6 ]
-    [ grid 
-      []
+    [ grid []
       [ cell 
         [ size All 12 ]
         ( templateVariable model )
-      , cell
+      , cell 
         [ size All 12 ]
         [ templateTextArea model ]
       ]
@@ -116,10 +107,13 @@ list model =
           , Table.tbody []
             ( List.map (\(template) -> 
               Table.tr 
-              [if template.name == currentName then Table.selected else Options.nop]
+              [ if template.name == currentName then Table.selected else Options.nop ]
               [ Table.td []
-                [ div [ Html.Events.onClick (Data.SelectTemplate template )] [ text template.name ] ]
+                [ div 
+                  [ Html.Events.onClick (Data.SelectTemplate template ) ] 
+                  [ text template.name ] 
+                ]
               ]
-            ) Mock_data.mockedTemplatesList)
+            ) Mock_data.mockedTemplatesList )
           ]
         ]

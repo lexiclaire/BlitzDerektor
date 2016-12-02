@@ -28,4 +28,4 @@ nextButton model =
       , Button.onClick Data.NextPage
       ]
       [ text "Next" ]
-    ]  
+    ]

@@ -96,7 +96,10 @@ update msg model =
         { model | stepperTab = newStep } ! []
 
     Data.AddScheduleRow ->
-      model ! []
+      if model.jobsTab == 0 then
+        model ! []
+      else
+        model ! []
 
 subscriptions : Data.Model -> Sub Data.Msg
 subscriptions model =

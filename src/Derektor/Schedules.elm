@@ -1,8 +1,5 @@
 module Derektor.Schedules exposing (..)
 
-import Date exposing (Month(..))
-import Date.Extra as Date
-
 import Html exposing (..)
 import Html.Events
 
@@ -27,8 +24,7 @@ import Mock_data
 
 view : Data.Model -> Html Data.Msg
 view model =
-  grid
-    []
+  grid []
     [ schedulesTimeFilterPane model
     , singleschedulePane model 
     , sendButton model ]
@@ -37,16 +33,13 @@ schedulesTimeFilterPane : Data.Model -> Cell Data.Msg
 schedulesTimeFilterPane model =
   cell
     [ size All 6 ]
-    [ Options.div
-      [ Options.css "min-height" "70%" ]
-      [ list model ]
-    ]
+    [ list model ]
 
 singleschedulePane : Data.Model -> Cell Data.Msg
 singleschedulePane model =
   cell
     [ size All 6
-    , Options.attribute <| Html.Events.onClick Data.UnselectSchedules  ]
+    , Options.attribute <| Html.Events.onClick Data.UnselectSchedules ]
     [ createNewSchedule model ]
 
 list : Data.Model -> Html Data.Msg
@@ -84,63 +77,34 @@ list model =
 
 createNewSchedule : Data.Model -> Html Data.Msg
 createNewSchedule model =
-  Options.div
-    []
+  Options.div []
     [ Table.table []
       [ Table.thead []
-        [ Table.th []
-          [ text "Minute" ]
-        , Table.th []
-          [ text "Hour" ]
-        , Table.th []
-          [ text "Date" ]
-        , Table.th []
-          [ text "Month" ]
-        , Table.th []
-          [ text "Year" ]
-        , Table.th []
-          [ text "Day of week" ]
-        , Table.th []
-          [ text "Quantity" ]          
+        [ Table.th [] [ text "Minute" ]
+        , Table.th [] [ text "Hour" ]
+        , Table.th [] [ text "Date" ]
+        , Table.th [] [ text "Month" ]
+        , Table.th [] [ text "Year" ]
+        , Table.th [] [ text "Day of week" ]
+        , Table.th [] [ text "Quantity" ]          
         ]
       , Table.tbody []
-        [ Table.td []
-          [ Textfield.render Data.Mdl [0] model.mdl 
-            [ Textfield.maxlength 2
-            , Options.css "width" "100%" ]
-          ]
-        , Table.td []
-          [ Textfield.render Data.Mdl [1] model.mdl 
-            [ Textfield.maxlength 2
-            , Options.css "width" "100%" ]
-          ] 
-        , Table.td []
-          [ Textfield.render Data.Mdl [2] model.mdl 
-            [ Textfield.maxlength 2
-            , Options.css "width" "100%" ]
-          ]
-        , Table.td []
-          [ Textfield.render Data.Mdl [3] model.mdl 
-            [ Textfield.maxlength 2
-            , Options.css "width" "100%" ]
-          ]
-        , Table.td []
-          [ Textfield.render Data.Mdl [4] model.mdl 
-            [ Textfield.maxlength 4
-            , Options.css "width" "100%" ]
-          ] 
-        , Table.td []
-          [Textfield.render Data.Mdl [5] model.mdl 
-            [ Textfield.maxlength 2
-            , Options.css "width" "100%" ]
-          ]
-        , Table.td []
-          [ Textfield.render Data.Mdl [6] model.mdl 
-            [ Options.css "width" "100%" ]
-          ]       
-        ]  
+        ( List.concat [ (List.map (\(n) -> dateField n model.mdl ) [0..5] )
+          , [ Table.td []
+              [ Textfield.render Data.Mdl [6] model.mdl 
+                [ Options.css "width" "100%" ]
+              ] 
+            ] 
+        ] )      
       ]
       , addAnotherScheduleButton model
+    ]
+
+dateField index mdl = 
+  Table.td []
+    [ Textfield.render Data.Mdl [index] mdl 
+      [ Textfield.maxlength 2
+      , Options.css "width" "100%" ] 
     ]
 
 addAnotherScheduleButton : Data.Model -> Html Data.Msg
@@ -160,7 +124,7 @@ sendButton model =
     [ Button.render Data.Mdl [0] model.mdl
       [ Button.raised
       , Button.ripple
-      --, Button.onClick NextPage
+      --, Button.onClick Data.SendJob
       ]
       [ text "Send" ]
     ]   
