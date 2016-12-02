@@ -3,6 +3,10 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.App as App
 
+import Set exposing (Set)
+import String
+import Time exposing (Time, second)
+
 import Material
 import Material.Layout as Layout
 import Material.Scheme
@@ -14,10 +18,6 @@ import Derektor.Derektor as Derektor
 import Derektor.Jobs as Jobs
 
 import Mock_data exposing (..)
-
-import String
-import Time exposing (Time, second)
-import Set exposing (Set)
 
 
 -- MODEL

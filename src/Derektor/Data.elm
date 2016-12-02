@@ -1,12 +1,10 @@
 module Derektor.Data exposing (..)
 
 import Date exposing (Month(..))
-import Date.Extra as Date
+import Http
 import Set exposing (Set)
 import Time exposing (Time)
 import Task
-import Http
-
 import Uuid exposing (..)
 
 import Material
@@ -63,6 +61,8 @@ type alias JobSummary =
   , lastEdited : Date.Date
   }
 
+type alias Jobs = List JobSummary
+
 type alias Template = 
   { name : String
   , contents : String
@@ -71,6 +71,8 @@ type alias Template =
 
 type alias TemplateSummary = String
 
+type alias Templates = List TemplateSummary
+
 type alias Query = 
   { name : String
   , lastEdited : Date.Date
@@ -78,6 +80,16 @@ type alias Query =
   }
 
 type alias QuerySummary = String
+
+type alias Queries = List QuerySummary
+
+type alias Recipient = 
+  { sentFlag : Bool
+  , receivedFlag : Bool
+  , openedFlag : Bool
+  , clickedFlag : Bool
+  , email : String
+  }
 
 type alias Review = String
 
@@ -94,20 +106,6 @@ type alias Schedule =
 type alias Schedules = 
   { name : String
   , batches : List Schedule }
-
-type alias Recipient = 
-  { sentFlag : Bool
-  , receivedFlag : Bool
-  , openedFlag : Bool
-  , clickedFlag : Bool
-  , email : String
-  }
-
-type alias Jobs = List JobSummary
-
-type alias Templates = List TemplateSummary
-
-type alias Queries = List QuerySummary
 
 getRandomNumber : Cmd Msg
 getRandomNumber =
