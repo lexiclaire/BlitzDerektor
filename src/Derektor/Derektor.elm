@@ -22,12 +22,31 @@ import Derektor.Schedules as Schedules
 viewHeader : Data.Model -> Html Data.Msg
 viewHeader model =
   Options.div
-    [ Options.css "background-color" "#ffffff" ]
-    [ h1
-      [ style
-        [ ( "padding", "2rem" ) ]
+    [ Options.css "background-color" "#ffffff"
+    , Options.css "padding-left" "1em" ]
+    [ h1 [] [ text "BlitzDerektor" ] ]
+
+jobsTab : Data.Model -> Html Data.Msg
+jobsTab model =
+  case model.jobsTab of
+      0 -> Jobs.viewPastJobs model
+      1 -> Jobs.viewNewJob model
+      _ -> Jobs.viewPastJobs model
+
+viewStepper : Data.Model -> Html Data.Msg
+viewStepper model = 
+  Options.div
+    []
+    [ Tabs.render Data.Mdl [0] model.mdl
+      [ Tabs.onSelectTab Data.SelectStepperTab
+      , Tabs.activeTab model.stepperTab ]
+      [ stepperTabLabel "Jobs"
+      , stepperTabLabel "Templates"
+      , stepperTabLabel "Queries"
+      , stepperTabLabel "Reviews"
+      , stepperTabLabel "Schedules" 
       ]
-      [ text "BlitzDerektor" ]
+      []
     ]
 
 stepperTab : Data.Model -> Html Data.Msg
@@ -47,37 +66,20 @@ stepperTabLabel string =
     , Options.css "cursor" "default" ] 
     [ text string ]
 
-viewStepper : Data.Model -> Html Data.Msg
-viewStepper model = 
-  Options.div
-    []
-    [ Tabs.render Data.Mdl [0] model.mdl
-      [ Tabs.onSelectTab Data.SelectStepperTab
-      , Tabs.activeTab model.stepperTab ]
-      [ stepperTabLabel "Jobs"
-      , stepperTabLabel "Templates"
-      , stepperTabLabel "Queries"
-      , stepperTabLabel "Reviews"
-      , stepperTabLabel "Schedules" 
-      ]
-      []
+stepperNav : Data.Model -> Html Data.Msg
+stepperNav model =
+  grid
+    [ Options.css "width" "100%" 
+    , Options.css "margin" "0px" 
+    , Options.css "padding" "0px"
     ]
-
-mainGrid : Data.Model -> Html Data.Msg
-mainGrid model =
-  Options.div
-  []
-  [ grid 
-    [ Options.css "width" "100%"
-    , Options.css "position" "fixed"
-    , Options.css "z-index" "1"
-    , Options.css "padding" "0px 8px" ]
     [ cell
       [ size All 12
-      , Options.css "margin" "0px 8px" ]
-      [ viewStepper model ]
+      , Options.css "width" "100%" ]
+      [ viewStepper model
+      , model |> (List.drop model.stepperTab viewTypes |> List.head |> Maybe.withDefault Templates.view) 
+      ]
     ]
-  ]
 
 viewTypes : List ( Data.Model -> Html Data.Msg )
 viewTypes =
@@ -88,25 +90,16 @@ viewTypes =
   , Schedules.view
   ]
 
-jobsTab : Data.Model -> Html Data.Msg
-jobsTab model =
-  case model.jobsTab of
-      0 -> Jobs.viewPastJobs model
-      1 -> Jobs.viewNewJob model
-      _ -> Jobs.viewPastJobs model
-
-stepperNav : Data.Model -> Html Data.Msg
-stepperNav model =
-  grid
-      [ Options.css "width" "100%" 
-      , Options.css "margin" "0px" 
-      , Options.css "padding" "0px"
-      ]
-      [ cell
-        [ size All 12
-        , Options.css "position" "fixed"
-        , Options.css "width" "100%" ]
-        [ viewStepper model
-        , model |> (List.drop model.stepperTab viewTypes |> List.head |> Maybe.withDefault Templates.view) 
-        ]
-      ]
+mainGrid : Data.Model -> Html Data.Msg
+mainGrid model =
+  grid 
+    [ Options.css "width" "100%"
+    , Options.css "position" "fixed"
+    , Options.css "z-index" "1"
+    , Options.css "padding" "0px 8px" 
+    ]
+    [ cell
+      [ size All 12
+      , Options.css "margin" "0px 8px" ]
+      [ viewStepper model ]
+    ]

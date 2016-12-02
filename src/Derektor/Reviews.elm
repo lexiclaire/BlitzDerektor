@@ -2,7 +2,8 @@ module Derektor.Reviews exposing (..)
 
 import Html exposing (..)
 
-import Material
+import Set exposing (Set)
+
 import Material.Grid exposing (..)
 import Material.Options as Options exposing (..)
 import Material.Table as Table
@@ -11,7 +12,6 @@ import Material.Toggles as Toggles
 import Derektor.Data as Data
 import Derektor.Common as Common
 
-import Set exposing (Set)
 
 
 -- UPDATE
@@ -38,13 +38,11 @@ data =
 -- VIEW
 
 key : Data -> String
-key =
-  .name
+key = .name
 
 view : Data.Model -> Html Data.Msg
 view model =
-  grid
-    []
+  grid []
     [ reviewsPane model
     , approvalsPane model 
     , Common.nextButton model ]
@@ -95,7 +93,15 @@ approvalsPane model =
   cell
     [ size All 6 ]
     [ Table.table []
-      [ Table.tbody []
+      [ Table.thead []
+        [ Table.th []
+          []
+        , Table.th []
+          [ text "Name" ]
+        , Table.th []
+          [ text "Required?" ]
+        ]
+      , Table.tbody []
         ( data
           |> List.indexedMap (\idx item ->
             Table.tr

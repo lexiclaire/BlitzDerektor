@@ -3,6 +3,10 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.App as App
 
+import Set exposing (Set)
+import String
+import Time exposing (Time, second)
+
 import Material
 import Material.Layout as Layout
 import Material.Scheme
@@ -14,10 +18,6 @@ import Derektor.Derektor as Derektor
 import Derektor.Jobs as Jobs
 
 import Mock_data exposing (..)
-
-import String
-import Time exposing (Time, second)
-import Set exposing (Set)
 
 
 -- MODEL
@@ -36,6 +36,7 @@ init =
   , currentTime = 0
   , initialSeed = 0
   , query = Mock_data.dummyQuery
+  , schedules = Mock_data.dummySchedulesList
   } ! [ Data.getRandomNumber ]
 
 -- UPDATE
@@ -73,6 +74,32 @@ update msg model =
 
     Data.SelectTemplate  template ->
       { model | template = Just template } ! []
+
+    Data.SelectSchedules schedules ->
+      case model.job of
+        Nothing ->
+          model ! []
+        Just job -> 
+          { model | job = Just { job | schedules = schedules } } ! []
+
+    Data.UnselectSchedules ->
+      case model.job of
+        Nothing ->
+          model ! []
+        Just job -> 
+          { model | job = Nothing } ! []
+
+    Data.NextPage -> 
+      let
+        newStep = model.stepperTab + 1
+      in  
+        { model | stepperTab = newStep } ! []
+
+    Data.AddScheduleRow ->
+      if model.jobsTab == 0 then
+        model ! []
+      else
+        model ! []
 
 subscriptions : Data.Model -> Sub Data.Msg
 subscriptions model =

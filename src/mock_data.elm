@@ -10,13 +10,13 @@ import Mock_template
 
 mockedTemplatesList : List Data.Template
 mockedTemplatesList =
-  [ dummyTemplate
-  , dummyTemplate
+  [ dummyTemplate "template 1"
+  , dummyTemplate "template 1 also"
   ]
 
-dummyTemplate : Data.Template
-dummyTemplate =
-  { name = "Template 1"
+dummyTemplate : String -> Data.Template
+dummyTemplate name =
+  { name = name
   , contents = Mock_template.mockTemplate
   , variables = [ ( 0, "Subject", "Happy Holidays!"), ( 1, "Sender", "appreciate@appreciatehub.com" ) ]
   }
@@ -30,9 +30,26 @@ dummyQuery =
 
 dummySchedule : Data.Schedule 
 dummySchedule =
-  { name = "Schedule Name"
-  , lastEdited = Date.fromTime 0 
+  { minute = 1
+  , hour = 5
+  , date = 22
+  , month = 3
+  , year = 2016
+  , dayOfWeek = 4
+  , quantity = 1000
   }  
+
+dummySchedules : String -> Data.Schedules
+dummySchedules name =
+  { name = name
+  , batches = [dummySchedule, dummySchedule] }
+
+dummySchedulesList : List Data.Schedules
+dummySchedulesList =  
+  [ dummySchedules "Every Festivus, 1000 per hour"
+  , dummySchedules "Friday Mornings"
+  ]
+
 
 dummyJob : Data.Job
 dummyJob =
@@ -40,10 +57,10 @@ dummyJob =
   , name = ""
   , locked = False
   , lastEdited = Date.fromTime 0
-  , template = dummyTemplate
+  , template = dummyTemplate "name"
   , query = dummyQuery
   , review = ""
-  , schedule = dummySchedule
+  , schedules = dummySchedules ""
   , recipients =
     [ { sentFlag = False
       , receivedFlag = False
@@ -59,20 +76,6 @@ dummyJob =
       }
     ]
   }
-  
-newJob : Data.Job
-newJob =
-  { uuid = Nothing
-  , name = ""
-  , locked = False
-  , lastEdited = Date.fromTime 0
-  , template = dummyTemplate
-  , query = dummyQuery
-  , review = ""
-  , schedule = dummySchedule
-  , recipients = []
-  }
-
 
 mockedJobs : List Data.Job -> Data.Jobs
 mockedJobs jobList =
@@ -113,10 +116,10 @@ mockedJobList =
     , uuid = Nothing
     , locked = False
     , lastEdited = Date.fromIsoString "2016-08-25" |> Maybe.withDefault (Date.fromTime 0)
-    , template = dummyTemplate
+    , template = dummyTemplate "name"
     , query = dummyQuery
     , review = "Wanda Fowler"
-    , schedule = dummySchedule
+    , schedules = dummySchedules ""
     , recipients =
       [ { sentFlag = False
         , receivedFlag = False

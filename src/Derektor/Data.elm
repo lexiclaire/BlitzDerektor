@@ -1,12 +1,10 @@
 module Derektor.Data exposing (..)
 
 import Date exposing (Month(..))
-import Date.Extra as Date
+import Http
 import Set exposing (Set)
 import Time exposing (Time)
 import Task
-import Http
-
 import Uuid exposing (..)
 
 import Material
@@ -25,6 +23,7 @@ type alias Model =
   , job : Maybe Job
   , template : Maybe Template
   , query : Query
+  , schedules : List Schedules
   }
 
 type Msg
@@ -37,6 +36,11 @@ type Msg
   | RandomSeedFail Http.Error
   | Tick Time
   | SelectTemplate Template
+  | SelectSchedules Schedules
+  | UnselectSchedules
+  | NextPage  
+  | AddScheduleRow
+
 
 type alias Job =
   { uuid : Maybe Uuid.Uuid
@@ -46,7 +50,7 @@ type alias Job =
   , template : Template
   , query : Query
   , review : Review
-  , schedule : Schedule
+  , schedules : Schedules
   , recipients : List Recipient
   }
 
@@ -57,6 +61,8 @@ type alias JobSummary =
   , lastEdited : Date.Date
   }
 
+type alias Jobs = List JobSummary
+
 type alias Template = 
   { name : String
   , contents : String
@@ -64,6 +70,8 @@ type alias Template =
   }
 
 type alias TemplateSummary = String
+
+type alias Templates = List TemplateSummary
 
 type alias Query = 
   { name : String
@@ -73,12 +81,7 @@ type alias Query =
 
 type alias QuerySummary = String
 
-type alias Review = String
-
-type alias Schedule = 
-  { name : String
-  , lastEdited : Date.Date
-  }
+type alias Queries = List QuerySummary
 
 type alias Recipient = 
   { sentFlag : Bool
@@ -88,13 +91,21 @@ type alias Recipient =
   , email : String
   }
 
-type alias Jobs = List JobSummary
+type alias Review = String
 
-type alias Templates = List TemplateSummary
+type alias Schedule = 
+  { minute : Int
+  , hour : Int
+  , date : Int
+  , month : Int
+  , year : Int
+  , dayOfWeek : Int
+  , quantity : Int
+  }
 
-type alias Queries = List QuerySummary
-
-type alias Schedules = List Schedule
+type alias Schedules = 
+  { name : String
+  , batches : List Schedule }
 
 getRandomNumber : Cmd Msg
 getRandomNumber =
