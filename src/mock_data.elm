@@ -145,6 +145,16 @@ mockedQueriesList =
   , dummyQuery
   ]
 
+dummyReviewer : List Data.Reviewer
+dummyReviewer =
+  [ { name = "Gina Vasiloff"
+    , approval = "No" }
+  , { name = "Derek Bischke"
+    , approval = "Yes" }
+  , { name = "Ashton Gabrielsen"
+    , approval = "Yes" }
+  ]
+
 mockRecipientList : List Data.Job -> List Data.Recipient
 mockRecipientList recipientList =
   List.map (\rec ->
