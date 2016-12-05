@@ -29,3 +29,11 @@ nextButton model =
       ]
       [ text "Next" ]
     ]
+
+isNewJob : Int -> Bool
+isNewJob tabNum =
+  case tabNum of 
+    0 -> False
+    1 -> True
+    _ -> False
+

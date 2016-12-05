@@ -26,13 +26,6 @@ viewHeader model =
     , Options.css "padding-left" "1em" ]
     [ h1 [] [ text "BlitzDerektor" ] ]
 
-jobsTab : Data.Model -> Html Data.Msg
-jobsTab model =
-  case model.jobsTab of
-      0 -> Jobs.viewPastJobs model
-      1 -> Jobs.viewNewJob model
-      _ -> Jobs.viewPastJobs model
-
 viewStepper : Data.Model -> Html Data.Msg
 viewStepper model = 
   Options.div

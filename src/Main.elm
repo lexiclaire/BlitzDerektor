@@ -100,10 +100,10 @@ update msg model =
       let 
         lines = model.customScheduleLine + 1
       in 
-        if model.jobsTab == 0 then
-          model ! []
-        else
+        if Common.isNewJob model.jobsTab then
           { model | customScheduleLine = lines } ! []
+        else
+          model ! []
 
 subscriptions : Data.Model -> Sub Data.Msg
 subscriptions model =
@@ -132,5 +132,5 @@ view model =
       { header = [ Derektor.viewHeader model ]
       , drawer = []
       , tabs = ( [ text "Past Jobs", text "New Job" ], [] )
-      , main = [ Derektor.stepperNav model, Derektor.jobsTab model ]
+      , main = [ Derektor.stepperNav model ]
       }
