@@ -67,18 +67,4 @@ viewList model =
           )
         )  
       ]
-    ]  
-
-viewPastJobs : Data.Model -> Html Data.Msg
-viewPastJobs model =
-  grid []
-    [ cell []
-      [ text "Past Jobs" ]
-    ]
-
-viewNewJob : Data.Model -> Html Data.Msg
-viewNewJob model =
-  grid []
-    [ cell []
-      [ text "New Job" ]
-    ]
+    ]   

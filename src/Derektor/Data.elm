@@ -94,6 +94,10 @@ type alias Recipient =
 
 type alias Review = String
 
+type alias Reviewer =
+  { name : String
+  , approval : String }
+
 type alias Schedule = 
   { minute : Int
   , hour : Int

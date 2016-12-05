@@ -11,33 +11,16 @@ import Material.Toggles as Toggles
 
 import Derektor.Data as Data
 import Derektor.Common as Common
+import Mock_data 
 
 
 
 -- UPDATE
 
-type alias Data =
-  { name : String
-  , approval : String }
-
-data : List Data
-data =
-  [ { name = "Gina Vasiloff"
-    , approval = "No" }
-  , { name = "Derek Bischke"
-    , approval = "Yes" }
-  , { name = "Ashton Gabrielsen"
-    , approval = "Yes" }
-  , { name = "Christina Smithers"
-    , approval = "No" }
-  , { name = "Lexi Huefner"
-    , approval = "Yes" }
-  ]
-
 
 -- VIEW
 
-key : Data -> String
+key : Data.Reviewer -> String
 key = .name
 
 view : Data.Model -> Html Data.Msg
@@ -102,7 +85,7 @@ approvalsPane model =
           [ text "Required?" ]
         ]
       , Table.tbody []
-        ( data
+        ( Mock_data.dummyReviewer
           |> List.indexedMap (\idx item ->
             Table.tr
               [ Table.selected `when` Set.member (key item) model.selected ]
