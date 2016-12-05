@@ -37,6 +37,7 @@ init =
   , initialSeed = 0
   , query = Mock_data.dummyQuery
   , schedules = Mock_data.dummySchedulesList
+  , customScheduleLine = 0
   } ! [ Data.getRandomNumber ]
 
 -- UPDATE
@@ -96,10 +97,13 @@ update msg model =
         { model | stepperTab = newStep } ! []
 
     Data.AddScheduleRow ->
-      if model.jobsTab == 0 then
-        model ! []
-      else
-        model ! []
+      let 
+        lines = model.customScheduleLine + 1
+      in 
+        if model.jobsTab == 0 then
+          model ! []
+        else
+          { model | customScheduleLine = lines } ! []
 
 subscriptions : Data.Model -> Sub Data.Msg
 subscriptions model =
