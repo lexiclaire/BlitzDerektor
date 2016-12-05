@@ -24,6 +24,7 @@ type alias Model =
   , template : Maybe Template
   , query : Query
   , schedules : List Schedules
+  , customScheduleLine : Int
   }
 
 type Msg

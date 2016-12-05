@@ -89,16 +89,22 @@ createNewSchedule model =
         , Table.th [] [ text "Quantity" ]          
         ]
       , Table.tbody []
-        ( List.concat [ (List.map (\(n) -> dateField n model.mdl ) [0..5] )
+        ( List.map (\(n) -> customScheduleRow model n ) [0..model.customScheduleLine] )
+      ]
+      , addAnotherScheduleButton model
+    ]
+
+customScheduleRow : Data.Model -> Int -> Html Data.Msg
+customScheduleRow model rowNumber =
+  Table.tr []
+    ( List.concat [ (List.map (\(n) -> dateField n model.mdl ) [0..5] )
           , [ Table.td []
               [ Textfield.render Data.Mdl [6] model.mdl 
                 [ Options.css "width" "100%" ]
               ] 
             ] 
-        ] )      
-      ]
-      , addAnotherScheduleButton model
-    ]
+        ] ) 
+
 
 dateField index mdl = 
   Table.td []
