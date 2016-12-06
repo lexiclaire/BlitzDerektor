@@ -21,7 +21,6 @@ view : Data.Model -> Html Data.Msg
 view model =
   grid []
     [ queriesTimeFilterPane model
-    , singleQueryPane model.query.results
     , Common.nextButton model ]
 
 queriesTimeFilterPane : Data.Model -> Cell Data.Msg
@@ -30,30 +29,6 @@ queriesTimeFilterPane model =
     [ size All 6 ]
     [ list model ]
 
-singleQueryPane : List String -> Cell Data.Msg
-singleQueryPane results =
-  cell
-    [ size All 6 ]
-    [ Options.div
-      [ Options.css "max-height" "400px" 
-      , Options.css "overflow-y" "scroll" ]
-      [ Table.table 
-        [ Options.css "width" "100%" ]
-        [ Table.thead []
-          [ Table.th []
-            [ text "Results" ]
-          ]
-        , Table.tbody []
-          (List.map (\(result) -> 
-            Table.tr []
-              [ Table.td [] 
-                [ text result ] 
-              ] 
-          ) results) 
-        ]
-      ]
-    ]
-
 list : Data.Model -> Html Data.Msg
 list model =
   Options.div
@@ -61,18 +36,30 @@ list model =
     , Options.css "overflow-y" "scroll" ]
     [ Table.table 
       [ Options.css "width" "100%" ]
-      [ Table.thead []
-        [ Table.th []
+      [ Table.thead 
+        [ Options.css "font-size" "11px"
+        , Options.css "height" "auto" ]
+        [ Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
           [ text "Query Name" ]
-        , Table.th []
+        , Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
           [ text "Last Edited Date" ]  
         ]
-      , Table.tbody []
+      , Table.tbody [ Options.css "font-size" "11px" ]
         (List.map (\(item) -> 
-          Table.tr []
-          [ Table.td []  
+          Table.tr [ Options.css "height" "auto" ]
+          [ Table.td 
+            [ Options.css "height" "auto"
+            , Options.css "padding" "4px" ]  
             [ text item.name ]
-          , Table.td [] 
+          , Table.td 
+            [ Options.css "height" "auto"
+            , Options.css "padding" "4px" ] 
             [ Date.toFormattedString "yyyy-MM-dd HH:mm" item.lastEdited 
               |> text
             ]
