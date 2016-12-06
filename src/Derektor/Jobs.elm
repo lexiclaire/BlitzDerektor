@@ -51,18 +51,33 @@ viewList model =
     , Options.css "overflow-y" "scroll" ]
     [ Table.table 
       [ Options.css "width" "100%" ]
-      [ Table.thead []
-        [ Table.th []
+      [ Table.thead 
+        [ Options.css "font-size" "11px"
+        , Options.css "height" "auto" ]
+        [ Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
           [ text "Job Name" ]
-        , Table.th []
+        , Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
           [ text "Last Edited Date" ]  
         ]
-      , Table.tbody []
+      , Table.tbody 
+        [ Options.css "font-size" "11px" ]
         ( model.jobSummary
           |> List.map (\item ->
-            Table.tr [] 
-              [ Table.td [] [ text item.name ] 
-              , Table.td [] [ Date.toFormattedString "yyyy-MM-dd HH:mm" item.lastEdited |> text ]  
+            Table.tr [ Options.css "height" "auto" ] 
+              [ Table.td 
+                [ Options.css "padding" "4px" 
+                , Options.css "height" "auto" ] 
+                [ text item.name ] 
+              , Table.td 
+                [ Options.css "padding" "4px"
+                , Options.css "height" "auto" ] 
+                [ Date.toFormattedString "yyyy-MM-dd HH:mm" item.lastEdited |> text ]  
               ]
           )
         )  

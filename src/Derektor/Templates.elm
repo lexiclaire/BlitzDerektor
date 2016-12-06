@@ -103,12 +103,20 @@ list model =
         [ Table.table 
           [ Options.css "width" "100%" ]
           [ Table.thead []
-            [ Table.th [] [ text "Template Name" ] ]
-          , Table.tbody []
+            [ Table.th 
+              [ Options.css "height" "auto"
+              , Options.css "padding" "4px"
+              , Options.css "font-size" "11px" ] 
+              [ text "Template Name" ] ]
+          , Table.tbody 
+            [ Options.css "font-size" "11px" ]
             ( List.map (\(template) -> 
               Table.tr 
-              [ if template.name == currentName then Table.selected else Options.nop ]
-              [ Table.td []
+              [ if template.name == currentName then Table.selected else Options.nop
+              , Options.css "height" "auto" ]
+              [ Table.td 
+                [ Options.css "padding" "4px" 
+                , Options.css "height" "auto" ]
                 [ div 
                   [ Html.Events.onClick (Data.SelectTemplate template ) ] 
                   [ text template.name ] 

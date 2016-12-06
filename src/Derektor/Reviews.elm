@@ -46,23 +46,32 @@ reviewsPane model =
         , Options.css "overflow-y" "scroll" ]
         [ Table.table 
           [ Options.css "width" "100%" ]
-          [ Table.thead []
-            [ Table.th [] [ text "S" ]
-            , Table.th [] [ text "R" ]
-            , Table.th [] [ text "O" ]
-            , Table.th [] [ text "C" ]
-            , Table.th []
+          [ Table.thead 
+            [ Options.css "font-size" "11px"
+            , Options.css "height" "auto" ]
+            [ Table.th 
+              [ Options.css "height" "auto"
+              , Options.css "padding" "4px"
+              , Options.css "font-size" "11px" ]
+              [ text "Sent" ]
+            , Table.th
+              [ Options.css "height" "auto"
+              , Options.css "padding" "4px"
+              , Options.css "font-size" "11px" ]
               [ text "Recipient" ]
             ]
-          , Table.tbody []
+          , Table.tbody [ Options.css "font-size" "11px" ]
             ( recipients
               |> List.map (\item ->
-                Table.tr [] 
-                  [ Table.td [] [] 
-                  , Table.td [] [] 
-                  , Table.td [] [] 
-                  , Table.td [] [] 
-                  , Table.td [] [ text item.email ]  
+                Table.tr [ Options.css "height" "auto" ] 
+                  [ Table.td 
+                    [ Options.css "padding" "4px" 
+                    , Options.css "height" "auto" ]  
+                    [] 
+                  , Table.td 
+                    [ Options.css "padding" "4px" 
+                    , Options.css "height" "auto" ] 
+                    [ text item.email ]  
                   ]
               )
             )  
@@ -76,27 +85,38 @@ approvalsPane model =
   cell
     [ size All 6 ]
     [ Table.table []
-      [ Table.thead []
-        [ Table.th []
+      [ Table.thead 
+        [ Options.css "font-size" "11px"
+        , Options.css "height" "auto" ]      
+        [ Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
           []
-        , Table.th []
+        , Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
           [ text "Name" ]
-        , Table.th []
-          [ text "Required?" ]
         ]
-      , Table.tbody []
+      , Table.tbody 
+        [ Options.css "font-size" "11px" ]
         ( Mock_data.dummyReviewer
           |> List.indexedMap (\idx item ->
             Table.tr
               [ Table.selected `when` Set.member (key item) model.selected ]
-                [ Table.td []
-                  [ Toggles.checkbox Data.Mdl [idx] model.mdl
-                    [ Toggles.onClick (Data.Toggle <| key item)
-                    , Toggles.value <| Set.member (key item) model.selected
-                    ] []
-                  ]
-                , Table.td [] [ text item.name ]
-                , Table.td [ Table.numeric ] [ text item.approval ]
+              [ Table.td 
+                [ Options.css "padding" "4px" 
+                , Options.css "height" "auto" ]
+                [ Toggles.checkbox Data.Mdl [idx] model.mdl
+                  [ Toggles.onClick (Data.Toggle <| key item)
+                  , Toggles.value <| Set.member (key item) model.selected
+                  ] []
+                ]
+              , Table.td 
+                [ Options.css "padding" "4px" 
+                , Options.css "height" "auto" ] 
+                [ text item.name ]
               ]
             )
           )

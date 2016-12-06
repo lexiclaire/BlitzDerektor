@@ -57,15 +57,24 @@ list model =
       , Options.css "overflow-y" "scroll" ]
       [ Table.table 
         [ Options.css "width" "100%" ]
-        [ Table.thead []
-          [ Table.th []
+        [ Table.thead 
+          [ Options.css "font-size" "11px"
+          , Options.css "height" "auto" ]
+          [ Table.th 
+            [ Options.css "height" "auto"
+            , Options.css "padding" "4px"
+            , Options.css "font-size" "11px" ]
             [ text "Schedule Name" ] 
           ]
-        , Table.tbody []
+        , Table.tbody 
+          [ Options.css "font-size" "11px" ]
           ( List.map (\(schedules) -> 
             Table.tr 
-              [ if schedules.name == currentSchedulesName then Table.selected else Options.nop ] 
-              [ Table.td [] 
+              [ if schedules.name == currentSchedulesName then Table.selected else Options.nop
+              , Options.css "height" "auto" ] 
+              [ Table.td 
+                [ Options.css "padding" "4px"
+                , Options.css "height" "auto" ] 
                 [ div 
                   [ Html.Events.onClick (Data.SelectSchedules schedules ) ] 
                   [ text schedules.name ] 
@@ -78,17 +87,48 @@ list model =
 createNewSchedule : Data.Model -> Html Data.Msg
 createNewSchedule model =
   Options.div []
-    [ Table.table []
-      [ Table.thead []
-        [ Table.th [] [ text "Minute" ]
-        , Table.th [] [ text "Hour" ]
-        , Table.th [] [ text "Date" ]
-        , Table.th [] [ text "Month" ]
-        , Table.th [] [ text "Year" ]
-        , Table.th [] [ text "Day of week" ]
-        , Table.th [] [ text "Quantity" ]          
+    [ Table.table [ Options.css "width" "100%" ]
+      [ Table.thead 
+        [ Options.css "font-size" "11px"
+        , Options.css "height" "auto" ]
+        [ Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ] 
+          [ text "Minute" ]
+        , Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
+          [ text "Hour" ]
+        , Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
+          [ text "Date" ]
+        , Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
+          [ text "Month" ]
+        , Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
+          [ text "Year" ]
+        , Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
+          [ text "Day of week" ]
+        , Table.th 
+          [ Options.css "height" "auto"
+          , Options.css "padding" "4px"
+          , Options.css "font-size" "11px" ]
+          [ text "Quantity" ]          
         ]
-      , Table.tbody []
+      , Table.tbody 
+        [ Options.css "font-size" "11px" ]
         ( List.map (\(n) -> customScheduleRow model n ) [0..model.customScheduleLine] )
       ]
       , addAnotherScheduleButton model
@@ -96,9 +136,11 @@ createNewSchedule model =
 
 customScheduleRow : Data.Model -> Int -> Html Data.Msg
 customScheduleRow model rowNumber =
-  Table.tr []
+  Table.tr [ Options.css "height" "auto" ] 
     ( List.concat [ (List.map (\(n) -> dateField n model.mdl ) [0..5] )
-          , [ Table.td []
+          , [ Table.td 
+              [ Options.css "padding" "4px"
+                , Options.css "height" "auto" ] 
               [ Textfield.render Data.Mdl [6] model.mdl 
                 [ Options.css "width" "100%" ]
               ] 
@@ -107,10 +149,13 @@ customScheduleRow model rowNumber =
 
 
 dateField index mdl = 
-  Table.td []
+  Table.td 
+    [ Options.css "padding" "4px"
+    , Options.css "height" "auto" ] 
     [ Textfield.render Data.Mdl [index] mdl 
       [ Textfield.maxlength 2
-      , Options.css "width" "100%" ] 
+      , Options.css "width" "100%"
+      , Options.css "padding" "4px" ] 
     ]
 
 addAnotherScheduleButton : Data.Model -> Html Data.Msg
