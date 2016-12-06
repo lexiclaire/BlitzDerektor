@@ -54,6 +54,9 @@ update msg model =
     Data.SelectStepperTab num ->
       { model | stepperTab = num } ! []
 
+    Data.DuplicateMsg ->
+      model ! []  
+
     Data.Toggle idx ->
       { model | selected = Common.toggle idx model.selected } ! []
 
