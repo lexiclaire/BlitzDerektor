@@ -36,6 +36,8 @@ init =
   , currentTime = 0
   , initialSeed = 0
   , query = Mock_data.dummyQuery
+  , reviewerLine = 0
+  , reviewers = []
   , schedules = Mock_data.dummySchedulesList
   , customScheduleLine = 0
   } ! [ Data.getRandomNumber ]
@@ -95,6 +97,27 @@ update msg model =
         newStep = model.stepperTab + 1
       in  
         { model | stepperTab = newStep } ! []
+
+    Data.ReviewerApproved index ->
+      let
+        currentReviewer =
+          List.head (List.drop index model.reviewers)
+        --updatedReview =
+        --  case currentReviewer of
+        --    Nothing -> Nothing
+        --    Just reviewer ->
+        --      { reviewer | approval = True }
+      in
+      model ! []
+
+    Data.AddReviewerRow ->
+      let 
+        lines = model.reviewerLine + 1
+      in 
+        if Common.isNewJob model.jobsTab then
+          { model | reviewerLine = lines } ! []
+        else
+          model ! [] 
 
     Data.AddScheduleRow ->
       let 

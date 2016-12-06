@@ -23,6 +23,8 @@ type alias Model =
   , job : Maybe Job
   , template : Maybe Template
   , query : Query
+  , reviewerLine : Int
+  , reviewers : List Reviewer
   , schedules : List Schedules
   , customScheduleLine : Int
   }
@@ -39,8 +41,11 @@ type Msg
   | SelectTemplate Template
   | SelectSchedules Schedules
   | UnselectSchedules
-  | NextPage  
+  | NextPage 
+  | AddReviewerRow
+  | ReviewerApproved Int 
   | AddScheduleRow
+
 
 
 type alias Job =
@@ -96,7 +101,7 @@ type alias Review = String
 
 type alias Reviewer =
   { name : String
-  , approval : String }
+  , approval : Bool }
 
 type alias Schedule = 
   { minute : Int
