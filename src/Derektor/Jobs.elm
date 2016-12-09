@@ -48,58 +48,72 @@ newJobsPane model =
 
 viewList : Data.Model -> Html Data.Msg
 viewList model =
-  Options.div
-    [ Options.css "max-height" "400px" 
-    , Options.css "overflow-y" "scroll" ]
-    [ Table.table 
-      [ Options.css "width" "100%" ]
-      [ Table.thead 
-        [ Options.css "font-size" "11px"
-        , Options.css "height" "auto" ]
-        [ Table.th 
-          [ Options.css "height" "auto"
-          , Options.css "padding" "4px"
-          , Options.css "font-size" "11px" ]
-          [ text "Job Name" ]
-        , Table.th 
-          [ Options.css "height" "auto"
-          , Options.css "padding" "4px"
-          , Options.css "font-size" "11px" ]
-          [ text "Last Edited Date" ] 
-        , Table.th 
-          [ Options.css "height" "auto"
-          , Options.css "padding" "4px"
-          , Options.css "font-size" "11px" ] 
-          []   
-        ]
-      , Table.tbody 
-        [ Options.css "font-size" "11px" ]
-        ( model.jobSummary
-          |> List.map (\item ->
-            Table.tr [ Options.css "height" "auto" ] 
-              [ Table.td 
-                [ Options.css "padding" "4px" 
-                , Options.css "height" "auto" ] 
-                [ text item.name ] 
-              , Table.td 
-                [ Options.css "padding" "4px"
-                , Options.css "height" "auto" ] 
-                [ Date.toFormattedString "yyyy-MM-dd HH:mm" item.lastEdited |> text ]
-              , Table.td 
-                [ Options.css "padding" "2px"
-                , Options.css "height" "auto" ] 
-                [ duplicateButton model ]   
+  let 
+    ( _, tableRows ) =
+      ( model.jobSummary 
+        |> List.foldl (\ ( item ) ( idx, acc ) ->
+          ( idx + 1
+            , List.concat
+              [ acc 
+              , [ Table.tr [ Options.css "height" "auto" ] 
+                  [ Table.td 
+                    [ Options.css "padding" "4px" 
+                    , Options.css "height" "auto" ] 
+                    [ text item.name ] 
+                  , Table.td 
+                    [ Options.css "padding" "4px"
+                    , Options.css "height" "auto" ] 
+                    [ Date.toFormattedString "yyyy-MM-dd HH:mm" item.lastEdited |> text ]
+                  , Table.td 
+                    [ Options.css "padding" "2px"
+                    , Options.css "height" "auto" ] 
+                    [ duplicateButton model idx ]   
+                  ]
+                ]  
               ]
-          )
-        )  
-      ]
-    ] 
+            )
+          ) ( 1, [] )
+        ) 
+  in     
+    Options.div
+      [ Options.css "max-height" "400px" 
+      , Options.css "overflow-y" "scroll" ]
+      [ Table.table 
+        [ Options.css "width" "100%" ]
+        [ Table.thead 
+          [ Options.css "font-size" "11px"
+          , Options.css "height" "auto" ]
+          [ Table.th 
+            [ Options.css "height" "auto"
+            , Options.css "padding" "4px"
+            , Options.css "font-size" "11px" ]
+            [ text "Job Name" ]
+          , Table.th 
+            [ Options.css "height" "auto"
+            , Options.css "padding" "4px"
+            , Options.css "font-size" "11px" ]
+            [ text "Last Edited Date" ] 
+          , Table.th 
+            [ Options.css "height" "auto"
+            , Options.css "padding" "4px"
+            , Options.css "font-size" "11px" ] 
+            []   
+          ]
+        , Table.tbody 
+          [ Options.css "font-size" "11px" ]
+          tableRows
+          ]
+        ]    
 
-duplicateButton : Data.Model -> Html Data.Msg
-duplicateButton model =
-  Button.render Data.Mdl [1] model.mdl
-    [ Button.minifab
+duplicateButton : Data.Model -> Int -> Html Data.Msg
+duplicateButton model idx =
+  Button.render Data.Mdl [idx] model.mdl
+    [ Options.css "padding" "4px"
+    , Options.css "font-size" "8px"
+    , Button.minifab
     , Button.ripple
     , Button.onClick Data.DuplicateMsg
     ]
-    [ Icon.i "content_copy"]
+    [ Icon.view "content_copy" 
+      [ Icon.size18 ]
+    ]
