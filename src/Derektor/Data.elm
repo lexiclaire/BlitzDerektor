@@ -31,6 +31,7 @@ type Msg
   = Mdl (Material.Msg Msg)
   | SelectJobsTab Int
   | SelectStepperTab Int
+  | DuplicateMsg
   | Toggle String
   | RandomSeed 
   | RandomSeedSucceed String
