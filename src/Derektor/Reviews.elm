@@ -1,12 +1,14 @@
 module Derektor.Reviews exposing (..)
 
 import Html exposing (..)
+import Html.Events
 
 import Set exposing (Set)
 
 import Material.Button as Button
 import Material.Grid exposing (..)
 import Material.Icon as Icon
+import Material.List as List
 import Material.Options as Options exposing (..)
 import Material.Table as Table
 import Material.Textfield as Textfield
@@ -22,9 +24,6 @@ import Mock_data
 
 
 -- VIEW
-
-key : Data.Reviewer -> String
-key = .name
 
 view : Data.Model -> Html Data.Msg
 view model =
@@ -87,47 +86,35 @@ approvalsPane : Data.Model -> Cell Data.Msg
 approvalsPane model =
   cell
     [ size All 6 ]
-    [ Table.table []
-      [ Table.thead 
-        [ Options.css "font-size" "11px"
-        , Options.css "height" "auto" ]      
-        [ Table.th 
-          [ Options.css "height" "auto"
-          , Options.css "padding" "4px"
-          , Options.css "font-size" "11px" ]
-          []
-        , Table.th 
-          [ Options.css "height" "auto"
-          , Options.css "padding" "4px"
-          , Options.css "font-size" "11px" ]
-          [ text "Reviewer email or name" ]
-        ]
-      , Table.tbody 
-        [ Options.css "font-size" "11px" ]
-          ( List.map (\idx ->
-            Table.tr []
-              [ Table.td 
-                [ Options.css "padding" "4px" 
-                , Options.css "height" "auto" ]
-                [ Toggles.checkbox Data.Mdl [idx] model.mdl
-                  [ Toggles.onClick <| Data.ReviewerApproved idx
-                  , Toggles.value False
-                  ] []
-                ]
-              , Table.td 
-                [ Options.css "padding" "4px" 
-                , Options.css "height" "auto" ] 
-                [ Textfield.render Data.Mdl [0] model.mdl 
-                  [ Textfield.label "Enter email or name"
-                  ] 
-                ]
-              ]
-            ) [0..model.reviewerLine]
-          )
-        ]
-      , addAnotherReviewerButton model
-      ] 
-
+    [ List.ul []
+      ( List.map (\(email) -> 
+          List.li []
+          [ List.content 
+            [ Options.attribute <| Html.Events.onClick ( Data.ReviewerToggle email ) ]
+            [ text email ]
+          ]
+        ) 
+          ( case model.job of
+            Nothing -> 
+              []
+            Just job -> 
+              job.reviewers.waiting )
+      )
+    , List.ul []
+      ( List.map (\(email) -> 
+          List.li []
+          [ List.content 
+            [ Options.attribute <| Html.Events.onClick ( Data.ReviewerToggle email ) ]
+            [ text email ]
+          ]
+        ) 
+          ( case model.job of
+            Nothing -> 
+              []
+            Just job -> 
+              job.reviewers.approved )
+      )    
+    ]
 
 addAnotherReviewerButton : Data.Model -> Html Data.Msg
 addAnotherReviewerButton model = 

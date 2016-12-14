@@ -16,7 +16,7 @@ dummyJob =
   , lastEdited = Date.fromTime 0
   , template = dummyTemplate "name"
   , query = dummyQuery
-  , review = ""
+  , reviewers = { approved = [ "rob@yourface.com" ], waiting = [ "rob.martin@octanner.com" ] }
   , schedules = dummySchedules ""
   , recipients =
     [ { sentFlag = False

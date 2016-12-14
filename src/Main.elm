@@ -37,7 +37,6 @@ init =
   , initialSeed = 0
   , query = Mock_data.dummyQuery
   , reviewerLine = 0
-  , reviewers = []
   , schedules = Mock_data.dummySchedulesList
   , customScheduleLine = 0
   } ! [ Data.getRandomNumber ]
@@ -98,17 +97,9 @@ update msg model =
       in  
         { model | stepperTab = newStep } ! []
 
-    Data.ReviewerApproved index ->
-      let
-        currentReviewer =
-          List.head (List.drop index model.reviewers)
-        --updatedReview =
-        --  case currentReviewer of
-        --    Nothing -> Nothing
-        --    Just reviewer ->
-        --      { reviewer | approval = True }
-      in
+    Data.ReviewerToggle email ->
       model ! []
+
 
     Data.AddReviewerRow ->
       let 

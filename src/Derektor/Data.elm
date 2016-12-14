@@ -24,7 +24,6 @@ type alias Model =
   , template : Maybe Template
   , query : Query
   , reviewerLine : Int
-  , reviewers : List Reviewer
   , schedules : List Schedules
   , customScheduleLine : Int
   }
@@ -43,7 +42,7 @@ type Msg
   | UnselectSchedules
   | NextPage 
   | AddReviewerRow
-  | ReviewerApproved Int 
+  | ReviewerApproved String
   | AddScheduleRow
 
 
@@ -55,7 +54,7 @@ type alias Job =
   , lastEdited : Date.Date
   , template : Template
   , query : Query
-  , review : Review
+  , reviewers : Reviewers
   , schedules : Schedules
   , recipients : List Recipient
   }
@@ -97,11 +96,9 @@ type alias Recipient =
   , email : String
   }
 
-type alias Review = String
-
-type alias Reviewer =
-  { name : String
-  , approval : Bool }
+type alias Reviewers = 
+  { approved : List String
+  , waiting : List String }
 
 type alias Schedule = 
   { minute : Int
