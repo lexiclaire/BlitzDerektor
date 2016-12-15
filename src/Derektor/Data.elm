@@ -22,7 +22,7 @@ type alias Model =
   , jobSummary : Jobs
   , job : Maybe Job
   , template : Maybe Template
-  , query : Query
+  , query : Maybe Query
   , schedules : List Schedules
   , customScheduleLine : Int
   }
@@ -38,6 +38,7 @@ type Msg
   | RandomSeedFail Http.Error
   | Tick Time
   | SelectTemplate Template
+  | SelectQuery Query
   | SelectSchedules Schedules
   | UnselectSchedules
   | NextPage  
@@ -77,8 +78,9 @@ type alias Templates = List TemplateSummary
 
 type alias Query = 
   { name : String
+  , sql : String
   , lastEdited : Date.Date
-  , results : List String
+  , variables : List ( Int, String, String )
   }
 
 type alias QuerySummary = String
