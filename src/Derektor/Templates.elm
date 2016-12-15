@@ -118,7 +118,7 @@ list model =
                 [ Options.css "padding" "4px" 
                 , Options.css "height" "auto" ]
                 [ div 
-                  [ Html.Events.onClick (Data.SelectTemplate template ) ] 
+                  [ Html.Events.onClick ( Data.SelectTemplate template ) ] 
                   [ text template.name ] 
                 ]
               ]

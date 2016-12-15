@@ -35,7 +35,7 @@ init =
   , template = Nothing
   , currentTime = 0
   , initialSeed = 0
-  , query = Mock_data.dummyQuery
+  , query = Nothing
   , schedules = Mock_data.dummySchedulesList
   , customScheduleLine = 0
   } ! [ Data.getRandomNumber ]
@@ -78,6 +78,9 @@ update msg model =
 
     Data.SelectTemplate  template ->
       { model | template = Just template } ! []
+
+    Data.SelectQuery query ->
+      { model | query = Just query } ![]  
 
     Data.SelectSchedules schedules ->
       case model.job of

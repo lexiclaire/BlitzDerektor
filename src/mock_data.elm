@@ -15,7 +15,7 @@ dummyJob =
   , locked = False
   , lastEdited = Date.fromTime 0
   , template = dummyTemplate "name"
-  , query = dummyQuery
+  , query = dummyQuery ""
   , review = ""
   , schedules = dummySchedules ""
   , recipients =
@@ -132,17 +132,18 @@ mockTemplate =
     </html>
     """
 
-dummyQuery : Data.Query
-dummyQuery =
-  { name = "Query Name"
+dummyQuery : String -> Data.Query
+dummyQuery name =
+  { name = name
+  , sql = "Drop database *"
   , lastEdited = Date.fromTime 0
-  , results = ["result 1", "result 2", "result 3"]
+  , variables = [ ( 0, "quantity", "100" )]
   }
 
 mockedQueriesList : List Data.Query
 mockedQueriesList =
-  [ dummyQuery
-  , dummyQuery
+  [ dummyQuery "query the first"
+  , dummyQuery "query the second"
   ]
 
 dummyReviewer : List Data.Reviewer
