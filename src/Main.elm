@@ -38,6 +38,7 @@ init =
   , query = Nothing
   , schedules = Mock_data.dummySchedulesList
   , customScheduleLine = 0
+  , completedJob = False
   } ! [ Data.getRandomNumber ]
 
 -- UPDATE
@@ -55,7 +56,10 @@ update msg model =
       { model | stepperTab = num } ! []
 
     Data.DuplicateMsg ->
-      model ! []  
+      model ! [] 
+
+    Data.EditMsg ->
+      model ! []   
 
     Data.Toggle idx ->
       { model | selected = Common.toggle idx model.selected } ! []

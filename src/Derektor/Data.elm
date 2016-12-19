@@ -25,6 +25,7 @@ type alias Model =
   , query : Maybe Query
   , schedules : List Schedules
   , customScheduleLine : Int
+  , completedJob : Bool
   }
 
 type Msg
@@ -32,6 +33,7 @@ type Msg
   | SelectJobsTab Int
   | SelectStepperTab Int
   | DuplicateMsg
+  | EditMsg
   | Toggle String
   | RandomSeed 
   | RandomSeedSucceed String
