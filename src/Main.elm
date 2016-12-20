@@ -38,7 +38,6 @@ init =
   , query = Nothing
   , schedules = Mock_data.dummySchedulesList
   , customScheduleLine = 0
-  , completedJob = False
   } ! [ Data.getRandomNumber ]
 
 -- UPDATE

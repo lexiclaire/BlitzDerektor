@@ -68,7 +68,7 @@ viewList model =
                     [ Options.css "padding" "0 0 0 4px"
                     , Options.css "height" "auto" ] 
                     [ duplicateButton model idx
-                    , editButton model idx ]   
+                    , editButton model item idx ]   
                   ]
                 ]  
               ]
@@ -117,14 +117,15 @@ duplicateButton model idx =
     [ text "duplicate"
     ]
 
-editButton : Data.Model -> Int -> Html Data.Msg
-editButton model idx =
-  Button.render Data.Mdl [idx] model.mdl
+editButton : Data.Model -> Data.JobSummary -> Int -> Html Data.Msg
+editButton model job idx =
+  Button.render Data.Mdl [idx * -1] model.mdl
     [ Options.css "font-size" "9px"
-    , Button.minifab
+    , if job.locked then Button.disabled else Button.minifab
     , Button.ripple
     , Button.onClick Data.EditMsg
     ]
     [ text "edit"
     ]
+   
 

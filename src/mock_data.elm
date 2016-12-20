@@ -12,6 +12,32 @@ dummyJob : Data.Job
 dummyJob =
   { uuid = Nothing
   , name = "Job Name Here"
+  , locked = True
+  , lastEdited = Date.fromTime 0
+  , template = dummyTemplate "name"
+  , query = dummyQuery ""
+  , review = ""
+  , schedules = dummySchedules ""
+  , recipients =
+    [ { sentFlag = False
+      , receivedFlag = False
+      , openedFlag = False
+      , clickedFlag = False
+      , email = "ginavasiloff@gmail.com"
+      }
+      , { sentFlag = False
+      , receivedFlag = False
+      , openedFlag = False
+      , clickedFlag = False
+      , email = "anlevier@gmail.com"
+      }
+    ]  
+  }
+
+dummyJobTwo : Data.Job
+dummyJobTwo =
+  { uuid = Nothing
+  , name = "Job the second"
   , locked = False
   , lastEdited = Date.fromTime 0
   , template = dummyTemplate "name"
@@ -31,8 +57,8 @@ dummyJob =
       , clickedFlag = False
       , email = "anlevier@gmail.com"
       }
-    ]
-  }
+    ]  
+  }  
 
 mockedJobs : List Data.Job -> Data.Jobs
 mockedJobs jobList =
@@ -46,7 +72,7 @@ mockedJobs jobList =
 mockedJobList : List Data.Job
 mockedJobList =
   [ dummyJob
-  , dummyJob
+  , dummyJobTwo
   ]
 
 mockedTemplatesList : List Data.Template

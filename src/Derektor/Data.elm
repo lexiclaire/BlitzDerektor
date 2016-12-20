@@ -25,7 +25,6 @@ type alias Model =
   , query : Maybe Query
   , schedules : List Schedules
   , customScheduleLine : Int
-  , completedJob : Bool
   }
 
 type Msg
