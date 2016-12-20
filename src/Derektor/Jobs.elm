@@ -57,17 +57,18 @@ viewList model =
               [ acc 
               , [ Table.tr [ Options.css "height" "auto" ] 
                   [ Table.td 
-                    [ Options.css "padding" "4px" 
+                    [ Options.css "padding" "0 0 0 4px" 
                     , Options.css "height" "auto" ] 
                     [ text item.name ] 
                   , Table.td 
-                    [ Options.css "padding" "4px"
+                    [ Options.css "padding" "0 0 0 4px"
                     , Options.css "height" "auto" ] 
                     [ Date.toFormattedString "yyyy-MM-dd HH:mm" item.lastEdited |> text ]
                   , Table.td 
-                    [ Options.css "padding" "2px"
+                    [ Options.css "padding" "0 0 0 4px"
                     , Options.css "height" "auto" ] 
-                    [ duplicateButton model idx ]   
+                    [ duplicateButton model idx
+                    , editButton model item idx ]   
                   ]
                 ]  
               ]
@@ -108,12 +109,23 @@ viewList model =
 duplicateButton : Data.Model -> Int -> Html Data.Msg
 duplicateButton model idx =
   Button.render Data.Mdl [idx] model.mdl
-    [ Options.css "padding" "4px"
-    , Options.css "font-size" "8px"
+    [ Options.css "font-size" "9px"
     , Button.minifab
     , Button.ripple
     , Button.onClick Data.DuplicateMsg
     ]
-    [ Icon.view "content_copy" 
-      [ Icon.size18 ]
+    [ text "duplicate"
     ]
+
+editButton : Data.Model -> Data.JobSummary -> Int -> Html Data.Msg
+editButton model job idx =
+  Button.render Data.Mdl [idx * -1] model.mdl
+    [ Options.css "font-size" "9px"
+    , if job.locked then Button.disabled else Button.minifab
+    , Button.ripple
+    , Button.onClick Data.EditMsg
+    ]
+    [ text "edit"
+    ]
+   
+

@@ -32,6 +32,7 @@ type Msg
   | SelectJobsTab Int
   | SelectStepperTab Int
   | DuplicateMsg
+  | EditMsg
   | Toggle String
   | RandomSeed 
   | RandomSeedSucceed String
